@@ -1,16 +1,20 @@
 <?php
-    class product {
+    /**
+     * Represents a product to be sold at the online store.
+     * 
+     */
+    class Product {
         private $title;
         private $price;
         private $description;
 
-        public function __construct($title, $price, $description) {
+        public function __construct(string $title, float $price, string $description) {
             $this->title = $title;
             $this->price = $price;
             $this->description = $description;
         }
 
-        public function set_title($title) {
+        public function set_title(string $title) {
             $this->title = htmlspecialchars(stripslashes(trim($title)));
         }
 
@@ -18,7 +22,7 @@
             return $this->title;
         }
 
-        public function set_description($description) {
+        public function set_description(string $description) {
             $this->description = htmlspecialchars(stripslashes(trim($description)));
         }
 
@@ -26,7 +30,7 @@
             return $this->description;
         }
 
-        public function set_price($price) {
+        public function set_price(float $price) {
             $this->price = (float) $price;
         }
 
