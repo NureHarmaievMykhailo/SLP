@@ -1,13 +1,13 @@
 <?php
-    require_once('product.php');
+    require_once('book.php');
     /**
      * Represents an item in a list to be added to a shopping cart.
      */
-    class ListItem extends product {
+    class ListItem extends Book {
         private $quantity;
 
-        public function __construct(string $title, float $price, string $description, int $quantity = 0) {
-            parent::__construct($title, $price, $description);
+        public function __construct(string $title, float $price, string $description, string $image_URI, string $author, int $quantity = 0) {
+            parent::__construct($title, $price, $description, $image_URI, $author);
             $this->quantity = (int) $quantity;
         }
 

@@ -3,10 +3,10 @@
      * Represents a product to be sold at the online store.
      * 
      */
-    class Product {
-        private $title;
-        private $price;
-        private $description;
+    abstract class Product {
+        protected $title;
+        protected $price;
+        protected $description;
 
         public function __construct(string $title, float $price, string $description) {
             $this->title = $title;
