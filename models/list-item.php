@@ -15,12 +15,17 @@
             return $this->quantity;
         }
 
+        /**
+         * Sets the quantity property.
+         * @param int $quantity
+         * @throws InvalidArgumentException If the input is less than 0 or not an intiger.
+         */
         public function set_quantity(int $quantity) {
             if ($quantity >= 0) {
                 $this->quantity = $quantity;
                 return;
             }
-            throw new Exception("Invalid argument: quantity cannot be negative.");
+            throw new InvalidArgumentException("set_quantity only accepts positive integers and 0. Input was: ".$quantity);
         }
     }
 ?>
