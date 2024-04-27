@@ -1,0 +1,104 @@
+body {
+    margin:0px;
+    background-image:none;
+    position:relative;
+    left:-0px;
+    width:1440px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+  }
+  .form_sketch {
+    border-color:transparent;
+    background-color:transparent;
+  }
+  #base {
+    position:absolute;
+    z-index:0;
+  }
+  #book_block {
+    border-width:0px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:360px;
+    height:535px;
+    background:inherit;
+    background-color:rgba(215, 179, 228, 0.6980392156862745);
+    box-sizing:border-box;
+    border-width:2px;
+    border-style:solid;
+    border-color:rgba(51, 10, 106, 1);
+    border-radius:15px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    font-family:"Bahnschrift", sans-serif;
+    /* centers the items inside the div */
+    display: grid;
+    place-items: center;
+  }
+  #book_details_div {
+    position: relative;
+    display: grid;
+    place-items: center;
+    top: -5px;
+  }
+  #book_image {
+    border-width:0px;
+    position:relative;
+    left:0px;
+    top:5px;
+    width:243px;
+    height:306px;
+  }
+  /* formerly u77_text */
+  #book_title {
+      border-width:0px;
+      position:relative;
+      word-wrap:break-word;
+      text-transform:none;
+  }
+  #book_author {
+    border-width:0px;
+    top: 10px;
+    position:relative;
+    word-wrap:break-word;
+    text-transform:none;
+  }
+  /* formerly u_80_img*/
+  #separator_line {
+    border-width:0px;
+    position:relative;
+    top:20px;
+    width:203px;
+    height:5px;
+  }
+  #price_tag{
+    border-width:0px;
+    position: relative;
+    top: 30px;
+    white-space:nowrap;
+    text-transform:none;
+  }
+  #book_order_div {
+    position: relative;
+    display: grid;
+    place-items: center;
+    top: -20px;
+  }
+  #book_order_btn {
+    border-width:0px;
+    position:relative;
+    cursor: pointer;
+    left:0px;
+    top:30px;
+    width:125px;
+    height:40px;
+  }
+  #book_order_text {
+    border-width:0px;
+    word-wrap:break-word;
+    text-transform:none;
+    z-index: 1;
+  }
