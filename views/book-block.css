@@ -48,13 +48,14 @@ body {
     border-width:0px;
     position:relative;
     left:0px;
-    top:5px;
+    top:10px;
     width:243px;
     height:306px;
   }
   /* formerly u77_text */
   #book_title {
       border-width:0px;
+      font-size:20px;
       position:relative;
       word-wrap:break-word;
       text-transform:none;
@@ -74,10 +75,16 @@ body {
     width:203px;
     height:5px;
   }
+  .details_header {
+    font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
+    font-weight:700;
+    font-style:normal;
+  }
   #price_tag{
     border-width:0px;
     position: relative;
     top: 30px;
+    font-size:25px;
     white-space:nowrap;
     text-transform:none;
   }
@@ -100,5 +107,6 @@ body {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
+    color: #ffffff;
     z-index: 1;
   }

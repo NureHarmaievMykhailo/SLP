@@ -18,7 +18,7 @@
         <!-- book details -->
         <div id="book_details_div">
             <!-- Book title -->
-            <div id="book_title" class="text ">
+            <div id="book_title" class="text details_header">
                     <p><span>"Я (Романтика)"</span></p>
             </div>
 
@@ -31,7 +31,7 @@
             <img id="separator_line" class="img " src="../pages/images/shop_list/u52.svg">
 
             <!-- price tag-->
-            <div id="price_tag" class="text ">
+            <div id="price_tag" class="text details_header">
                 <p><span>485 грн</span></p>
             </div>
         </div>
