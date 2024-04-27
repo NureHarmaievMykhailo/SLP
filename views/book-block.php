@@ -6,25 +6,24 @@
     <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="../pages/data/styles.css" type="text/css" rel="stylesheet"/>
     <link href="book-block.css" type="text/css" rel="stylesheet"/>
-    <title>Shop List</title>
 </head>
 <body>
     <!-- block for a book -->
-    <div id="book_block" class="">
+    <div id="book_block" class="" style=<?php echo $offset;?>>
 
         <!-- image for the book -->
-        <img id="book_image" class="img " src="../pages/images/shop_list/u1.svg">
+        <img id="book_image" class="img " src=<?php echo $book_image_uri?>>
 
         <!-- book details -->
         <div id="book_details_div">
             <!-- Book title -->
             <div id="book_title" class="text details_header">
-                    <p><span>"Я (Романтика)"</span></p>
+                    <p><span><?php echo $book_title ?></span></p>
             </div>
 
             <!-- author -->
             <div id="book_author" class="text ">
-                <p><span>Микола Хвильовий</span></p>
+                <p><span><?php echo $book_author ?></span></p>
             </div>
 
             <!-- separator line-->
@@ -32,7 +31,7 @@
 
             <!-- price tag-->
             <div id="price_tag" class="text details_header">
-                <p><span>485 грн</span></p>
+                <p><span><?php echo $book_price." грн" ?></span></p>
             </div>
         </div>
 
