@@ -5,7 +5,7 @@
         private $book_title;
         private $book_image_uri;
         private $book_price;
-        private $style_path = "book-block.css";
+        private $style_path = "/public/book-block.css";
 
         function __construct($offset, $author, $title, $image_uri, $price) {
             $this->offset = $offset;
