@@ -143,6 +143,7 @@
       </div>
       <?php
             require_once('../models/shopping-cart.php');
+            require_once('book-block.php');
             $romantyka = new Book("\"Я (Романтика)\"", 485, "", "/pages/images/shop_list/u1.svg", "Микола Хвильовий");
             $kaydasheva_simya = new Book("\"Кайдашева сім'я\"", 500, "", "/pages/images/shop_list/u4.svg", "Іван Нечуй-Левицький");
             $tygrolovy = new Book("\"Тигролови\"", 490, "", "/pages/images/shop_list/u6.svg", "Іван Багряний");
@@ -157,13 +158,17 @@
 
             $left_offset = $default_left_offset;
             $top_offset = $default_top_offset;
+            // we assign i to 1 to make limitation to 3 blocks per row work
             for ($i = 1; $i <= count($book_list); $i++) {
+              // subtract 1 to make for the offset
               $book_title = $book_list[$i-1]->get_title();
               $book_author = $book_list[$i-1]->get_author();
               $book_price = $book_list[$i-1]->get_price();
               $book_image_uri = $book_list[$i-1]->get_image_URI();
               $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
-              include('book-block.php');
+
+              $block = new BookBlock($offset, $book_author, $book_title, $book_image_uri, $book_price);
+              $block->render();
               if ($i % 3 != 0) {
                 $left_offset += 430;
               }
