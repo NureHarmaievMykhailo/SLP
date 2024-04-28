@@ -90,6 +90,7 @@ body {
   }
   #book_order_div {
     position: relative;
+    cursor: pointer;
     display: grid;
     place-items: center;
     top: -20px;
@@ -97,7 +98,6 @@ body {
   #book_order_btn {
     border-width:0px;
     position:relative;
-    cursor: pointer;
     left:0px;
     top:30px;
     width:125px;
