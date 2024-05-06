@@ -102,7 +102,7 @@
               }
             }
       ?>
-
+      <script src="/public/sendPost.js"></script>
       <?php 
         include('footer.html');
       ?>
