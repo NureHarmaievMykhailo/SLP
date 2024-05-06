@@ -88,25 +88,25 @@ body {
     white-space:nowrap;
     text-transform:none;
   }
-  #book_order_div {
-    position: relative;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    top: -20px;
-  }
-  #book_order_btn {
-    border-width:0px;
-    position:relative;
-    left:0px;
-    top:30px;
-    width:125px;
-    height:40px;
-  }
   #book_order_text {
     border-width:0px;
     word-wrap:break-word;
     text-transform:none;
     color: #ffffff;
     z-index: 1;
+  }
+  .button_cart {
+    border-radius: 10px;
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+    color: white;
+    padding: 8px;
+    width: 35%;
+    border-color: rgba(51, 10, 106, 1);
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #8c5cbc;
   }

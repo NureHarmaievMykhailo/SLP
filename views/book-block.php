@@ -46,12 +46,7 @@
                     </div>
             
                     <!-- button for placing an order-->
-                    <div id=\"book_order_div\">
-                        <img id=\"book_order_btn\" class=\"img \" src=\"../pages/images/shop_list/u43.svg\">
-                        <div id=\"book_order_text\" class=\"text \">
-                            <p><span>У кошик</span></p>
-                        </div>
-                    </div>
+                    <button class=\"button_cart\">У кошик</button>
             
                 </div>
             </body>";
