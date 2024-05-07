@@ -6,8 +6,8 @@
     class ListItem extends Book {
         private $quantity;
 
-        public function __construct(string $title, float $price, string $description, string $image_URI, string $author, int $quantity = 0) {
-            parent::__construct($title, $price, $description, $image_URI, $author);
+        public function __construct(int $id, string $title, float $price, string $description, string $image_URI, string $author, int $quantity = 0) {
+            parent::__construct($id, $title, $price, $description, $image_URI, $author);
             $this->quantity = (int) $quantity;
         }
 

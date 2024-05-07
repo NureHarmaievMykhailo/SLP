@@ -68,14 +68,7 @@
       <?php
             require_once('../models/shopping-cart.php');
             require_once('book-block.php');
-            $romantyka = new Book("\"Я (Романтика)\"", 485, "", "/pages/images/shop_list/u1.svg", "Микола Хвильовий");
-            $kaydasheva_simya = new Book("\"Кайдашева сім'я\"", 500, "", "/pages/images/shop_list/u4.svg", "Іван Нечуй-Левицький");
-            $tygrolovy = new Book("\"Тигролови\"", 490, "", "/pages/images/shop_list/u6.svg", "Іван Багряний");
-            $trysta_poeziy = new Book("\"Триста поезій\"", 350, "", "/pages/images/shop_list/u59.svg", "Ліна Костенко");
-            $konotopska_vidma = new Book("\"Конотопська відьма\"", 400, "", "/pages/images/shop_list/u56.svg", "Грирорій Квітка-Основ'яненко");
-            $valce = new Book("\"Valse mélancolique\"", 545, "", "/pages/images/shop_list/u81.svg", "Ольга Кобилянська");
-
-            $book_list = array($romantyka, $kaydasheva_simya, $tygrolovy, $trysta_poeziy, $konotopska_vidma, $valce);
+            include('../public/book-data.php');
 
             $default_left_offset = 100;
             $default_top_offset = 220;
@@ -85,13 +78,14 @@
             // we assign i to 1 to make limitation to 3 blocks per row work
             for ($i = 1; $i <= count($book_list); $i++) {
               // subtract 1 to make for the offset
+              $id = $book_list[$i-1]->get_id();
               $book_title = $book_list[$i-1]->get_title();
               $book_author = $book_list[$i-1]->get_author();
               $book_price = $book_list[$i-1]->get_price();
               $book_image_uri = $book_list[$i-1]->get_image_URI();
               $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
 
-              $block = new BookBlock($offset, $book_author, $book_title, $book_image_uri, $book_price);
+              $block = new BookBlock($offset, $id, $book_author, $book_title, $book_image_uri, $book_price);
               $block->render();
               if ($i % 3 != 0) {
                 $left_offset += 430;
@@ -102,7 +96,7 @@
               }
             }
       ?>
-      <script src="/public/sendPost.js"></script>
+      <script src="/public/addToCart.js"></script>
       <?php 
         include('footer.html');
       ?>

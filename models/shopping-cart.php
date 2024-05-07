@@ -10,7 +10,7 @@
 
         public function __construct(array $array) {
             foreach ($array as $new_item) {
-                array_push($this->items, array($new_item->get_title()=>$new_item));
+                $this->items[$new_item->get_id()] = $new_item;
             }
         }
 
@@ -22,16 +22,20 @@
             return $this->items;
         }
 
+        public function has_id(int $id) {
+            return isset($this->items[$id]);
+        }
+
         public function set_items(array $array) {
             $this->clear();
             foreach ($array as $new_item) {
-                array_push($this->items, array($new_item->get_title()=>$new_item));
+                $this->items[$new_item->get_id()] = $new_item;
             }
         }
 
-        public function increment_item(string $name) {
-            $new_value = $this->items[$name]->get_quantity() + 1;
-            $this->items[$name]->set_quantity($new_value);
+        public function increment_item(int $id) {
+            $new_value = $this->items[$id]->get_quantity() + 1;
+            $this->items[$id]->set_quantity($new_value);
         }
 
         /**
@@ -42,27 +46,27 @@
          * 
          * @return string|null Returns a string indicating success or failure. If an exception occurs during the process, it returns "Unable to set quantity". Otherwise, returns null.
          */
-        public function set_quantity(string $name, int $quantity) {
+        public function set_quantity(int $id, int $quantity) {
             try {
-                $this->items[$name]->set_quantity($quantity);
+                $this->items[$id]->set_quantity($quantity);
             }
             catch (Exception $ex) {
                 return "Unable to set quantity";
             }
         }
 
-        public function decrement_item(string $name) {
-            $new_value = $this->items[$name]->get_quantity() - 1;
+        public function decrement_item(int $id) {
+            $new_value = $this->items[$id]->get_quantity() - 1;
             if ($new_value >= 0) {
-                $this->items[$name]->set_quantity($new_value);
+                $this->items[$id]->set_quantity($new_value);
             }
             else {
-                $this->items[$name]->set_quantity(0);
+                $this->items[$id]->set_quantity(0);
             }
         }
 
-        public function delete_item(string $name) {
-            unset($this->items[$name]);
+        public function delete_item(int $id) {
+            unset($this->items[$id]);
         }
 
         /**
@@ -70,7 +74,7 @@
          * @param ListItem $new_item The new ListItem object to be inserted.
          */
         public function add_item(ListItem $new_item) {
-            array_push($this->items, array($new_item->get_title()=>$new_item));
+            $this->items[$new_item->get_id()] = $new_item;
         }
 
         public function calculate_total_price() {

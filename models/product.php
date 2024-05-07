@@ -4,14 +4,24 @@
      * 
      */
     abstract class Product {
+        protected $id;
         protected $title;
         protected $price;
         protected $description;
 
-        public function __construct(string $title, float $price, string $description) {
+        public function __construct(int $id, string $title, float $price, string $description) {
+            $this->id = $id;
             $this->title = $title;
             $this->price = $price;
             $this->description = $description;
+        }
+
+        public function set_id(int $id) {
+            $this->id = $id;
+        }
+
+        public function get_id() {
+            return $this->id;
         }
 
         public function set_title(string $title) {

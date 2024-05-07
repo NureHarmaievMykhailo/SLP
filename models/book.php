@@ -7,8 +7,8 @@
         protected $image_URI;
         protected $author;
 
-        public function __construct(string $title, float $price, string $description, string $image_URI, string $author) {
-            parent::__construct($title, $price, $description);
+        public function __construct(int $id, string $title, float $price, string $description, string $image_URI, string $author) {
+            parent::__construct($id, $title, $price, $description);
             $this->image_URI = $image_URI;
             $this->author = $author;
         }
