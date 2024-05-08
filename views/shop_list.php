@@ -7,43 +7,8 @@
     <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="../pages/data/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../pages/files/shop_list/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
     <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
-    <script src="../pages/resources/scripts/axure/axQuery.js"></script>
-    <script src="../pages/resources/scripts/axure/globals.js"></script>
-    <script src="../pages/resources/scripts/axutils.js"></script>
-    <script src="../pages/resources/scripts/axure/annotation.js"></script>
-    <script src="../pages/resources/scripts/axure/axQuery.std.js"></script>
-    <script src="../pages/resources/scripts/axure/doc.js"></script>
-    <script src="../pages/resources/scripts/messagecenter.js"></script>
-    <script src="../pages/resources/scripts/axure/events.js"></script>
-    <script src="../pages/resources/scripts/axure/recording.js"></script>
-    <script src="../pages/resources/scripts/axure/action.js"></script>
-    <script src="../pages/resources/scripts/axure/expr.js"></script>
-    <script src="../pages/resources/scripts/axure/geometry.js"></script>
-    <script src="../pages/resources/scripts/axure/flyout.js"></script>
-    <script src="../pages/resources/scripts/axure/model.js"></script>
-    <script src="../pages/resources/scripts/axure/repeater.js"></script>
-    <script src="../pages/resources/scripts/axure/sto.js"></script>
-    <script src="../pages/resources/scripts/axure/utils.temp.js"></script>
-    <script src="../pages/resources/scripts/axure/variables.js"></script>
-    <script src="../pages/resources/scripts/axure/drag.js"></script>
-    <script src="../pages/resources/scripts/axure/move.js"></script>
-    <script src="../pages/resources/scripts/axure/visibility.js"></script>
-    <script src="../pages/resources/scripts/axure/style.js"></script>
-    <script src="../pages/resources/scripts/axure/adaptive.js"></script>
-    <script src="../pages/resources/scripts/axure/tree.js"></script>
-    <script src="../pages/resources/scripts/axure/init.temp.js"></script>
-    <script src="../pages/resources/scripts/axure/legacy.js"></script>
-    <script src="../pages/resources/scripts/axure/viewer.js"></script>
-    <script src="../pages/resources/scripts/axure/math.js"></script>
-    <script src="../pages/resources/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="../pages/data/document.js"></script>
-    <script src="../pages/files/shop_list/data.js"></script>
-    <script type="text/javascript">
-      $axure.utils.getTransparentGifPath = function() { return '../pages/resources/images/transparent.gif'; };
-      $axure.utils.getOtherPath = function() { return '../pages/resources/Other.html'; };
-      $axure.utils.getReloadPath = function() { return '../pages/resources/reload.html'; };
-    </script>
   </head>
   <body>
     <div id="base" class="">
@@ -59,7 +24,7 @@
       </div>
 
       <!-- Page header -->
-      <div id="u42" class="ax_default heading_1">
+      <div id="u42" class="ax_default heading_1 page_header">
         <div id="u42_div" class=""></div>
         <div id="u42_text" class="text ">
           <p><span>Поринь у яскравий світ української літератури!</span></p>
@@ -101,6 +66,8 @@
         include('footer.html');
       ?>
     </div>
-    <script src="/pages/resources/scripts/axure/ios.js"></script>
+
+    <div id="toast-notification" class="toast-notification"></div>
+    <script src="/public/showToast.js"></script>
   </body>
 </html>

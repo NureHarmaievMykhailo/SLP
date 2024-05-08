@@ -2,56 +2,36 @@
 session_start();
 require_once('../models/shopping-cart.php');
 
-//book_list
-include('../public/book-data.php');
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $productId = $_POST['productId'];
-    $selection;
-    foreach ($book_list as $book) {
-        if ($book->get_id() == $productId) {
-            $selection = $book;
-        }
-    }
-    if (!isset($selection)) {
-        echo "Id not found\n";
+    $cart = unserialize($_SESSION['shoppingCart']);
+    $productId = $_POST["productId"];
+
+    if ($_POST["cartRequestType"] == "delete") {
+        $cart->delete_item($productId);
+        $res = array("status"=>"deleted id=$productId", "data"=>var_dump($cart->get_items()));
+        echo json_encode($res);
+        $_SESSION['shoppingCart'] = serialize($cart);
         exit();
     }
-
-    if (isset($_SESSION['shoppingCart'])) {
-        echo "Cart already set\n";
-        $cart = unserialize($_SESSION['shoppingCart']);
-        if ($cart->has_id($productId)) {
-            $cart->increment_item($productId);
-            echo "Updated existing instance\n";
-        }
-        else {
-            $cart->add_item(
-            new ListItem($selection->get_id(),
-                $selection->get_title(),
-                $selection->get_price(),
-                $selection->get_description(),
-                $selection->get_image_URI(),
-                $selection->get_author(), 1)
-            );
-            echo "Added new instance\n";
-        }
-        var_dump($cart);
+    if ($_POST["cartRequestType"] == "increment") {
+        $cart->increment_item($productId);
+        $res = array("status"=>"incremented id=$productId", "quantity"=>$cart->get_items()[$productId]->get_quantity());
+        echo json_encode($res);
         $_SESSION['shoppingCart'] = serialize($cart);
+        exit();
     }
-    else {
-        echo "Cart not set\n";
-        var_dump($cart);
-        $_SESSION['shoppingCart'] = serialize(new Cart([new ListItem($selection->get_id(),
-                                                            $selection->get_title(),
-                                                            $selection->get_price(),
-                                                            $selection->get_description(),
-                                                            $selection->get_image_URI(),
-                                                            $selection->get_author(), 1)
-                                                        ]));
+    if ($_POST["cartRequestType"] == "decrement") {
+        $cart->decrement_item($productId);
+        $res = array("status"=>"decremented id=$productId", "quantity"=>$cart->get_items()[$productId]->get_quantity());
+        echo json_encode($res);
+        $_SESSION['shoppingCart'] = serialize($cart);
+        exit();
     }
+    // Not acceptable
+    http_response_code(406);
 } else {
     // Handle other HTTP request methods (GET, PUT, DELETE, etc.) if necessary
-    echo "Invalid request method";
+    // method not allowed
+    http_response_code(405);
 }
 ?>

@@ -1,6 +1,6 @@
 function addToCart(id){
     $.ajax({
-        url: "/controllers/cart-controller.php", // URL of the PHP script to handle the request
+        url: "/controllers/shop-controller.php", // URL of the PHP script to handle the request
         type: "POST", // Method type
         data: { productId: id }, // Data to be sent
         success: function(response) {

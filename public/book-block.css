@@ -95,17 +95,22 @@ body {
     color: #ffffff;
     z-index: 1;
   }
-  .button_cart {
+  .button {
     border-radius: 10px;
-    position: relative;
     cursor: pointer;
     color: white;
     padding: 8px;
-    width: 35%;
     border-color: rgba(51, 10, 106, 1);
     font-size: 14px;
     font-family:"Bahnschrift", sans-serif;
     border-width: 2px;
     border-style: solid;
     background-color: #8c5cbc;
+  }
+  .button:active {
+    background-color: rgba(51, 10, 106, 1);
+  }
+  .button_cart {
+    position: relative;
+    width: 35%;
   }

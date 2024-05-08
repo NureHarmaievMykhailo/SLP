@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- button for placing an order-->
-                    <button class=\"button_cart\" onclick=\"addToCart(". $this->id . ")\">У кошик</button>
+                    <button class=\"button button_cart\" onclick=\"addToCart(". $this->id . "); showToast('Товар додано у кошик')\">У кошик</button>
 
                 </div>
             </body>";
