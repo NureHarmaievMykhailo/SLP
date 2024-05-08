@@ -32,6 +32,7 @@
       <?php
             require_once('../models/shopping-cart.php');
             require_once('cart-block.php');
+            require_once('make-order.php');
             $default_left_offset = 70;
             $default_top_offset = 250;
 
@@ -64,6 +65,21 @@
               }
               $i++;
             }
+
+            if ($i % 2 != 0) {
+                $left_offset = 460;
+            }
+            else {
+                $top_offset += 380;
+                $left_offset = 460;
+            }
+            $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+            $totalSum = $cart->calculate_total_price();
+            //Not show "make order" block if sum = 0
+            //if ($totalSum > 0) {
+                $makeOrder = new MakeOrderBlock($offset, $totalSum);
+                $makeOrder->render();
+            //}
       ?>
       <script src="../public/modifyCart.js"></script>
       <?php 

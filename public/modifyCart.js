@@ -64,3 +64,18 @@ function decrementItem(id) {
         console.error("Error occurred:", error);
     });
 }
+
+function refreshTotalSum() {
+    sendPost(id = 0, "getTotalSum")
+    .then(function(response) {
+        if(response) {
+            let result = JSON.parse(response);
+            console.log(result.status + " sum:" + result.sum);
+            let text = document.getElementById("total_cost");
+            text.textContent = result.sum;
+        }
+    })
+    .catch(function(error) {
+        console.error("Error occurred:", error);
+    });
+}

@@ -27,6 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['shoppingCart'] = serialize($cart);
         exit();
     }
+    if ($_POST["cartRequestType"] == "getTotalSum") {
+        $sum = $cart->calculate_total_price();
+        $res = array("status"=>"total sum = $sum", "sum"=>$sum);
+        echo json_encode($res);
+        exit();
+    }
     // Not acceptable
     http_response_code(406);
 } else {

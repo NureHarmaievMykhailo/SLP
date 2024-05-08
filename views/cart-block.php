@@ -42,13 +42,13 @@
                   <p><span>Кількість:</span></p>
                 </div>
     
-                <button id=\"stepper_inc$this->id\" class=\"button stepper_button stepper_inc\" onclick=\"incrementItem($this->id)\"><span>+</span></button>
+                <button id=\"stepper_inc$this->id\" class=\"button stepper_button stepper_inc\" onclick=\"incrementItem($this->id); refreshTotalSum()\"><span>+</span></button>
     
                 <div class=\"paragraph paragraph_quantity\">
                   <p id=\"quantity_number$this->id\" class=\"quantity_number\"><span>$this->quantity</span></p>
                 </div>
     
-                <button id=\"stepper_dec$this->id\" class=\"button stepper_button stepper_dec\" onclick=\"decrementItem($this->id)\"><p class=\"stepper_dec_text\">—</p></button>
+                <button id=\"stepper_dec$this->id\" class=\"button stepper_button stepper_dec\" onclick=\"decrementItem($this->id); refreshTotalSum()\"><p class=\"stepper_dec_text\">—</p></button>
               </div>
           </div>";
         }
