@@ -9,7 +9,8 @@
     border-width: 2px;
     border-style: solid;
     background-color: #8c5cbc;
-  } */
+    text-decoration: none;
+  }
 
   .block {
     position:absolute;
@@ -24,7 +25,7 @@
     -webkit-box-shadow:none;
     box-shadow:none;
   }
-/*   .header {
+  .header {
     border-width:0px;
     position:relative;
     display:flex;
@@ -34,6 +35,13 @@
     font-size:21px;
     color:#000000;
   } */
+  .block_cart_empty {
+    width: 600px;
+    height: 200px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: left; /* Center items vertically */
+  }
   .header_make_order {
     margin-right: 100px;
     padding-left: 20px;

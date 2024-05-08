@@ -76,10 +76,13 @@
             $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
             $totalSum = $cart->calculate_total_price();
             //Not show "make order" block if sum = 0
-            //if ($totalSum > 0) {
-                $makeOrder = new MakeOrderBlock($offset, $totalSum);
+            $makeOrder = new MakeOrderBlock($offset, $totalSum);
+            if (count($items) > 0) {
                 $makeOrder->render();
-            //}
+            }
+            else {
+              $makeOrder->renderEmpty();
+            }
       ?>
       <script src="../public/modifyCart.js"></script>
       <?php 
