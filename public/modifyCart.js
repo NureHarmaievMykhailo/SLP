@@ -1,9 +1,9 @@
-function sendPost(id, requestTypeString) {
+function sendPost(id, requestType) {
     return new Promise(function(resolve, reject) {
         $.ajax({
-            url: "/controllers/cart-controller.php",
+            url: `/controllers/cart-controller.php/${requestType}`,
             type: "POST",
-            data: { productId: id, cartRequestType: requestTypeString},
+            data: { productId: id },
             success: function(response) {
                 resolve(response); // Resolve the promise with the response
             },
@@ -18,8 +18,8 @@ function deleteItem(id) {
     sendPost(id, "delete")
     .then(function(response) {
         if(response) {
-            console.log(response);
             location.reload();
+            console.log(JSON.parse(response).log);
         }
     })
     .catch(function(error) {
@@ -32,13 +32,13 @@ function incrementItem(id) {
     .then(function(response) {
         if(response) {
             let result = JSON.parse(response);
-            console.log(result.status + " quantity:" + result.quantity);
-            if (result.quantity > 0) {
+            console.log(result.log + " quantity:" + result.data);
+            if (result.data > 0) {
                 let btn = document.getElementById("stepper_dec" + id);
                 btn.classList.remove("inactive");
             }
             let text = document.getElementById("quantity_number" + id);
-            text.textContent = result.quantity;
+            text.textContent = result.data;
         }
     })
     .catch(function(error) {
@@ -51,13 +51,13 @@ function decrementItem(id) {
     .then(function(response) {
         if(response) {
             let result = JSON.parse(response);
-            console.log(result.status + " quantity:" + result.quantity);
-            if (result.quantity == 0) {
+            console.log(result.log + " quantity:" + result.data);
+            if (result.data == 0) {
                 let btn = document.getElementById("stepper_dec" + id);
                 btn.classList.add("inactive");
             }
             let text = document.getElementById("quantity_number" + id);
-            text.textContent = result.quantity;
+            text.textContent = result.data;
         }
     })
     .catch(function(error) {
@@ -66,13 +66,13 @@ function decrementItem(id) {
 }
 
 function refreshTotalSum() {
-    sendPost(id = 0, "getTotalSum")
+    sendPost(id = -1, "totalPrice")
     .then(function(response) {
         if(response) {
             let result = JSON.parse(response);
-            console.log(result.status + " sum:" + result.sum);
+            console.log(result.log + " sum:" + result.data);
             let text = document.getElementById("total_cost");
-            text.textContent = result.sum;
+            text.textContent = result.data;
         }
     })
     .catch(function(error) {
