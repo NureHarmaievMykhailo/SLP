@@ -15,7 +15,7 @@
     
     <div id="base" class="">
     
-    <!--  include_once("attendance_counter.php"); ?> 
+    <!--  include_once("..models/attendance_counter.php"); ?> 
      include_once("certain_user.php"); ?>-->
       <!-- Unnamed (Image) -->
       <div id="u0" class="ax_default image">
