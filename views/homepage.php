@@ -51,6 +51,7 @@
     
     <div id="base" class="">
     <?php include_once("attendance_counter.php"); ?>
+    <?php include_once("certain_user.php"); ?>
       <!-- Unnamed (Image) -->
       <div id="u0" class="ax_default image">
         <img id="u0_img" class="img " src="images/homepage/u0.png"/>
