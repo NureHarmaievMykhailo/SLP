@@ -8,13 +8,7 @@
     <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href=".../pages/data/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../pages/files/homepage/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="../data/document.js"></script>
-    <script src="../pages/files/homepage/data.js"></script>
-    <script type="text/javascript">
-      $axure.utils.getTransparentGifPath = function() { return '../pages/resources/images/transparent.gif'; };
-      $axure.utils.getOtherPath = function() { return '../pages/resources/Other.html'; };
-      $axure.utils.getReloadPath = function() { return '../pages/resources/reload.html'; };
-    </script>
+    
     
   </head>
   <body>
