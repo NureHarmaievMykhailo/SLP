@@ -11,7 +11,7 @@ if (!isset($_SESSION['counted'])) {
     
     $entry_line = "$dtime - IP: $ip | Agent: $agent | URL: $uri | Referrer: $ref | Username: $user" . PHP_EOL;
 
-    $fp = fopen("logs.txt", "a");
+    $fp = fopen("../logs.txt", "a");
     fwrite($fp, $entry_line);
     fclose($fp);
 
