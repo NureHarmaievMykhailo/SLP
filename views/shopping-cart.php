@@ -40,44 +40,47 @@
             $top_offset = $default_top_offset;
 
             $cart = unserialize($_SESSION['shoppingCart']);
-            // we assign i to 1 to make limitation to 2 blocks per row work
-            $i = 1;
-            $items = $cart->get_items();
+            if (isset($cart) && !empty($cart)) {
+              // we assign i to 1 to make limitation to 2 blocks per row work
+              $i = 1;
+              $items = $cart->get_items();
 
-            foreach ($items as $item) {
-              $id = $item->get_id();
-              $title = $item->get_title();
-              $author = $item->get_author();
-              $price = $item->get_price();
-              $image_uri = $item->get_image_uri();
-              $quantity = $item->get_quantity();
-              $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+              foreach ($items as $item) {
+                $id = $item->get_id();
+                $title = $item->get_title();
+                $author = $item->get_author();
+                $price = $item->get_price();
+                $image_uri = $item->get_image_uri();
+                $quantity = $item->get_quantity();
+                $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
 
-              $block = new CartBlock($offset, $id, $author, $title, $image_uri, $price, $quantity);
-              $block->render();
+                $block = new CartBlock($offset, $id, $author, $title, $image_uri, $price, $quantity);
+                $block->render();
+
+                if ($i % 2 != 0) {
+                  $left_offset += 730;
+                }
+                else {
+                  $left_offset = $default_left_offset;
+                  $top_offset += 380;
+                }
+                $i++;
+              }
 
               if ($i % 2 != 0) {
-                $left_offset += 730;
+                  $left_offset = 460;
               }
               else {
-                $left_offset = $default_left_offset;
-                $top_offset += 380;
+                  $top_offset += 380;
+                  $left_offset = 460;
               }
-              $i++;
+              $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
             }
 
-            if ($i % 2 != 0) {
-                $left_offset = 460;
-            }
-            else {
-                $top_offset += 380;
-                $left_offset = 460;
-            }
-            $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+            // Do not show "make order" block if cart is empty
             $totalSum = $cart->calculate_total_price();
-            //Not show "make order" block if sum = 0
             $makeOrder = new MakeOrderBlock($offset, $totalSum);
-            if (count($items) > 0) {
+            if (!empty($cart) && count($cart->get_items()) > 0) {
                 $makeOrder->render();
             }
             else {
