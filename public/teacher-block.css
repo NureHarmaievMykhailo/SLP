@@ -1,0 +1,78 @@
+.teacher_block {
+    width:360px;
+    height:535px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher_info_div {
+    position: absolute;
+    top: 245px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.teacher_image_div {
+    top: 10px;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:294px;
+    height:250px;
+}
+
+.teacher_image {
+    position:absolute;
+    width:294px;
+    height:250px;
+}
+
+.teacher_price_div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background:inherit;
+    background-color:rgba(255, 255, 255, 1);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:22px;
+    width: 150px;
+    border-width:2px;
+    border-style:solid;
+    border-color:rgba(51, 10, 106, 1);
+    border-radius:10px;
+    border-top-right-radius:0px;
+    border-bottom-left-radius:0px;
+}
+
+.teacher_buttons_div {
+    bottom: 35px;
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.btn_teacher {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height: 40px;
+    width: 120px;
+}
+.btn_teacher_details {
+    right: 40px;
+}
+.btn_teacher_appointment {
+    left: 40px;
+}
