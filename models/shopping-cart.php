@@ -19,7 +19,10 @@
         }
 
         public function get_items() {
-            return $this->items;
+            if (isset($this->items)) {
+                return $this->items;
+            }
+            return NULL;
         }
 
         public function has_id(int $id) {
