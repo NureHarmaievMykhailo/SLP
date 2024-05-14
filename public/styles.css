@@ -11,6 +11,9 @@
   border-style: solid;
   background-color: #8c5cbc;
   text-decoration: none;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .button:active {
@@ -46,6 +49,10 @@
   font-style:normal;
   font-size:21px;
   color:#000000;
+}
+.link_hidden {
+  text-decoration: none;
+  color: inherit;
 }
 .page_header {
   position: absolute;

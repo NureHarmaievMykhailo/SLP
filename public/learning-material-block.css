@@ -1,0 +1,72 @@
+.material_block {
+    width: 550px;
+    /* height: 260px; */
+    /* We're currently experimenting with displaying a variable number of categories
+        and, therefore, the variable size of the box. If it was to change, revert
+        back to fixed height.
+    */
+    height: fit-content;
+}
+.header_material {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.paragraph_material {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.full_text_div {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+.full_text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* The class for a div to store all the links for 
+categories in a learning material block. */
+.category_div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /* TODO: find a better solution to dynamically adjust the div's size to fit the content*/
+    min-height: 40px;
+    overflow: hidden;
+    /*  */
+    width: 400px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.button_category {
+    height: 20px;
+    width: fit-content;
+}
+
+.details_div {
+    float: right;
+    height: 20px;
+    width: 125px;
+    bottom: 20px;
+    right: 20px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+}
+.details_button {
+    height: 20px;
+    width: 125px;
+}
+.block_small {
+    width: 360px;
+    /* height: 260px; */
+    /* We're currently experimenting with displaying a variable number of categories
+        and, therefore, the variable size of the box. If it was to change, revert
+        back to fixed height.
+    */
+    height: fit-content;
+}
