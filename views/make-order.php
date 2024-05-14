@@ -3,7 +3,7 @@ class MakeOrderBlock {
     private $offset;
     private $total_sum;
     private $style_path = "../public/make-order.css";
-    private $shop_path = "../views/shop_list.php";
+    private $shop_path = "shop_list";
     public function __construct($offset, $total_sum)
     {
         $this->total_sum = $total_sum;

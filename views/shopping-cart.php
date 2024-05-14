@@ -30,7 +30,8 @@
         </div>
       </div>
       <?php
-            require_once('../models/shopping-cart.php');
+            $doc_root = __DIR__ . "/..";
+            require_once("$doc_root/models/shopping-cart.php");
             require_once('cart-block.php');
             require_once('make-order.php');
             $default_left_offset = 70;
@@ -39,8 +40,10 @@
             $left_offset = $default_left_offset;
             $top_offset = $default_top_offset;
 
-            $cart = unserialize($_SESSION['shoppingCart']);
-            if (isset($cart) && !empty($cart)) {
+            $totalSum = 0;
+            // Perform a check to prevent undefined index issues
+            if (isset($_SESSION['shoppingCart'])) {
+              $cart = unserialize($_SESSION['shoppingCart']);
               // we assign i to 1 to make limitation to 2 blocks per row work
               $i = 1;
               $items = $cart->get_items();
@@ -75,15 +78,20 @@
                   $left_offset = 460;
               }
               $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
-            }
-
-            // Do not show "make order" block if cart is empty
-            $totalSum = $cart->calculate_total_price();
-            $makeOrder = new MakeOrderBlock($offset, $totalSum);
-            if (!empty($cart) && count($cart->get_items()) > 0) {
+              $totalSum = $cart->calculate_total_price();
+              $makeOrder = new MakeOrderBlock($offset, $totalSum);
+              // If cart contains items, render make order block
+              if (!empty($cart) && count($cart->get_items()) > 0) {
                 $makeOrder->render();
+              }
+              else {
+                $makeOrder->renderEmpty();
+              }
             }
             else {
+              // Show empty "make order" block if cart is unset
+              $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+              $makeOrder = new MakeOrderBlock($offset, $totalSum);
               $makeOrder->renderEmpty();
             }
       ?>

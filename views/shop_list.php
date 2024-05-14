@@ -31,9 +31,10 @@
         </div>
       </div>
       <?php
-            require_once('../models/shopping-cart.php');
+            $doc_root = __DIR__ . "/..";
+            require_once("$doc_root/models/shopping-cart.php");
             require_once('book-block.php');
-            include('../public/book-data.php');
+            include("$doc_root/public/book-data.php");
 
             $default_left_offset = 100;
             $default_top_offset = 220;
@@ -62,7 +63,7 @@
             }
       ?>
       <script src="/public/addToCart.js"></script>
-      <?php 
+      <?php
         include('footer.html');
       ?>
     </div>
