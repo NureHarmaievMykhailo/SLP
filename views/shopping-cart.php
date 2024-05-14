@@ -80,16 +80,20 @@
               $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
               $totalSum = $cart->calculate_total_price();
               $makeOrder = new MakeOrderBlock($offset, $totalSum);
-              // If cart contains items, render make order block and exit.
+              // If cart contains items, render make order block
               if (!empty($cart) && count($cart->get_items()) > 0) {
-                  $makeOrder->render();
-                  exit();
+                $makeOrder->render();
+              }
+              else {
+                $makeOrder->renderEmpty();
               }
             }
-            // Show empty "make order" block if cart is empty or unset
-            $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
-            $makeOrder = new MakeOrderBlock($offset, $totalSum);
-            $makeOrder->renderEmpty(); 
+            else {
+              // Show empty "make order" block if cart is unset
+              $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+              $makeOrder = new MakeOrderBlock($offset, $totalSum);
+              $makeOrder->renderEmpty();
+            }
       ?>
       <script src="../public/modifyCart.js"></script>
       <?php 
