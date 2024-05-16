@@ -19,14 +19,34 @@
       $root = __DIR__ . "/..";
       require_once("$root/controllers/teacher-controller.php");
       require_once("teacher-block.php");
+      require_once("$root/controllers/material-controller.php");
+      require_once("learning-material-block.php");
+
+      // Get 3 top learning materials from DB
+      $mc = new LearningMaterialController;
+      $materials = $mc->getAll(3);
+
+      // Get 3 top teachers from DB
       $tc = new TeacherController;
       $teachers = $tc->getALL(3);
-
       $default_left_offset = 60;
-      $default_top_offset = 1380;
+      $default_top_offset = 900;
+      // $default_left_offset = 60;
+      // $default_top_offset = 1380;
 
       $left_offset = $default_left_offset;
       $top_offset = $default_top_offset;
+
+      while ($row = $materials->fetch_assoc()) {
+        $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
+        $block = new LearningMaterialBlock($offset, $row["id"], $row["title"], $row["shortInfo"]);
+        $block->render_small();
+        $left_offset += 460;
+      }
+
+      // Reset left offset before rendering teachers, set top offset
+      $left_offset = $default_left_offset;
+      $top_offset += 480;
 
       while ($row = $teachers->fetch_assoc()) {
         $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";

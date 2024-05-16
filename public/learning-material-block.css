@@ -1,5 +1,6 @@
 .material_block {
-    width: 550px;
+    max-width: 550px;
+    /* min-width: 550px; */
     /* height: 260px; */
     /* We're currently experimenting with displaying a variable number of categories
         and, therefore, the variable size of the box. If it was to change, revert

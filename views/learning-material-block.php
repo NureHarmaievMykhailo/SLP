@@ -11,7 +11,8 @@ class LearningMaterialBlock {
     private $title;
     private $short_info;
     private $categories; // array with material's categories, defaults to an empty array
-    private $style_path = "../public/learning-material-block.php";
+    private $material_view_path = "material?id=";
+    private $style_path = "../public/learning-material-block.css";
 
     public function __construct($offset, $id, $title, $short_info, $categories = array()) {
         $this->offset = $offset;
@@ -37,7 +38,7 @@ class LearningMaterialBlock {
                 </div>
 
                 <div class=\"full_text_div\">
-                    <p><span><a class=\"link_hidden paragraph full_text\" href=\"<!-- TODO: REDIRECT USER TO MATERIAL'S PAGE -->\">Повний текст</a></span></p>
+                    <p><span><a class=\"link_hidden paragraph full_text\" href=\"$this->material_view_path$this->id\">Повний текст</a></span></p>
                 </div>
 
                 <!--TODO: find a way to ouput categories here
@@ -54,7 +55,7 @@ class LearningMaterialBlock {
     public function render_small() {
         echo "<link href=\"$this->style_path\" type=\"text/css\" rel=\"stylesheet\"/>";
         echo "
-            <div class=\"block material_block\" style=\"$this->offset\">
+            <div class=\"block block_small\" style=\"$this->offset\">
                 <div class=\"header header_material\" style=\"padding-left: 20px;\">
                     <h><span>$this->title</span></p>
                 </div>
@@ -64,7 +65,7 @@ class LearningMaterialBlock {
                 </div>
 
                 <div class=\"details_div\">
-                    <a class=\"button details_button\" href=\"<!-- TODO: REDIRECT USER TO MATERIAL'S PAGE -->\"><p><span>Детальніше</span></p></a>
+                    <a class=\"button details_button\" href=\"$this->material_view_path$this->id\"><p><span>Детальніше</span></p></a>
                 </div>
             </div>";
     }
