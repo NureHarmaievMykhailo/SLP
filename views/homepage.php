@@ -502,7 +502,7 @@
       <div id="u64" class="ax_default heading_2">
         <div id="u64_div" class=""></div>
         <div id="u64_text" class="text ">
-          <p><span>Застосунок</span></p>
+          <p><span><a style="text-decoration:none;color:white;" href="../views/shop_list.php">Книжковий магазин</a></span></p>
         </div>
       </div>
 
