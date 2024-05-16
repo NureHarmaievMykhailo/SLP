@@ -15,8 +15,17 @@
     
     <div id="base" class="">
     
-    <!--  include_once("..models/attendance_counter.php"); ?> 
-     include_once("certain_user.php"); ?>-->
+    <!-- Лічильник відвідування (запис у logs.txt) -->
+    <?php
+    /* include_once("../models/attendance_counter.php"); */
+    ?>
+    
+    <!-- Лічильник відвідування сторінки сайту певним користувачем (запис у базу даних) -->
+    <?php
+    /* include_once("../models/certain_user.php"); */
+    ?>
+
+
       <!-- Unnamed (Image) -->
       <div id="u0" class="ax_default image">
         <img id="u0_img" class="img " src="../pages/images/homepage/u0.png"/>
