@@ -77,3 +77,11 @@
 .toast-notification.fade-out {
   opacity: 0; /* Fade out the toast by changing opacity to 0 */
 }
+.breadcrumbs_div {
+  z-index: 2;
+  position: absolute;
+  top: 120px;
+}
+.breadcrumbs_text {
+  font-size: 18px !important;
+}

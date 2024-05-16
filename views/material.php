@@ -23,7 +23,7 @@
       <div class="breadcrumbs_div">
         <p class="paragraph breadcrumbs_text"><a href="homepage" class="link_hidden">Головна</a>
         &nbsp;&nbsp;>&nbsp;&nbsp;
-        <a href="learning_materials_all.html" class="link_hidden">Навчальні матеріали</a>
+        <a href="learning_materials_all" class="link_hidden">Навчальні матеріали</a>
         &nbsp;&nbsp;>&nbsp;&nbsp;
         <p1 style="font-weight: bold;"><?php echo $material->getTitle(); ?></p1>
         </p>
