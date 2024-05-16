@@ -11,9 +11,7 @@
   border-style: solid;
   background-color: #8c5cbc;
   text-decoration: none;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+
 }
 
 .button:active {

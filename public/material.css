@@ -1,0 +1,103 @@
+.breadcrumbs_div {
+    z-index: 2;
+    position: absolute;
+    top: 120px;
+}
+.breadcrumbs_text {
+    font-size: 18px !important;
+}
+.material_content {
+    position: absolute;
+    top: 300px;
+}
+.material_content p {
+    font-size: 18px;
+    text-indent: 30px;
+}
+.material_content h1, h2 {
+    text-indent: 30px;
+}
+.material_content h3 {
+    text-indent: 45px;
+}
+#u1066_img {
+    border-width:0px;
+    position:absolute;
+    left:-1px;
+    top:-1px;
+    width:1443px;
+    height:5px;
+  }
+  #u1066 {
+    border-width:0px;
+    position:absolute;
+    left:0px;
+    top:204px;
+    width:1440px;
+    height:2px;
+    display:flex;
+    -webkit-transform:rotate(0.019894367086976953deg);
+    -moz-transform:rotate(0.019894367086976953deg);
+    -ms-transform:rotate(0.019894367086976953deg);
+    transform:rotate(0.019894367086976953deg);
+  }
+  #u1066 .text {
+    position:absolute;
+    align-self:center;
+    padding:2px 2px 2px 2px;
+    box-sizing:border-box;
+    width:100%;
+  }
+  #u1066_text {
+    border-width:0px;
+    word-wrap:break-word;
+    text-transform:none;
+    visibility:hidden;
+  }
+  #u1067_div {
+    border-width:0px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1000px;
+    height:37px;
+    background:inherit;
+    background-color:rgba(255, 255, 255, 1);
+    border:none;
+    border-radius:0px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
+    font-weight:700;
+    font-style:normal;
+    font-size:32px;
+    color:#000000;
+  }
+  #u1067 {
+    border-width:0px;
+    position:absolute;
+    left:72px;
+    top:185px;
+    width:1000px;
+    height:37px;
+    display:flex;
+    font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
+    font-weight:700;
+    font-style:normal;
+    font-size:32px;
+    color:#000000;
+  }
+  #u1067 .text {
+    position:absolute;
+    align-self:center;
+    padding:2px 2px 2px 2px;
+    box-sizing:border-box;
+    width:100%;
+  }
+  #u1067_text {
+    border-width:0px;
+    word-wrap:break-word;
+    text-transform:none;
+    text-align: center;
+  }
