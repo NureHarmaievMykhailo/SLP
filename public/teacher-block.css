@@ -9,7 +9,7 @@
 
 .teacher_info_div {
     position: absolute;
-    top: 245px;
+    top: 260px;
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -71,6 +71,8 @@
     width: 120px;
 }
 .btn_teacher_details {
+    height: 20px;
+    width: 100px;
     right: 40px;
 }
 .btn_teacher_appointment {

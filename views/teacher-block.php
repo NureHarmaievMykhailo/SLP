@@ -12,6 +12,7 @@ class TeacherBlock {
     private $teacher_price;
     private $teacher_image_uri;
     private $style_path = "../public/teacher-block.css";
+    private $teacher_view_path = "teacher?id=";
 
     public function __construct($offset, $id, $teacher_name, $short_info, $teacher_price, $teacher_image_uri) {
         $this->offset = $offset;
@@ -39,8 +40,8 @@ class TeacherBlock {
                 </div>
 
                 <div class=\"teacher_buttons_div\">
-                    <button class=\"button btn_teacher btn_teacher_details\" <!-- REDIRECT USER TO TEACHER'S PAGE --> ><p><span>Детальніше</span></p></button>
-                    <button class=\"button btn_teacher btn_teacher_appointment\" <!-- REDIRECT USER TO MAKE APPOINTMENT PAGE --> ><p><span>Назначити заняття</span></p></button>
+                    <a href=\"$this->teacher_view_path$this->id\" class=\"button btn_teacher btn_teacher_details\"><p><span>Детальніше</span></p></a>
+                    <button class=\"button btn_teacher btn_teacher_appointment\"><p><span>Назначити заняття</span></p></button>
                 </div>
 
             </div>";
