@@ -1,6 +1,4 @@
-﻿<!-- TODO: rename to index.php -->
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <title>Homepage</title>
