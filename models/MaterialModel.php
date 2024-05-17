@@ -52,7 +52,7 @@ class Material extends Model{
         $query = "SELECT distinct material.id, title, shortInfo, description from material
         join material_material_category
         ON material_material_category.material_id = material.id
-        where material_material_category.category_id = 6;";
+        where material_material_category.category_id = $category_id;";
 
         return $this->executeSQL("fu_db", $query);
     }

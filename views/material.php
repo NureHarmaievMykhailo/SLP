@@ -33,7 +33,7 @@
 
       <div class="categories_div">
         <?php foreach($categories as $category): ?>
-          <a href="" class = "button link_hidden"><?php echo $category->getCategoryName() ?></a>
+          <a href="learning_materials_all?category=<?php echo $category->getId(); ?>" class = "button link_hidden"><?php echo $category->getCategoryName(); ?></a>
         <?php endforeach; ?>
       </div>
 

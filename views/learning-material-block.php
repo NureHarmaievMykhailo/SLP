@@ -1,4 +1,6 @@
 <?php
+$root = __DIR__ . "/..";
+require_once("$root/models/MaterialCategoryModel.php");
 /**
  * Respresents a learning material block.
  * 
@@ -12,6 +14,7 @@ class LearningMaterialBlock {
     private $short_info;
     private $categories; // array with material's categories, defaults to an empty array
     private $material_view_path = "material?id=";
+    private $all_materials_view_path = "learning_materials_all?category=";
     private $style_path = "../public/learning-material-block.css";
 
     public function __construct($offset, $id, $title, $short_info, $categories = array()) {
@@ -41,11 +44,12 @@ class LearningMaterialBlock {
                     <p><span><a class=\"link_hidden paragraph full_text\" href=\"$this->material_view_path$this->id\">Повний текст</a></span></p>
                 </div>
 
-                <!--TODO: find a way to ouput categories here
-                <div class=\"category_div\">
-                    <a class=\"button button_category\" href=\"< TODO: REDIRECT USER TO CATEGORY'S PAGE >\"><p><span>Готуємося до екзаменів</span></p></a>
-                </div>
-                -->
+                <div class=\"category_div\">";
+                foreach($this->categories as $category) {
+                    echo "<a class=\"button button_category\" href=\"$this->all_materials_view_path{$category->getId()}\"><p><span>{$category->getCategoryName()}</span></p></a>";
+                }
+                echo "</div>
+
             </div>";
     }
 

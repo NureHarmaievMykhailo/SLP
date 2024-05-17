@@ -90,7 +90,7 @@
         <div id="u528" class="ax_default box_1 header_block">
           <div id="u528_div" class=""></div>
           <div id="u528_text" class="text">
-            <p><span>&nbsp;Фонетика</span></p>
+            <a href="learning_materials_all?category=1" class="link_hidden"><p><span>&nbsp;Фонетика</span></p></a>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
         <div id="u531" class="ax_default box_1 header_block">
           <div id="u531_div" class=""></div>
           <div id="u531_text" class="text ">
-            <p><span>&nbsp;Орфографія</span></p>
+          <a href="learning_materials_all?category=2" class="link_hidden"><p><span>&nbsp;Орфографія</span></p></a>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@
         <div id="u534" class="ax_default box_1 header_block">
           <div id="u534_div" class=""></div>
           <div id="u534_text" class="text ">
-            <p><span>&nbsp;Лексикологія</span></p>
+          <a href="learning_materials_all?category=3" class="link_hidden"><p><span>&nbsp;Лексикологія</span></p></a>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
         <div id="u537" class="ax_default box_1 header_block">
           <div id="u537_div" class=""></div>
           <div id="u537_text" class="text ">
-            <p><span>&nbsp;Будова слова</span></p>
+          <a href="learning_materials_all?category=4" class="link_hidden"><p><span>&nbsp;Будова слова</span></p></a>
           </div>
         </div>
       </div>
@@ -170,7 +170,7 @@
         <div id="u540" class="ax_default box_1 header_block">
           <div id="u540_div" class=""></div>
           <div id="u540_text" class="text ">
-            <p><span>&nbsp;Морфологія</span></p>
+          <a href="learning_materials_all?category=5" class="link_hidden"><p><span>&nbsp;Морфологія</span></p></a>
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@
         <div id="u543" class="ax_default box_1 header_block" style="width: 420px !important;background-color: white;">
           <div id="u543_div" class=""></div>
           <div id="u543_text" class="text ">
-            <p><span>&nbsp;Синтаксис. Пунктуація</span></p>
+            <a href="learning_materials_all?category=6" class="link_hidden"><p><span>&nbsp;Синтаксис. Пунктуація</span></p></a>
           </div>
         </div>
       </div>
@@ -210,7 +210,7 @@
         <div id="u546" class="ax_default box_1 header_block">
           <div id="u546_div" class=""></div>
           <div id="u546_text" class="text ">
-            <p><span>&nbsp;Стилістика</span></p>
+            <a href="learning_materials_all?category=7" class="link_hidden"><p><span>&nbsp;Стилістика</span></p></a>
           </div>
         </div>
       </div>

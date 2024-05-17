@@ -4,14 +4,27 @@
   $ft = new Footer(150);
   $ft->render();
 
-
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  
   $root = __DIR__ . "/..";
   require_once("$root/controllers/material-controller.php");
   require_once("learning-material-block.php");
 
-  // Get some top learning materials from DB. TODO:implement paging later 
   $mc = new LearningMaterialController;
-  $materials = $mc->getAll(6);
+  $isCategorySet = isset($mc->getParams()["category"]);
+
+  // Default mode if category is not set, equals 0 or can't be cast to integer
+  if(!$isCategorySet || !intval($mc->getParams()["category"])) {
+    // Get some top learning materials from DB. TODO:implement paging later 
+    $materials = $mc->getAll(6);
+  }
+  else {
+    $categoryId = $mc->getParams()["category"];
+    $categoryName = $mc->getCategoryName($categoryId);
+    $materials = $mc->getMaterialsByCategoryId($categoryId);
+  }
+
 
   $default_left_offset = 60;
   $default_top_offset = 300;
@@ -20,9 +33,9 @@
   $top_offset = $default_top_offset;
 
   $i = 1;
-  while ($row = $materials->fetch_assoc()) {
+  foreach ($materials as $material) {
     $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
-    $block = new LearningMaterialBlock($offset, $row["id"], $row["title"], $row["shortInfo"]);
+    $block = new LearningMaterialBlock($offset, $material->getId(), $material->getTitle(), $material->getShortInfo(), $material->getCategories());
     $block->render_normal();
 
     if ($i % 2 == 0) {
@@ -50,9 +63,15 @@
       <div class="breadcrumbs_div">
           <p class="paragraph breadcrumbs_text"><a href="homepage" class="link_hidden">Головна</a>
           &nbsp;&nbsp;>&nbsp;&nbsp;
-          <a href="learning_materials_all" class="link_hidden">Навчальні матеріали</a>
+          <a href="learning_materials" class="link_hidden">Навчальні матеріали</a>
           &nbsp;&nbsp;>&nbsp;&nbsp;
-          <p1 style="font-weight: bold;">Навчальні матеріали: Усі</p1>
+          <?php
+            if ($isCategorySet) {
+              echo "<p1 style=\"font-weight: bold;\">Навчальні матеріали: $categoryName</p1>";
+            } else {
+              echo "<p1 style=\"font-weight: bold;\">Навчальні матеріали: Усі</p1>";
+            }
+          ?>
           </p>
           
       </div>
@@ -65,10 +84,16 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u800" class="ax_default box_1">
-        <div id="u800_div" class=""></div>
+      <div id="u800" class="ax_default box_1" style="width: 450px;">
+        <div id="u800_div" class="" style="width: 450px;"></div>
         <div id="u800_text" class="text ">
-          <p><span>Навчальні матеріали: Усі</span></p>
+        <?php
+            if ($isCategorySet) {
+              echo "<p><span>Навчальні матеріали: $categoryName</span></p>";
+            } else {
+              echo "<p><span>Навчальні матеріали: Усі</span></p>";
+            }
+          ?>
         </div>
       </div>
 
@@ -114,6 +139,5 @@
           </div>
         </div>
       </div>
-    <script src="../pages/resources/scripts/axure/ios.js"></script>
   </body>
 </html>

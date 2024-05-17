@@ -35,9 +35,9 @@
       $left_offset = $default_left_offset;
       $top_offset = $default_top_offset;
 
-      while ($row = $materials->fetch_assoc()) {
+      foreach ($materials as $material) {
         $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";
-        $block = new LearningMaterialBlock($offset, $row["id"], $row["title"], $row["shortInfo"]);
+        $block = new LearningMaterialBlock($offset, $material->getId(), $material->getTitle(), $material->getShortInfo());
         $block->render_small();
         $left_offset += 460;
       }
