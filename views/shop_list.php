@@ -62,8 +62,10 @@
             }
       ?>
       <script src="/public/addToCart.js"></script>
-      <?php 
-        include('footer.html');
+      <?php
+        require_once('footer.php');
+        $ft = new Footer($top_offset - 580 * 2);
+        $ft->render();
       ?>
     </div>
 

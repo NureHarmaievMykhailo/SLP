@@ -89,7 +89,9 @@
       ?>
       <script src="../public/modifyCart.js"></script>
       <?php 
-        include('footer.html');
+        require_once('footer.php');
+        $ft = new Footer($top_offset - 380 * 2);
+        $ft->render();
       ?>
     </div>
     <div id="toast-notification" class="toast-notification"></div>
