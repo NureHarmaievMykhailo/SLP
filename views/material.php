@@ -9,6 +9,7 @@
   $mc = new LearningMaterialController;
   $id = $mc->getParams()["id"];
   $material = $mc->getMaterialById($id);
+  $categories = $material->getCategories();
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,13 @@
         </p>
         
       </div>
+
+      <div class="categories_div">
+        <?php foreach($categories as $category): ?>
+          <a href="" class = "button link_hidden"><?php echo $category->getCategoryName() ?></a>
+        <?php endforeach; ?>
+      </div>
+
       <!-- Unnamed (Line) -->
       <div id="u1066" class="ax_default line2">
         <img id="u1066_img" class="img " src="../pages/images/homepage/u4.svg"/>

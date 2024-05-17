@@ -18,7 +18,7 @@
 
   $left_offset = $default_left_offset;
   $top_offset = $default_top_offset;
-//BREADCRUMBS
+
   $i = 1;
   while ($row = $materials->fetch_assoc()) {
     $offset = "top:" . $top_offset . "px;left:" . $left_offset . "px;";

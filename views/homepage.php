@@ -31,8 +31,6 @@
       $teachers = $tc->getALL(3);
       $default_left_offset = 60;
       $default_top_offset = 900;
-      // $default_left_offset = 60;
-      // $default_top_offset = 1380;
 
       $left_offset = $default_left_offset;
       $top_offset = $default_top_offset;
@@ -85,7 +83,7 @@
       <!-- Unnamed (Rectangle) -->
       <div id="u3" class="ax_default">
         <div id="u3_text" class="text ">
-          <p><span><a class="button" style="font-size:20px; ">Дізнатися більше</a></span></p>
+          <p><span><a class="button noselect" style="font-size:20px; ">Дізнатися більше</a></span></p>
         </div>
       </div>
 

@@ -1,6 +1,10 @@
 .material_content {
     position: absolute;
-    top: 300px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: justify;
+    text-justify: inter-word;
+    top: 350px;
 }
 .material_content p {
     font-size: 18px;
@@ -11,6 +15,21 @@
 }
 .material_content h3 {
     text-indent: 45px;
+}
+.categories_div {
+  position: absolute;
+  left: 70px;
+  top: 280px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line */
+  gap: 10px; /* Optional: Adds space between the links */
+}
+.categories_div a {
+  position: static;
+  display: inline-block;
+  margin-right: 10px; /* Optional: Add some space between links */
+  color: white;
 }
 #u1066_img {
     border-width:0px;
