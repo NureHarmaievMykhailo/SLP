@@ -81,13 +81,13 @@ function output_img($hosts, $hits, $total)
 {
     // Створення нового зображення шириною 400 та висотою 200 пікселів
     $img = imagecreatetruecolor(500, 200);
-
+    $date = date('Y-m-d');
     // Встановлення коліру фону - білий
     $white = imagecolorallocate($img, 255, 255, 255);
     imagefill($img, 0, 0, $white);
     //$img = imagecreatefrompng('../images_db/bd.png');
     $black = ImageColorAllocate($img, 0, 0, 0);
-    imagestring($img, 5, 10, 10, "The statistics obtained:", $black,);
+    imagestring($img, 5, 10, 10, "The statistics obtained ($date):", $black,);
 
     // Додавання підписів
     imagestring($img, 5, 25, 35, "The number of hosts:", $black);

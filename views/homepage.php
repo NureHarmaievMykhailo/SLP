@@ -22,7 +22,7 @@
     
     <!-- Лічильник відвідування сторінки сайту певним користувачем (запис у базу даних) -->
     <?php
-    /* include_once("../models/certain_user.php"); */
+     /*include_once("../models/certain_user.php"); */
     ?>
 
 
