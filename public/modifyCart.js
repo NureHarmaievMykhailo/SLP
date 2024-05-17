@@ -39,6 +39,7 @@ function incrementItem(id) {
             }
             let text = document.getElementById("quantity_number" + id);
             text.textContent = result.data;
+            refreshTotalSum();
         }
     })
     .catch(function(error) {
@@ -58,6 +59,7 @@ function decrementItem(id) {
             }
             let text = document.getElementById("quantity_number" + id);
             text.textContent = result.data;
+            refreshTotalSum();
         }
     })
     .catch(function(error) {
