@@ -8,10 +8,11 @@ class Material extends Model{
     private $shortInfo;
     private $description;
     private $categories;
+    protected $table = "material";
 
     public function getFromDB(int $id) {
         $id = intval($id);
-        $result = $this->getById("fu_db", $id, "material")->fetch_assoc();
+        $result = $this->getById($id)->fetch_assoc();
         $this->id = $result["id"];
         $this->title = $result["title"];
         $this->shortInfo = $result["shortInfo"];

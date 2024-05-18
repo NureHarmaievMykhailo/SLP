@@ -3,9 +3,10 @@ require_once('Model.php');
 class MaterialCategory extends Model{
     private $id;
     private $category_name;
+    protected $table = "material_category";
 
     public function getFromDB($id) {
-        $result = $this->getById("fu_db", $id, "material_category")->fetch_assoc();
+        $result = $this->getById($id)->fetch_assoc();
         $this->id = $result["id"];
         $this->category_name = $result["category_name"];
     }

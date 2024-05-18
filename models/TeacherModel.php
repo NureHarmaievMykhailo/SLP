@@ -7,13 +7,14 @@ class Teacher extends Model{
     private $shortInfo;
     private $description;
     private $imageURI;
+    protected $table = "teacher";
 
     public function __construct() {
 
     }
 
     public function getFromDB($id) {
-        $result = $this->getById("fu_db", $id, "teacher")->fetch_assoc();
+        $result = $this->getById($id)->fetch_assoc();
         $this->id = $result["id"];
         $this->name = $result["teacher_name"];
         $this->price = $result["price"];
