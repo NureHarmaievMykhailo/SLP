@@ -1,6 +1,6 @@
 <?php
 require_once('Model.php');
-class MaterialCategory extends Model{
+class MaterialCategory extends Model {
     private $id;
     private $category_name;
     protected $table = "material_category";
@@ -9,6 +9,18 @@ class MaterialCategory extends Model{
         $result = $this->getById($id)->fetch_assoc();
         $this->id = $result["id"];
         $this->category_name = $result["category_name"];
+    }
+
+    public function insert(array $data, string $db = __DATABASE__) {
+        return Model::insert($data, $db);
+    }
+
+    public function delete(int $category_id, string $db = __DATABASE__) {
+        return Model::delete($category_id, $db);
+    }
+
+    public function update(int $category_id, array $data, string $db = __DATABASE__) {
+        return Model::update($category_id, $data, $db);
     }
 
     // Getter and setter for $id

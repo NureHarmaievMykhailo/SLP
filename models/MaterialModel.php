@@ -1,13 +1,14 @@
 <?php
 require_once('Model.php');
 require_once('MaterialCategoryModel.php');
+require_once('MaterialMaterialCategoryModel.php');
 
 class Material extends Model{
     private $id;
     private $title;
     private $shortInfo;
     private $description;
-    private $categories;
+    private $categories = [];
     protected $table = "material";
 
     public function getFromDB(int $id) {
@@ -18,6 +19,95 @@ class Material extends Model{
         $this->shortInfo = $result["shortInfo"];
         $this->description = $result["description"];
         $this->categories = $this->getCategoriesById($id);
+    }
+
+    /**
+     * Insert a new material row from a prepared associative array of data.
+     * 
+     * @param array $material_data Associative array of Material properties.
+     * @param array $material_categories Array of associative arrays of MaterialCategories ids.
+     * @param string $db Database to be used. Defaults to config value.
+     * @return bool Returns true on success, false on failure.
+     */
+    protected function insertMaterialFromArray(array $material_data, array $material_categories = [], string $db = __DATABASE__) {
+        if(!Model::insert($material_data, $db)) {
+            return false;
+        }
+
+        // If no categories were provided.
+        if (empty($material_categories)) {
+            return true;
+        }
+
+        // We could go with MaterialMaterialCategory::insert,
+        // but we try to avoid calling non-static methods statically.
+        $m = new MaterialMaterialCategory;
+        return $m->insert($material_categories);
+    }
+
+    /**
+     * Insert a new material row.
+     * 
+     * @param string $title Title of the material to be inserted.
+     * @param string $shortInfo Short info of the material to be inserted.
+     * @param string $description Full description of the material to be inserted.
+     * @param array $material_categories Array of associative arrays of MaterialCategories ids.
+     * @param string $db Database to be used. Defaults to config value.
+     * @return bool Returns true on success, false on failure.
+     */
+    public function insertMaterial(string $title, string $shortInfo, string $description, array $material_categories = [], string $db = __DATABASE__) {
+        $material_data = array("title"=>$title, "shortInfo"=>$shortInfo, "description"=>$description);
+        return $this->insertMaterialFromArray($material_data, $material_categories, $db);
+    }
+
+    /**
+     * Deletes a material row, as well as all its bindings to any categories.
+     * 
+     * @param int $material_id Id of the material to be deleted.
+     * @param string $db Database to be used. Defaults to config value.
+     * @return bool Returns true on success, false on failure.
+     */
+    public function delete(int $material_id, string $db = __DATABASE__) {
+        if(!Model::delete($material_id, $db)) {
+            return false;
+        }
+        $m = new MaterialMaterialCategory;
+        return $m->deleteByMaterialId($material_id);
+    }
+
+    /**
+     * Update a material row from a prepared associative array of data.
+     * 
+     * @param int $material_id Id of the material to be updated.
+     * @param array $material_data Associative array of Material properties.
+     * @param array $material_categories Array of MaterialCategories ids.
+     * @param string $db Database to be used. Defaults to config value.
+     * 
+     * @return bool Returns true on success, false on failure.
+     */
+    protected function updateMaterialFromArray(int $material_id, array $material_data, array $category_ids = [], string $db = __DATABASE__) {
+        if(!Model::update($material_id, $material_data, $db)) {
+            return false;
+        }
+        $m = new MaterialMaterialCategory;
+        return $m->updateByMaterialId($material_id, $category_ids);
+    }
+
+    /**
+     * Update a material row.
+     * 
+     * @param int $material_id Id of the material to be updated.
+     * @param string $new_title The new title of the material to be updated.
+     * @param string $new_shortInfo The new short info of the material to be updated.
+     * @param string $new_description The new full description of the material to be updated.
+     * @param array $new_material_ids Array of associative arrays of MaterialCategories ids.
+     * @param string $db Database to be used. Defaults to config value.
+     * 
+     * @return bool Returns true on success, false on failure.
+     */
+    public function updateMaterial(int $material_id, string $new_title, string $new_shortInfo, string $new_description, array $new_category_ids = [], string $db = __DATABASE__) {
+        $new_material_data = array("title"=>$new_title, "shortInfo"=>$new_shortInfo, "description"=>$new_description);
+        return $this->updateMaterialFromArray($material_id, $new_material_data, $new_category_ids, $db);
     }
 
     public function getCategoriesById(int $material_id) {

@@ -22,32 +22,42 @@ abstract class Model {
     /**
      * Insert a row in the database.
      *
-     * @param array $data Associative array of column names and values to insert.
-     * @param $db Database to be used. Defaults to config value.
+     * @param array $data Array of associative arrays, each containing column names and values to insert.
+     * @param string $db Database to be used. Defaults to config value.
      * @return bool Returns true on success, false on failure.
      */
     protected function insert(array $data, string $db = __DATABASE__) {
+        if (empty($data)) {
+            return false;
+        }
+
         $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, $db);
 
         if ($mysqli->connect_error) {
             return false;
         }
 
-        $columns = [];
+        $columnsList = [];
         $types = '';
         $values = [];
         $placeholders = [];
-        foreach ($data as $column => $value) {
-            $columns[] = $column;
-            $placeholders[] = '?';
-            $types .= $this->getType($value);
-            $values[] = $value;
-        }
-        $columns = implode(", ", $columns);
-        $placeholders = implode(", ", $placeholders);
 
+        // Iterate through each of the associtive arrays.
+        foreach ($data as $row) {
+            $rowPlaceholders = [];
+            // Iterate through each of the key-value pairs.
+            foreach ($row as $column => $value) {
+                $rowPlaceholders[] = '?';
+                $types .= $this->getType($value);
+                $values[] = $value;
+            }
+            $placeholders[] = '(' . implode(", ", $rowPlaceholders) . ')';
+        }
+    
+        $placeholdersList = implode(", ", $placeholders);
+    
         // Combine into the full SQL statement
-        $sql = "INSERT INTO $this->table ($columns) VALUES ($placeholders);";
+        $sql = "INSERT INTO $this->table ($columnsList) VALUES $placeholdersList";
 
         if (!($stmt = $mysqli->prepare($sql))) {
             $mysqli->close();
@@ -69,10 +79,14 @@ abstract class Model {
      *
      * @param int $id Id of the element to be updated.
      * @param array $data Associative array of column names and values to update.
-     * @param $db Database to be used. Defaults to config value.
+     * @param string $db Database to be used. Defaults to config value.
      * @return bool Returns true on success, false on failure.
      */
     protected function update(int $id, array $data, string $db = __DATABASE__) {
+        if ($id <= 0) {
+            throw new InvalidArgumentException("id must be greater than 0.\n");
+        }
+
         $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, $db);
 
         if ($mysqli->connect_error) {
@@ -116,11 +130,15 @@ abstract class Model {
     /**
      * Delete a row in the database.
      *
-     * @param int $id Id of the element to be updated.
-     * @param $db Database to be used. Defaults to config value.
+     * @param int $id Id of the element to be deleted.
+     * @param string $db Database to be used. Defaults to config value.
      * @return bool Returns true on success, false on failure.
      */
     protected function delete(int $id, string $db = __DATABASE__) {
+        if ($id <= 0) {
+            throw new InvalidArgumentException("id must be greater than 0.\n");
+        }
+
         $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, $db);
 
         if ($mysqli->connect_error) {
