@@ -1,0 +1,44 @@
+.control_panel {
+  display: flex;
+  flex-wrap: wrap;
+}
+.control_panel * {
+  position: static;
+  flex: 1 0 calc(50% - 40px); /* Each item takes up 50% of the container width */
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  margin: 20px;
+}
+
+.materials_div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.material {
+  position: static;
+  flex: 1 0 calc(50% - 20px); /* Each item takes up 50% of the container width */
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  margin: 10px;
+}
+
+.material h {
+  font-size: 20px;
+  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
+  font-weight: bold;
+}
+
+.material p {
+  font-family: "Bahnschrift", sans-serif;
+}
+
+.categories_div {
+  background-color:bisque;
+  border-radius: 15px;
+  border: solid 2px;
+  border-color: inherit;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 60%;
+}

@@ -11,6 +11,13 @@ class MaterialCategory extends Model {
         $this->category_name = $result["category_name"];
     }
 
+    public function toArray() {
+        return [
+            "id"=>$this->id,
+            "category_name"=>$this->category_name
+        ];
+    }
+
     public function insert(array $data, string $db = __DATABASE__) {
         return Model::insert($data, $db);
     }

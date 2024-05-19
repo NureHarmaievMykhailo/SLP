@@ -1,9 +1,9 @@
 <?php
 require_once('Model.php');
 require_once('MaterialCategoryModel.php');
-require_once('MaterialMaterialCategoryModel.php');
+require_once('Material-MaterialCategoryModel.php');
 
-class Material extends Model{
+class Material extends Model {
     private $id;
     private $title;
     private $shortInfo;
@@ -19,6 +19,16 @@ class Material extends Model{
         $this->shortInfo = $result["shortInfo"];
         $this->description = $result["description"];
         $this->categories = $this->getCategoriesById($id);
+    }
+
+    public function toArray() {
+        return [
+            "id"=>$this->id,
+            "title"=>$this->title,
+            "shortInfo"=>$this->shortInfo,
+            "description"=>$this->description,
+            "categories"=>$this->categories
+        ];
     }
 
     /**
