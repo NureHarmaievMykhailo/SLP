@@ -44,11 +44,16 @@ class LearningMaterialController extends Controller {
      * @param string $new_description The new description for the material.
      * @param array $new_category_ids An array of new category IDs to associate with the material. Defaults to an empty array.
      *
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns updated id on success, false on failure.
      */
     public function updateMaterial(int $material_id, string $new_title, string $new_shortInfo, string $new_description, array $new_category_ids = []) {
         $m = new Material;
-        return $m->updateMaterial($material_id, $new_title, $new_shortInfo, $new_description, $new_category_ids);
+        try {
+            return $m->updateMaterial($material_id, $new_title, $new_shortInfo, $new_description, $new_category_ids);
+        }
+        catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     /**
@@ -62,11 +67,16 @@ class LearningMaterialController extends Controller {
      * @param string $description The description of the new material.
      * @param array $material_categories Optional. An array of category IDs to associate with the new material. Defaults to an empty array.
      *
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns newly inserted id on success, false on failure.
      */
     public function insertMaterial(string $title, string $shortInfo, string $description, array $material_categories = []) {
         $m = new Material;
-        return $m->insertMaterial($title, $shortInfo, $description, $material_categories);
+        try {
+            return $m->insertMaterial($title, $shortInfo, $description, $material_categories);
+        }
+        catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     /**
@@ -78,7 +88,12 @@ class LearningMaterialController extends Controller {
      */
     public function deleteMaterial(int $material_id) {
         $m = new Material;
-        return $m->delete($material_id);
+        try {
+            return $m->delete($material_id);
+        }
+        catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     public function sendJSONAll(int $limit) {

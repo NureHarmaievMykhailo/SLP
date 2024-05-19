@@ -37,7 +37,7 @@ class Material extends Model {
      * @param array $material_data Associative array of Material properties.
      * @param array $material_categories An array of category IDs to associate with the new material.
      * @param string $db Database to be used. Defaults to config value.
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns newly inserted id on success, false on failure.
      */
     protected function insertMaterialFromArray(array $material_data, array $material_categories = [], string $db = __DATABASE__) {
         $inserted_id = Model::insert($material_data, $db);
@@ -58,7 +58,11 @@ class Material extends Model {
             array_push($categories_assoc, array("material_id"=>$inserted_id, "category_id"=>$cat_id));
         }
 
-        return $m->insert($categories_assoc);
+        $res = $m->insert($categories_assoc);
+        if($res) {
+            return $inserted_id;
+        }
+        return $res;
     }
 
     /**
@@ -69,7 +73,7 @@ class Material extends Model {
      * @param string $description Full description of the material to be inserted.
      * @param array $material_categories Array of associative arrays of MaterialCategories ids.
      * @param string $db Database to be used. Defaults to config value.
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns newly inserted id on success, false on failure.
      */
     public function insertMaterial(string $title, string $shortInfo, string $description, array $material_categories = [], string $db = __DATABASE__) {
         $material_data["title"] = $title;
@@ -101,7 +105,7 @@ class Material extends Model {
      * @param array $material_categories Array of MaterialCategories ids.
      * @param string $db Database to be used. Defaults to config value.
      * 
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns updated id on success, false on failure.
      */
     protected function updateMaterialFromArray(int $material_id, array $material_data, array $category_ids = [], string $db = __DATABASE__) {
         $inserted_id = Model::update($material_id, $material_data, $db);
@@ -110,7 +114,11 @@ class Material extends Model {
         }
 
         $m = new MaterialMaterialCategory;
-        return $m->updateByMaterialId($material_id, $category_ids);
+
+        if ($m->updateByMaterialId($material_id, $category_ids)) {
+            return $material_id;
+        }
+        return false;
     }
 
     /**
@@ -123,7 +131,7 @@ class Material extends Model {
      * @param array $new_material_ids Array of associative arrays of MaterialCategories ids.
      * @param string $db Database to be used. Defaults to config value.
      * 
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns updated id on success, false on failure.
      */
     public function updateMaterial(int $material_id, string $new_title, string $new_shortInfo, string $new_description, array $new_category_ids = [], string $db = __DATABASE__) {
         $new_material_data = array("title"=>$new_title, "shortInfo"=>$new_shortInfo, "description"=>$new_description);

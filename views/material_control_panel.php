@@ -9,13 +9,25 @@
     <title>Control panel</title>
 </head>
 <body>
+    <?php include("moderator-header.html"); ?>
     <div class="control_panel">
-        <form>
-            <label for="limitInput">Enter limit for materials to be listed:</label>
-            <input type="number" id="dataInput" name="dataInput">
-            <button class="button" type="button" onclick="submitLimit()">Вивести всі матеріали</button>
-        </form>
-        <button class="button" onclick="redirectToEdit(-1);">Додати матеріал</button>
+        <div class="list_items_div">
+            <form>
+                <label for="limitInput" class="noselect" >Enter limit for materials to be listed:
+                <input type="number" min="0" step="1" required id="dataInput" name="dataInput" class="limit_input"></label>
+                <button class="button" type="button" onclick="submitLimit();">Вивести всі матеріали</button>
+            </form>
+        </div>
+        <div class="add_button_div">
+            <button class="button add_button" onclick="redirectToEdit(-1);">Додати матеріал</button>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="modal-content-text"></p>
+        </div>
     </div>
 
     <div id="materials_div" class="materials_div">
@@ -44,7 +56,9 @@
                     }
                 },
                 success: function(response) {
-                    renderElements(JSON.parse(response));
+                    let responseJson = JSON.parse(response);
+                    renderElements(responseJson);
+                    showPopUp(`Retrieved ${responseJson.length} records from the database.`);
                 },
                 error: function(xhr, status, error) {
                     $('#result').html('An error occurred: ' + error);
@@ -109,6 +123,11 @@
         }
 
         function deleteMaterial(id) {
+            const userConfirmed = confirm('Are you sure you want to delete this item? This action CAN NOT be undone.');
+            if (!userConfirmed) {
+                return;
+            }
+
             $.ajax({
                 url: '/controllers/Router.php',
                 type: 'POST',
@@ -120,6 +139,8 @@
                     }
                 },
                 success: function(response) {
+                    showPopUp(`Deleted material with id=${id} from the database.`);
+                    console.log(`Operation: delete id=${id}`);
                     submitLimit();
                 },
                 error: function(xhr, status, error) {
@@ -128,5 +149,6 @@
             });
         }
     </script>
+    <script src="../public/showPopUp.js"></script>
 </body>
 </html>

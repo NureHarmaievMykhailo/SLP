@@ -90,7 +90,7 @@ class MaterialMaterialCategory extends Model{
      * @param int $material_id Id of the material to be bound with categories.
      * @param array $category_ids Array of ids of categories to be bound with the material.
      * @param string $db Database to be used. Defaults to config value.
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns id of the last inserted material-category binding success, false on failure.
      */
     public function updateByMaterialId(int $material_id, array $category_ids = [], string $db = __DATABASE__) {
         if ($material_id <= 0) {
