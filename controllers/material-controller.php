@@ -128,7 +128,7 @@ class LearningMaterialController extends Controller {
     /**
      * Gets an array of Material objects provided with a category id.
      * @param int $category_id id of the category that every Material MUST have.
-     * @return array of Material objects.
+     * @return array Array of Material objects.
      */
     public function getMaterialsByCategoryId(int $category_id) {
         $result = array();
@@ -143,6 +143,25 @@ class LearningMaterialController extends Controller {
         $cat = new MaterialCategory;
         $cat->getFromDB($category_id);
         return $cat->getCategoryName();
+    }
+
+    /** Retrieves all categories from DB until a limit.
+     * @param int $limit limit of categories to be retrieved from DB.
+     * @return array Array of MaterialCategory objects
+     */
+    public function getAllCategories(int $limit = 100) {
+        $result = [];
+
+        $c = new MaterialCategory;
+        $categories = $c->getAllCategories($limit);
+        while ($row = $categories->fetch_assoc()) {
+            $category = new MaterialCategory;
+            $category->setId($row["id"]);
+            $category->setCategoryName($row["category_name"]);
+            array_push($result, $category);
+        }
+
+        return $result;
     }
 }
 ?>

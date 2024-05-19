@@ -24,11 +24,16 @@ abstract class Model {
      *
      * @param array $data Array of associative arrays, each containing column names and values to insert.
      * @param string $db Database to be used. Defaults to config value.
-     * @return bool Returns true on success, false on failure.
+     * @return int|bool Returns last inserted id on success, false on failure.
      */
     protected function insert(array $data, string $db = __DATABASE__) {
         if (empty($data)) {
             return false;
+        }
+
+        // Check if $data is a single associative array
+        if (array_keys($data) !== range(0, count($data) - 1)) {
+            $data = [$data];
         }
 
         $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, $db);
@@ -41,12 +46,13 @@ abstract class Model {
         $types = '';
         $values = [];
         $placeholders = [];
+        $columnsList = implode(", ", array_keys($data[0]));
 
-        // Iterate through each of the associtive arrays.
+        // Iterate through each of the associative arrays.
         foreach ($data as $row) {
             $rowPlaceholders = [];
             // Iterate through each of the key-value pairs.
-            foreach ($row as $column => $value) {
+            foreach ($row as /* $column => */ $value) {
                 $rowPlaceholders[] = '?';
                 $types .= $this->getType($value);
                 $values[] = $value;
@@ -67,11 +73,13 @@ abstract class Model {
         // Bind the params
         $stmt->bind_param($types, ...$values);
 
-        $result = $stmt->execute();
-    
+        $stmt->execute();
+        // Get the last insert id
+        $inserted_id = $mysqli->insert_id;
+
         $stmt->close();
         $mysqli->close();
-        return $result;
+        return $inserted_id;
     }
 
     /**
@@ -170,8 +178,8 @@ abstract class Model {
         $limit = intval($limit);
         $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
         mysqli_query($conn, "USE $db;");
-        $result = mysqli_query($conn, "SELECT * FROM $table LIMIT = $limit");
-        mysqli_close($conn); 
+        $result = mysqli_query($conn, "SELECT * FROM $table LIMIT $limit");
+        mysqli_close($conn);
         return $result;
     }
 

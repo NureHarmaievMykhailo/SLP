@@ -3,9 +3,6 @@
   require_once('footer.php');
   $ft = new Footer(150);
   $ft->render();
-
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
   
   $root = __DIR__ . "/..";
   require_once("$root/controllers/material-controller.php");

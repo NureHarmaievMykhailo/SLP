@@ -42,3 +42,14 @@
   padding-right: 20px;
   width: 60%;
 }
+
+.button_edit {
+  position: static;
+  margin: 10px;
+}
+
+.button_div {
+  display: flex; /* Enable flexbox */
+  flex-direction: row; /* Arrange children in a row */
+  gap: 10px; /* Optional: Add some space between the items */
+}

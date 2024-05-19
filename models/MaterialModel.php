@@ -35,12 +35,14 @@ class Material extends Model {
      * Insert a new material row from a prepared associative array of data.
      * 
      * @param array $material_data Associative array of Material properties.
-     * @param array $material_categories Array of associative arrays of MaterialCategories ids.
+     * @param array $material_categories An array of category IDs to associate with the new material.
      * @param string $db Database to be used. Defaults to config value.
      * @return bool Returns true on success, false on failure.
      */
     protected function insertMaterialFromArray(array $material_data, array $material_categories = [], string $db = __DATABASE__) {
-        if(!Model::insert($material_data, $db)) {
+        $inserted_id = Model::insert($material_data, $db);
+
+        if(!$inserted_id) {
             return false;
         }
 
@@ -49,10 +51,14 @@ class Material extends Model {
             return true;
         }
 
-        // We could go with MaterialMaterialCategory::insert,
-        // but we try to avoid calling non-static methods statically.
         $m = new MaterialMaterialCategory;
-        return $m->insert($material_categories);
+        //turn into an associative array material_id =>(1, 1, 1, 1, 1), category_id =>(1, 2, 3, 4)
+        $categories_assoc = [];
+        foreach ($material_categories as $cat_id) {
+            array_push($categories_assoc, array("material_id"=>$inserted_id, "category_id"=>$cat_id));
+        }
+
+        return $m->insert($categories_assoc);
     }
 
     /**
@@ -66,7 +72,9 @@ class Material extends Model {
      * @return bool Returns true on success, false on failure.
      */
     public function insertMaterial(string $title, string $shortInfo, string $description, array $material_categories = [], string $db = __DATABASE__) {
-        $material_data = array("title"=>$title, "shortInfo"=>$shortInfo, "description"=>$description);
+        $material_data["title"] = $title;
+        $material_data["shortInfo"] = $shortInfo;
+        $material_data["description"] = $description;
         return $this->insertMaterialFromArray($material_data, $material_categories, $db);
     }
 
@@ -96,9 +104,11 @@ class Material extends Model {
      * @return bool Returns true on success, false on failure.
      */
     protected function updateMaterialFromArray(int $material_id, array $material_data, array $category_ids = [], string $db = __DATABASE__) {
-        if(!Model::update($material_id, $material_data, $db)) {
+        $inserted_id = Model::update($material_id, $material_data, $db);
+        if(!$inserted_id) {
             return false;
         }
+
         $m = new MaterialMaterialCategory;
         return $m->updateByMaterialId($material_id, $category_ids);
     }

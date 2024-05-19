@@ -106,12 +106,54 @@ class MaterialMaterialCategory extends Model{
             return true;
         }
 
-        // Associative array to store material_id => category_id KVPs.
+        /* Converting into an array of associative arrays.
+            Example input of category_ids:
+            array(2) {
+                [0]=>
+                string(1) "1"
+                [1]=>
+                string(1) "2"
+            }
+
+            Example result:
+            array(2) {
+                [0]=>
+                array(2) {
+                    ["material_id"]=>
+                    int(23)
+                    ["category_id"]=>
+                    string(1) "1"
+                }
+                [1]=>
+                array(2) {
+                    ["material_id"]=>
+                    int(23)
+                    ["category_id"]=>
+                    string(1) "2"
+                }
+                }
+                array(2) {
+                [0]=>
+                array(2) {
+                    ["material_id"]=>
+                    int(23)
+                    ["category_id"]=>
+                    string(1) "1"
+                }
+                [1]=>
+                array(2) {
+                    ["material_id"]=>
+                    int(23)
+                    ["category_id"]=>
+                    string(1) "2"
+                }
+            } 
+        */
         $material_category = [];
         foreach($category_ids as $category_id) {
-            $material_category[$material_id] = $category_id;
-        }
+            array_push($material_category, array("material_id"=>$material_id, "category_id"=>$category_id));
 
+        }
         return $this->insert($material_category, $db);
     }
 

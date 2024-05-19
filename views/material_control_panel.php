@@ -13,9 +13,9 @@
         <form>
             <label for="limitInput">Enter limit for materials to be listed:</label>
             <input type="number" id="dataInput" name="dataInput">
-            <button class="button" type="button" onclick="submitData()">Вивести всі матеріали</button>
+            <button class="button" type="button" onclick="submitLimit()">Вивести всі матеріали</button>
         </form>
-        <button class="button" onclick="redirectToEdit();">Додати матеріал</button>
+        <button class="button" onclick="redirectToEdit(-1);">Додати матеріал</button>
     </div>
 
     <div id="materials_div" class="materials_div">
@@ -23,7 +23,7 @@
     </div>
 
     <script>
-        function submitData() {
+        function submitLimit() {
             let limit = document.getElementById("dataInput").value;
             if(limit == '') {
                 getAll();
@@ -60,7 +60,6 @@
             objectArray.forEach(material => {
                 let materialDiv = document.createElement('div');
                 materialDiv.classList.add("block", "material");
-                //materialDiv.classList.add("material");
 
                 let materialParagraph = document.createElement('p');
                 let materialTitle = document.createElement('h');
@@ -77,13 +76,56 @@
                     categoryDiv.appendChild(categoryParagraph);
                 });
                 materialDiv.appendChild(categoryDiv);
+                
+                let buttonDiv = document.createElement('div');
+                buttonDiv.classList.add("button_div");
+
+                let editButton = document.createElement('button');
+                editButton.classList.add('button', 'button_edit');
+                editButton.onclick = function() {redirectToEdit(material.id)};
+                editButton.innerHTML = "Edit element";
+                
+                let deleteButton = document.createElement('button');
+                deleteButton.classList.add('button', 'button_edit');
+                deleteButton.onclick = function() {deleteMaterial(material.id)};
+                deleteButton.innerHTML = "Delete element";
+
+                buttonDiv.appendChild(editButton);
+                buttonDiv.appendChild(deleteButton);
+        
+                materialDiv.appendChild(buttonDiv);
 
                 parentDiv.appendChild(materialDiv);
             });
         }
 
-        function redirectToEdit() {
-            window.location.href = 'material_edit';
+        function redirectToEdit(id) {
+            if (id > 0) {
+                window.location.href = `material_edit?id=${id}`;
+            }
+            else {
+                window.location.href = "material_edit";
+            }
+        }
+
+        function deleteMaterial(id) {
+            $.ajax({
+                url: '/controllers/Router.php',
+                type: 'POST',
+                data: { 
+                    controller: 'material-controller',
+                    method: 'deleteMaterial',
+                    params: {
+                        material_id: id
+                    }
+                },
+                success: function(response) {
+                    submitLimit();
+                },
+                error: function(xhr, status, error) {
+                    $('#result').html('An error occurred: ' + error);
+                }
+            });
         }
     </script>
 </body>

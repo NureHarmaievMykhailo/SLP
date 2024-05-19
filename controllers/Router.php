@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if the method exists in the controller
         if (method_exists($controller, $method)) {
             // Call the method dynamically with parameters
-            $result = call_user_func_array([$controller, $method], $params);
+            $result = call_user_func_array([$controller, $method], array_values($params));
             echo $result;
         } else {
             // Bad request

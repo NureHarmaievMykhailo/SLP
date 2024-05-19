@@ -30,6 +30,10 @@ class MaterialCategory extends Model {
         return Model::update($category_id, $data, $db);
     }
 
+    public function getAllCategories($limit) {
+        return Model::getAll(__DATABASE__, $this->table, $limit);
+    }
+
     // Getter and setter for $id
     public function getId() {
         return $this->id;

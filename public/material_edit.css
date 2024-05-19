@@ -1,0 +1,35 @@
+.edit_form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input_edit {
+    width: 95%;
+    margin: 10px;
+    padding: 5px;
+}
+.title_edit {
+    font-size: 20px;
+    font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
+    font-weight: bold;
+}
+
+.shortInfo_edit {
+    font-size: 18px;
+    font-family: "Bahnschrift", sans-serif;
+    height: 100px;
+}
+
+.description_edit {
+    font-size: 18px;
+    font-family: "Bahnschrift", sans-serif;
+    height: 400px;
+}
+.edit_button {
+    position: static;
+    margin-top: 25px;
+    margin-left: 5px;
+    float: left;
+    width: 15%;
+}
