@@ -1,4 +1,9 @@
+body {
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+}
 .material_content {
+    width: 100%;
     position: absolute;
     padding-left: 40px;
     padding-right: 40px;

@@ -6,25 +6,25 @@ ini_set('display_errors', 1);
     require_once("$root/controllers/material-controller.php");
     $mc = new LearningMaterialController;
 
-    // Retrieve all categories from DB as an associative array
-    $all_categories = array_map(fn($cat) => $cat->toArray(), $mc->getAllCategories());
-
+    // Retrieve all categories from DB as an array of MaterialCategory objects,
+    // cast them to object(stdClass) for compatibility with json_decode() data.
+    $all_categories = array_map(fn($cat) => (object) $cat->toArray(), $mc->getAllCategories());
     // Default Mode: Addition
     $isEditing = false;
     // Mode: Editing
     if (isset($mc->getParams()["id"])) {
         $isEditing = true;
         $id = $mc->getParams()["id"];
-        $material = $mc->getMaterialJsonById($id);
+        $material = json_decode($mc->getMaterialJsonById($id))[0];
 
         // Redirect to the "Add new material" page if ID is not valid.
-        if (is_null($material["id"])) {
+        if (is_null($material->id)) {
             header('Location: material_edit');
             die();
         }
 
         //Set material categories
-        $categories = $material["categories"];
+        $categories = $material->categories;
     }
 ?>
 
@@ -44,7 +44,7 @@ ini_set('display_errors', 1);
         <h>Welcome to the editing panel. Current mode: 
         <?php
             if($isEditing) {
-                echo "Editing an existing item: ID = {$material["id"]}";
+                echo "Editing an existing item: ID = {$material->id}";
             } else {
                 echo "Adding a new item";
             }
@@ -54,19 +54,20 @@ ini_set('display_errors', 1);
     <form class="edit_form">
         <label for="titleInput" class="edit_label">Title:</label>
         <textarea class="input_edit title_edit" type="text" name="titleInput" id="titleInput">
-            <?php if($isEditing) echo $material["title"]; ?>
+            <?php if($isEditing) echo $material->title; ?>
         </textarea>
         
         <label for="shortInfoInput" class="edit_label">Short Info:</label>
         <textarea class="input_edit shortInfo_edit" type="text" name="shortInfoInput" id="shortInfoInput">
-            <?php if($isEditing) echo $material["shortInfo"]; ?>    
+            <?php if($isEditing) echo $material->shortInfo; ?>    
         </textarea>
         
         <label for="descriptionInput" class="edit_label">Description:</label>
         <textarea class="input_edit description_edit" type="text" name="descriptionInput" id="descriptionInput">
             <?php 
                 if($isEditing) {
-                    $description = (is_null($material["description"])) ? $material["description"] : htmlspecialchars($material["description"]);
+                    $description = (is_null($material->description)) ? $material->description : htmlspecialchars($material->description);
+                    echo $description;
                 }
             ?>
         </textarea>
@@ -74,7 +75,7 @@ ini_set('display_errors', 1);
         <?php
             // Print checkboxes for categories
             foreach ($all_categories as $category) {
-                echo "<label class=\"category_label noselect\"><input type=\"checkbox\" name=\"checkboxes[]\" value=\"{$category["id"]}\"";
+                echo "<label class=\"category_label noselect\"><input type=\"checkbox\" name=\"checkboxes[]\" value=\"{$category->id}\"";
 
                 // Mark as checked if the material has the category.
                 // If in adding mode, all checkboxes are unchecked.
@@ -82,11 +83,11 @@ ini_set('display_errors', 1);
                     if (in_array($category, $categories)) { echo "checked"; }
                 }
 
-                echo '>' . htmlspecialchars($category["category_name"]) . '</label><br>';
+                echo '>' . $category->category_name . '</label><br>';
             }
         ?>
         <button class="button edit_button" type="button"
-            onclick="<?php $btnArg = ($isEditing) ? ("sendUpdate({$material["id"]})") : ("sendInsert()"); echo $btnArg; ?>">
+            onclick="<?php $btnArg = ($isEditing) ? ("sendUpdate({$material->id})") : ("sendInsert()"); echo $btnArg; ?>">
             <?php $btnText = ($isEditing) ? ("Update data") : ("Publish new"); echo $btnText; ?>
         </button>
     </form>

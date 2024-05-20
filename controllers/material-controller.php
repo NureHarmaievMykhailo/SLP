@@ -33,7 +33,7 @@ class LearningMaterialController extends Controller {
 
     /**
      * Gets a material with a specified ID from the DB and returns it as a JSON.
-     * @return json
+     * @return string
      */
     public function getMaterialJsonById($id) {
         $material = $this->getMaterialById($id);
@@ -130,7 +130,7 @@ class LearningMaterialController extends Controller {
     /**
      * Gets a specified number of Materials and outputs them as a JSON.
      * @param int $limit the number of Material to be gotten.
-     * @return json an array of Material objects
+     * @return string an array of Material objects
      */
     public function getAllAsJson(int $limit) {
         $data = $this->getAll($limit);
