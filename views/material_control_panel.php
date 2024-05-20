@@ -11,7 +11,8 @@
 <body>
     <?php include("moderator-header.html"); ?>
     <div class="control_panel">
-        <div class="list_items_div">
+        <div class="search_panel">
+        <div id="loading" class="loading-circle"></div>
             <form class="id_form">
                 <label for="limitInput" class="noselect text_default" >Enter limit for materials to be listed:
                 <input type="number" min="0" step="1" required id="limitInput" name="limitInput" class="limit_input"></label>
@@ -28,6 +29,7 @@
                 <button class="search_button" type="button" onclick="submitTitle();"><img class="search_button_img noselect"src="../public/images/search.png"></button>
             </form>
         </div>
+
         <div class="add_button_div">
             <button class="button add_button" onclick="redirectToEdit(-1);">Додати матеріал</button>
         </div>
@@ -45,6 +47,26 @@
     </div>
 
     <script>
+        function sendPostToRouter(controller, method, data) {
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: '/controllers/Router.php',
+                    type: 'POST',
+                    data: { 
+                        controller: controller,
+                        method: method,
+                        params: data
+                    },
+                    success: function(response) {
+                        resolve(response); // Resolve the promise with the response
+                    },
+                    error: function(xhr, status, error) {
+                        reject(error); // Reject the promise with the error
+                    }
+                });
+            });
+        }
+
         function submitLimit() {
             let limit = document.getElementById("limitInput").value;
             if(limit == '') {
@@ -55,24 +77,18 @@
         }
 
         function getAll(limitValue = 100) {
-            $.ajax({
-                url: '/controllers/Router.php',
-                type: 'POST',
-                data: { 
-                    controller: 'material-controller',
-                    method: 'getAllAsJson',
-                    params: {
-                        limit: limitValue
-                    }
-                },
-                success: function(response) {
-                    let responseJson = JSON.parse(response);
-                    renderElements(responseJson);
-                    showPopUp(`Retrieved ${responseJson.length} records from the database.`);
-                },
-                error: function(xhr, status, error) {
-                    $('#result').html('An error occurred: ' + error);
-                }
+            showLoading();
+
+            sendPostToRouter('material-controller', 'getAllAsJson', { limit: limitValue })
+            .then(function(response) {
+                let responseJson = JSON.parse(response);
+                renderElements(responseJson);
+                showPopUp(`Retrieved ${responseJson.length} records from the database.`);
+                hideLoading();
+            })
+            .catch(function(error) {
+                hideLoading();
+                console.error("Error occurred:", error);
             });
         }
 
@@ -138,24 +154,18 @@
                 return;
             }
 
-            $.ajax({
-                url: '/controllers/Router.php',
-                type: 'POST',
-                data: { 
-                    controller: 'material-controller',
-                    method: 'deleteMaterial',
-                    params: {
-                        material_id: id
-                    }
-                },
-                success: function(response) {
-                    showPopUp(`Deleted material with id=${id} from the database.`);
-                    console.log(`Operation: delete id=${id}`);
-                    submitLimit();
-                },
-                error: function(xhr, status, error) {
-                    $('#result').html('An error occurred: ' + error);
-                }
+            showLoading();
+
+            sendPostToRouter('material-controller', 'deleteMaterial', { material_id: id })
+            .then(function(response) {
+                showPopUp(`Deleted material with id=${id} from the database.`);
+                console.log(`Operation: delete id=${id}`);
+                submitLimit();
+                hideLoading();
+            })
+            .catch(function(error) {
+                hideLoading();
+                console.error("Error occurred:", error);
             });
         }
 
@@ -168,87 +178,89 @@
                 return;
             }
 
-            $.ajax({
-                url: '/controllers/Router.php',
-                type: 'POST',
-                data: { 
-                    controller: 'material-controller',
-                    method: 'getMaterialJsonById',
-                    params: {
-                        material_id: id
-                    }
-                },
-                success: function(response) {
-                    let responseJson;
-                    try {
-                        responseJson = JSON.parse(response);
-                    }
-                    catch (error) {
-                        console.log(error);
-                        displayError("Couldn't parse JSON sent from server.", response);
-                        return;
-                    }
-
-                    if (responseJson[0]["id"] === null) {
-                        displayError(`Couldn't retrieve material with id = ${id} from DB. Material with id = ${id} may not exist.`,
-                            responseJson);
-                        return;
-                    }
-
-                    renderElements(responseJson);
-                    showPopUp(`Retrieved material with id = ${id} from DB.`);
-                    console.log(`Operation: getById, id=${id}`);
-                },
-                error: function(xhr, status, error) {
-                    $('#result').html('An error occurred: ' + error);
+            showLoading();
+            sendPostToRouter('material-controller', 'getMaterialJsonById', { material_id: id })
+            .then(function(response) {
+                idInput.value = "";
+                let responseJson;
+                try {
+                    responseJson = JSON.parse(response);
                 }
+                catch (error) {
+                    console.log(error);
+                    displayError("Couldn't parse JSON sent from server.", response);
+                    hideLoading();
+                    return;
+                }
+
+                if (responseJson[0]["id"] === null) {
+                    displayError(`Couldn't retrieve material with id = ${id} from DB. Material with id = ${id} may not exist.`,
+                        responseJson);
+                    hideLoading();
+                    return;
+                }
+
+                renderElements(responseJson);
+                showPopUp(`Retrieved material with id = ${id} from DB.`);
+                console.log(`Operation: getById, id=${id}`);
+                hideLoading();
+            })
+            .catch(function(error) {
+                hideLoading();
+                console.error("Error occurred:", error);
             });
         }
 
         function submitTitle() {
+            showLoading();
             let titleInput = document.getElementById("titleInput");
             let title = titleInput.value.trim();
 
-            $.ajax({
-                url: '/controllers/Router.php',
-                type: 'POST',
-                data: { 
-                    controller: 'material-controller',
-                    method: 'getMaterialsJsonByTitle',
-                    params: {
-                        title: title
-                    }
-                },
-                success: function(response) {
-                    let responseJson;
-                    try {
-                        responseJson = JSON.parse(response);
-                    }
-                    catch (error) {
-                        console.log(error);
-                        displayError("Couldn't parse JSON sent from server.", response);
-                        return;
-                    }
-
-                    if (responseJson.length == 0 || responseJson[0]["id"] === null) {
-                        displayError(`Couldn't retrieve material with title like "${title}" from DB. Try to be more specific or try another query.`,
-                            responseJson);
-                        return;
-                    }
-
-                    renderElements(responseJson);
-                    showPopUp(`Retrieved ${responseJson.length} materials with title like "${title}" from DB.`);
-                    console.log(`Operation: getByTitle, title = ${title}`);
-                },
-                error: function(xhr, status, error) {
-                    $('#result').html('An error occurred: ' + error);
+            sendPostToRouter('material-controller', 'getMaterialsJsonByTitle', { title: title })
+            .then(function(response) {
+                titleInput.value = "";
+                let responseJson;
+                try {
+                    responseJson = JSON.parse(response);
                 }
+                catch (error) {
+                    console.log(error);
+                    displayError("Couldn't parse JSON sent from server.", response);
+                    hideLoading();
+                    return;
+                }
+
+                if (responseJson.length == 0 || responseJson[0]["id"] === null) {
+                    displayError(`Couldn't retrieve material with title like "${title}" from DB. Try to be more specific or try another query.`,
+                        responseJson);
+                    hideLoading();
+                    return;
+                }
+
+                renderElements(responseJson);
+                showPopUp(`Retrieved ${responseJson.length} materials with title like "${title}" from DB.`);
+                console.log(`Operation: getByTitle, title = ${title}`);
+                hideLoading();
+            })
+            .catch(function(error) {
+                hideLoading();
+                console.error("Error occurred:", error);
             });
         }
 
         function displayError(additionalInfo, fullData) {
             showPopUp(`ERROR. ${additionalInfo} Check console for details.`);
             console.log("Server response dump:\n", fullData);
+        }
+
+        function showLoading() {
+            const loadingElement = document.getElementById('loading');
+            loadingElement.style.display = 'inline';
+        }
+
+        function hideLoading() {
+            const loadingElement = document.getElementById('loading');
+            loadingElement.style.display = 'none';
         }
     </script>
     <script src="../public/showPopUp.js"></script>

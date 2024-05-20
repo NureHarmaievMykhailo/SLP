@@ -24,9 +24,31 @@ class Material extends Model {
         $this->categories = $this->getCategoriesById($id);
     }
 
+    /**
+     * Retrieves all records from the database table based on a partial match of the title.
+     *
+     * @param string $title The partial title to search for.
+     * @return mixed Returns the result set containing all matching records on success, or false on failure.
+     */
     public function getAllByTitle($title) {
-        $query = "SELECT * FROM material WHERE title LIKE \"%$title%\"";
-        return $this->executeSQL(__DATABASE__, $query);
+        $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
+        // In MySQL queries are case insensitive by default, hence no need for LOWER() or UPPER()
+        $query = "SELECT * FROM $this->table WHERE title LIKE CONCAT('%', ?, '%')";
+
+        if (!($stmt = $mysqli->prepare($query))) {
+            $mysqli->close();
+            return false;
+        }
+        $stmt->bind_param("s", $title);
+
+        if(!$stmt->execute()) {
+            return false;
+        }
+
+        $result = $stmt->get_result();
+        $stmt->close();
+        $mysqli->close();
+        return $result;
     }
 
     /**

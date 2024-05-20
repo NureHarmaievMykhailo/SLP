@@ -8,6 +8,12 @@ class LearningMaterialController extends Controller {
         $this->params = $this->parseParams();
     }
 
+    /**
+     * Maps the SQL query result to an array of Material objects.
+     *
+     * @param mysqli_result $sql_response The result set obtained from executing a SQL query.
+     * @return array An array of Material objects representing the mapped SQL response.
+     */
     private function mapSQLResponseToMaterial($sql_response) {
         $result = array();
         while($row = $sql_response->fetch_assoc()) {
@@ -40,12 +46,28 @@ class LearningMaterialController extends Controller {
         return json_encode([$material->toArray()], JSON_UNESCAPED_UNICODE);
     }
 
-    public function getMaterialsByTitle($title) {
+    /**
+     * Retrieves materials from the database based on a partial match of the title.
+     *
+     * @param string $title The partial title to search for.
+     * @return array An array of Material objects representing the materials matching the title.
+     */
+    protected function getMaterialsByTitle($title) {
         $m = new Material;
+
+        // Retrieve SQL response containing materials matching the title
         $sql_result = $m->getAllByTitle($title);
+
+        // Map the SQL response to Material objects
         return $this->mapSQLResponseToMaterial($sql_result);
     }
 
+    /**
+     * Retrieves materials from the database based on a partial match of the title and returns them as JSON.
+     *
+     * @param string $title The partial title to search for.
+     * @return string JSON-encoded string representing the materials matching the title.
+     */
     public function getMaterialsJsonByTitle($title) {
         $materials = $this->getMaterialsByTitle($title);
 
@@ -184,6 +206,11 @@ class LearningMaterialController extends Controller {
         return $result;
     }
 
+    /**
+     * Gets a material category's name, given its id
+     * @param int $category_id  The id of the category
+     * @return string The category's name
+     */
     public function getCategoryName(int $category_id) {
         $cat = new MaterialCategory;
         $cat->getFromDB($category_id);
