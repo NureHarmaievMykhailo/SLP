@@ -27,8 +27,39 @@ class LearningMaterialController extends Controller {
 
     public function getMaterialById($id) {
         $material = new Material;
-        $material->getFromDB($id);
+        $material->getFromDB(intval($id));
         return $material;
+    }
+
+    /**
+     * Gets a material with a specified ID from the DB and returns it as a JSON.
+     * @return json
+     */
+    public function getMaterialJsonById($id) {
+        $material = $this->getMaterialById($id);
+        return json_encode([$material->toArray()], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getMaterialsByTitle($title) {
+        $m = new Material;
+        $sql_result = $m->getAllByTitle($title);
+        return $this->mapSQLResponseToMaterial($sql_result);
+    }
+
+    public function getMaterialsJsonByTitle($title) {
+        $materials = $this->getMaterialsByTitle($title);
+
+        // If response if empty, return empty array.
+        if ($materials == []) {
+            return json_encode($materials);
+        }
+
+        $materials_array = array_map(function($m) {
+                return $m->toArray();
+            }, $materials);
+
+        // Return as is
+        return json_encode($materials_array, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -96,15 +127,14 @@ class LearningMaterialController extends Controller {
         }
     }
 
-    public function sendJSONAll(int $limit) {
+    /**
+     * Gets a specified number of Materials and outputs them as a JSON.
+     * @param int $limit the number of Material to be gotten.
+     * @return json an array of Material objects
+     */
+    public function getAllAsJson(int $limit) {
         $data = $this->getAll($limit);
 
-        foreach ($data as $material) {
-            // Set each material's categories property as toArray results of its categories.
-            $material->setCategories(array_map(function($category) {
-                return $category->toArray();
-            }, $material->getCategories()));
-        }
         // Create an array toArray results of each material
         $result = array_map(function($material) {
             return $material->toArray();

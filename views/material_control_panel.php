@@ -12,10 +12,20 @@
     <?php include("moderator-header.html"); ?>
     <div class="control_panel">
         <div class="list_items_div">
-            <form>
-                <label for="limitInput" class="noselect" >Enter limit for materials to be listed:
-                <input type="number" min="0" step="1" required id="dataInput" name="dataInput" class="limit_input"></label>
+            <form class="id_form">
+                <label for="limitInput" class="noselect text_default" >Enter limit for materials to be listed:
+                <input type="number" min="0" step="1" required id="limitInput" name="limitInput" class="limit_input"></label>
                 <button class="button" type="button" onclick="submitLimit();">Вивести всі матеріали</button>
+            </form>
+            <form class="id_form">
+                <label for="idInput" class="noselect text_default">Search by material ID:
+                <input type="number" min="1" step="1" required id="idInput" name="idInput" class="id_input"></label>
+                <button class="search_button" type="button" onclick="submitId();"><img class="search_button_img noselect"src="../public/images/search.png"></button>
+            </form>
+            <form class="id_form">
+                <label for="titleInput" class="noselect text_default">Search by material title:
+                <input required id="titleInput" name="titleInput" class="title_input"></label>
+                <button class="search_button" type="button" onclick="submitTitle();"><img class="search_button_img noselect"src="../public/images/search.png"></button>
             </form>
         </div>
         <div class="add_button_div">
@@ -36,7 +46,7 @@
 
     <script>
         function submitLimit() {
-            let limit = document.getElementById("dataInput").value;
+            let limit = document.getElementById("limitInput").value;
             if(limit == '') {
                 getAll();
                 return;
@@ -50,7 +60,7 @@
                 type: 'POST',
                 data: { 
                     controller: 'material-controller',
-                    method: 'sendJSONAll',
+                    method: 'getAllAsJson',
                     params: {
                         limit: limitValue
                     }
@@ -147,6 +157,98 @@
                     $('#result').html('An error occurred: ' + error);
                 }
             });
+        }
+
+        function submitId() {
+            let idInput = document.getElementById("idInput");
+            let id = parseInt(idInput.value);
+            if (id <= 0 || isNaN(id)) {
+                showPopUp("Please, enter a valid ID. Valid IDs are integers, greater than zero (0).");
+                idInput.value = "";
+                return;
+            }
+
+            $.ajax({
+                url: '/controllers/Router.php',
+                type: 'POST',
+                data: { 
+                    controller: 'material-controller',
+                    method: 'getMaterialJsonById',
+                    params: {
+                        material_id: id
+                    }
+                },
+                success: function(response) {
+                    let responseJson;
+                    try {
+                        responseJson = JSON.parse(response);
+                    }
+                    catch (error) {
+                        console.log(error);
+                        displayError("Couldn't parse JSON sent from server.", response);
+                        return;
+                    }
+
+                    if (responseJson[0]["id"] === null) {
+                        displayError(`Couldn't retrieve material with id = ${id} from DB. Material with id = ${id} may not exist.`,
+                            responseJson);
+                        return;
+                    }
+
+                    renderElements(responseJson);
+                    showPopUp(`Retrieved material with id = ${id} from DB.`);
+                    console.log(`Operation: getById, id=${id}`);
+                },
+                error: function(xhr, status, error) {
+                    $('#result').html('An error occurred: ' + error);
+                }
+            });
+        }
+
+        function submitTitle() {
+            let titleInput = document.getElementById("titleInput");
+            let title = titleInput.value.trim();
+
+            $.ajax({
+                url: '/controllers/Router.php',
+                type: 'POST',
+                data: { 
+                    controller: 'material-controller',
+                    method: 'getMaterialsJsonByTitle',
+                    params: {
+                        title: title
+                    }
+                },
+                success: function(response) {
+                    let responseJson;
+                    try {
+                        responseJson = JSON.parse(response);
+                    }
+                    catch (error) {
+                        console.log(error);
+                        displayError("Couldn't parse JSON sent from server.", response);
+                        return;
+                    }
+
+                    if (responseJson.length == 0 || responseJson[0]["id"] === null) {
+                        displayError(`Couldn't retrieve material with title like "${title}" from DB. Try to be more specific or try another query.`,
+                            responseJson);
+                        return;
+                    }
+
+                    renderElements(responseJson);
+                    showPopUp(`Retrieved ${responseJson.length} materials with title like "${title}" from DB.`);
+                    console.log(`Operation: getByTitle, title = ${title}`);
+                },
+                error: function(xhr, status, error) {
+                    $('#result').html('An error occurred: ' + error);
+                }
+            });
+        }
+
+        function displayError(additionalInfo, fullData) {
+            showPopUp(`ERROR. ${additionalInfo} Check console for details.`);
+            console.log("Server response dump:\n", fullData);
         }
     </script>
     <script src="../public/showPopUp.js"></script>

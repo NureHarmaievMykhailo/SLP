@@ -5,6 +5,9 @@ body {
   height: 100%;
   box-sizing: border-box;
 }
+.text_default {
+  font-family:"Bahnschrift", sans-serif;
+}
 
 .button {
   position:absolute;

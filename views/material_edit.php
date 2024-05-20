@@ -5,17 +5,27 @@ ini_set('display_errors', 1);
     $root = __DIR__ . "/..";
     require_once("$root/controllers/material-controller.php");
     $mc = new LearningMaterialController;
-    $all_categories = $mc->getAllCategories();
-    
+
+    // Retrieve all categories from DB as an associative array
+    $all_categories = array_map(fn($cat) => $cat->toArray(), $mc->getAllCategories());
+
+    // Default Mode: Addition
     $isEditing = false;
     // Mode: Editing
     if (isset($mc->getParams()["id"])) {
         $isEditing = true;
         $id = $mc->getParams()["id"];
-        $material = $mc->getMaterialById($id);
-        $categories = $material->getCategories();
+        $material = $mc->getMaterialJsonById($id);
+
+        // Redirect to the "Add new material" page if ID is not valid.
+        if (is_null($material["id"])) {
+            header('Location: material_edit');
+            die();
+        }
+
+        //Set material categories
+        $categories = $material["categories"];
     }
-    // Default Mode: Addition
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +44,7 @@ ini_set('display_errors', 1);
         <h>Welcome to the editing panel. Current mode: 
         <?php
             if($isEditing) {
-                echo "Editing an existing item: ID = {$material->getId()}";
+                echo "Editing an existing item: ID = {$material["id"]}";
             } else {
                 echo "Adding a new item";
             }
@@ -44,23 +54,27 @@ ini_set('display_errors', 1);
     <form class="edit_form">
         <label for="titleInput" class="edit_label">Title:</label>
         <textarea class="input_edit title_edit" type="text" name="titleInput" id="titleInput">
-            <?php if($isEditing) echo $material->getTitle(); ?>
+            <?php if($isEditing) echo $material["title"]; ?>
         </textarea>
         
         <label for="shortInfoInput" class="edit_label">Short Info:</label>
         <textarea class="input_edit shortInfo_edit" type="text" name="shortInfoInput" id="shortInfoInput">
-            <?php if($isEditing) echo $material->getShortInfo(); ?>    
+            <?php if($isEditing) echo $material["shortInfo"]; ?>    
         </textarea>
         
         <label for="descriptionInput" class="edit_label">Description:</label>
         <textarea class="input_edit description_edit" type="text" name="descriptionInput" id="descriptionInput">
-            <?php if($isEditing) echo htmlspecialchars($material->getDescription()); ?>
+            <?php 
+                if($isEditing) {
+                    $description = (is_null($material["description"])) ? $material["description"] : htmlspecialchars($material["description"]);
+                }
+            ?>
         </textarea>
         <label class="edit_label">Categories:</label>
         <?php
             // Print checkboxes for categories
             foreach ($all_categories as $category) {
-                echo "<label class=\"category_label noselect\"><input type=\"checkbox\" name=\"checkboxes[]\" value=\"{$category->getId()}\"";
+                echo "<label class=\"category_label noselect\"><input type=\"checkbox\" name=\"checkboxes[]\" value=\"{$category["id"]}\"";
 
                 // Mark as checked if the material has the category.
                 // If in adding mode, all checkboxes are unchecked.
@@ -68,11 +82,11 @@ ini_set('display_errors', 1);
                     if (in_array($category, $categories)) { echo "checked"; }
                 }
 
-                echo '>' . htmlspecialchars($category->getCategoryName()) . '</label><br>';
+                echo '>' . htmlspecialchars($category["category_name"]) . '</label><br>';
             }
         ?>
         <button class="button edit_button" type="button"
-            onclick="<?php $btnArg = ($isEditing) ? ("sendUpdate({$material->getId()})") : ("sendInsert()"); echo $btnArg; ?>">
+            onclick="<?php $btnArg = ($isEditing) ? ("sendUpdate({$material["id"]})") : ("sendInsert()"); echo $btnArg; ?>">
             <?php $btnText = ($isEditing) ? ("Update data") : ("Publish new"); echo $btnText; ?>
         </button>
     </form>
@@ -120,7 +134,7 @@ ini_set('display_errors', 1);
                     }
                 },
                 success: function(response) {
-                    showPopUp(`Successfully updated the item. ID = ${id}`);
+                    showPopUp(`Successfully updated the item. ID = ${response}`);
                     console.log("Operation: update. Server response: " + response);
                 },
                 error: function(xhr, status, error) {

@@ -13,7 +13,10 @@ class Material extends Model {
 
     public function getFromDB(int $id) {
         $id = intval($id);
-        $result = $this->getById($id)->fetch_assoc();
+        if(!$result = $this->getById($id)->fetch_assoc()) {
+            return NULL;
+        }
+
         $this->id = $result["id"];
         $this->title = $result["title"];
         $this->shortInfo = $result["shortInfo"];
@@ -21,13 +24,27 @@ class Material extends Model {
         $this->categories = $this->getCategoriesById($id);
     }
 
+    public function getAllByTitle($title) {
+        $query = "SELECT * FROM material WHERE title LIKE \"%$title%\"";
+        return $this->executeSQL(__DATABASE__, $query);
+    }
+
+    /**
+     * Converts a material object to an associative array, along with each of its categories.
+     * @return array
+     */
     public function toArray() {
+        $categoriesArray = [];
+        foreach ($this->categories as $category) {
+            array_push($categoriesArray, $category->toArray());
+        }
+
         return [
             "id"=>$this->id,
             "title"=>$this->title,
             "shortInfo"=>$this->shortInfo,
             "description"=>$this->description,
-            "categories"=>$this->categories
+            "categories"=>$categoriesArray
         ];
     }
 
