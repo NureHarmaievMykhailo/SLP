@@ -1,3 +1,7 @@
+<?php
+session_start();
+var_dump($_SESSION);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,15 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet" />
-    <link href=".../pages/data/styles.css" type="text/css" rel="stylesheet" />
+    <link href="../pages/data/styles.css" type="text/css" rel="stylesheet" />
     <link href="../pages/files/login/styles.css" type="text/css" rel="stylesheet" />
 </head>
 <boby>
     <div id="base" class="">
-        <?php
-        session_start();
-        include('header.html');
-        ?>
+
         <div id="base" class="">
 
             <!-- Unnamed (Image) -->
@@ -125,9 +126,6 @@
                 <input id="password" type="text" value="&nbsp; Пароль" class="u118_input" />
             </div>
         </div>
-
-
-
 </boby>
 
 </html>
