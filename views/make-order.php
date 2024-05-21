@@ -13,7 +13,7 @@ class MakeOrderBlock {
         echo "<link href=\"$this->style_path\" type=\"text/css\" rel=\"stylesheet\"/>";
         echo "
         <div class=\"block make_order_block\" style=\"$this->offset\">
-            <div class=\"header \">
+            <div class=\"header_cart\">
                 <p class=\"header_make_order\"><span>Загальна сума замовлення:</span></p>
                 <p id=\"total_cost\"><span>$this->total_sum</span></p>
             </div>

@@ -4,17 +4,15 @@
     <title>Shop</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="../pages/data/styles.css" type="text/css" rel="stylesheet"/>
-    <link href="../pages/files/shop_list/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="../public/book-block.css" type="text/css" rel="stylesheet"/>
     <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-    <div id="base" class="">
       <?php 
         include('header.html');
       ?>
+      <div class="main">
       <!-- Header line -->
       <div id="u7" class="ax_default line2">
         <img id="u7_img" class="img " src="../pages/images/shop_list/u7.svg"/>
@@ -35,7 +33,7 @@
             require_once('book-block.php');
             include('../public/book-data.php');
 
-            $default_left_offset = 100;
+            $default_left_offset = 200;
             $default_top_offset = 220;
 
             $left_offset = $default_left_offset;
@@ -62,13 +60,11 @@
             }
       ?>
       <script src="/public/addToCart.js"></script>
-      <?php
-        require_once('footer.php');
-        $ft = new Footer($top_offset - 580 * 2);
-        $ft->render();
-      ?>
     </div>
-
+    <?php
+        include('footer.php');
+        $ft = new Footer(1500);
+    ?>
     <div id="toast-notification" class="toast-notification"></div>
     <script src="/public/showToast.js"></script>
   </body>

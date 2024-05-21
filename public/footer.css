@@ -1,829 +1,104 @@
-﻿body {
-  margin:0px;
-  background-image:none;
-  position:relative;
-  left:-0px;
-  width:1440px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align:left;
-}
-.form_sketch {
-  border-color:transparent;
-  background-color:transparent;
-}
-#base {
-  position:absolute;
-  z-index:0;
-}
-#u21_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:1440px;
-  height:418px;
-  background:inherit;
-  background-color:rgba(51, 10, 106, 1);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-}
-#u21 {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:1468px;
-  width:1440px;
-  height:418px;
-  display:flex;
-}
-#u21 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u21_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u22_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:240px;
-  height:27px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u22 {
-  border-width:0px;
-  position:absolute;
-  left:106px;
-  top:1504px;
-  width:240px;
-  height:27px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u22 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u22_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u23_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:240px;
-  height:27px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u23 {
-  border-width:0px;
-  position:absolute;
-  left:1116px;
-  top:1504px;
-  width:240px;
-  height:27px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u23 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u23_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u24_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:141px;
-  height:27px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u24 {
-  border-width:0px;
-  position:absolute;
-  left:475px;
-  top:1504px;
-  width:141px;
-  height:27px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u24 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u24_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u25_img {
-  border-width:0px;
-  position:absolute;
-  left:-1px;
-  top:-1px;
-  width:1246px;
-  height:5px;
-}
-#u25 {
-  border-width:0px;
-  position:absolute;
-  left:98px;
-  top:1776px;
-  width:1243px;
-  height:2px;
-  display:flex;
-  -webkit-transform:rotate(-0.10575750191119326deg);
-  -moz-transform:rotate(-0.10575750191119326deg);
-  -ms-transform:rotate(-0.10575750191119326deg);
-  transform:rotate(-0.10575750191119326deg);
-  color:#FFFFFF;
-}
-#u25 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u25_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u26_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:129px;
-  height:27px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u26 {
-  border-width:0px;
-  position:absolute;
-  left:798px;
-  top:1504px;
-  width:129px;
-  height:27px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:20px;
-  color:#FFFFFF;
-}
-#u26 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u26_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u27_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:566px;
-  height:52px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-  text-align:center;
-}
-#u27 {
-  border-width:0px;
-  position:absolute;
-  left:447px;
-  top:1804px;
-  width:566px;
-  height:52px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-  text-align:center;
-}
-#u27 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u27_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u28_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:40px;
-  height:40px;
-}
-#u28 {
-  border-width:0px;
-  position:absolute;
-  left:1139px;
-  top:1558px;
-  width:40px;
-  height:40px;
-  display:flex;
-  color:#FFFFFF;
-}
-#u28 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u28_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u29_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:40px;
-  height:40px;
-}
-#u29 {
-  border-width:0px;
-  position:absolute;
-  left:1139px;
-  top:1623px;
-  width:40px;
-  height:40px;
-  display:flex;
-  color:#FFFFFF;
-}
-#u29 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u29_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u30_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:40px;
-  height:40px;
-}
-#u30 {
-  border-width:0px;
-  position:absolute;
-  left:1139px;
-  top:1688px;
-  width:40px;
-  height:40px;
-  display:flex;
-  color:#FFFFFF;
-}
-#u30 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u30_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u31_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:124px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u31 {
-  border-width:0px;
-  position:absolute;
-  left:1201px;
-  top:1562px;
-  width:124px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u31 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u31_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u32_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:124px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u32 {
-  border-width:0px;
-  position:absolute;
-  left:1201px;
-  top:1627px;
-  width:124px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u32 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u32_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u33_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:124px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u33 {
-  border-width:0px;
-  position:absolute;
-  left:1201px;
-  top:1692px;
-  width:124px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u33 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u33_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u34_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:125px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u34 {
-  border-width:0px;
-  position:absolute;
-  left:106px;
-  top:1558px;
-  width:125px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u34 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u34_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u35_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:124px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u35 {
-  border-width:0px;
-  position:absolute;
-  left:798px;
-  top:1558px;
-  width:124px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u35 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u35_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u36_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:160px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u36 {
-  border-width:0px;
-  position:absolute;
-  left:106px;
-  top:1602px;
-  width:160px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u36 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u36_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u37_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:181px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u37 {
-  border-width:0px;
-  position:absolute;
-  left:798px;
-  top:1602px;
-  width:181px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u37 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u37_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u38_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:96px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u38 {
-  border-width:0px;
-  position:absolute;
-  left:475px;
-  top:1558px;
-  width:96px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u38 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u38_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u39_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:104px;
-  height:32px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u39 {
-  border-width:0px;
-  position:absolute;
-  left:106px;
-  top:1645px;
-  width:104px;
-  height:32px;
-  display:flex;
-  font-family:"Bahnschrift", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:15px;
-  color:#FFFFFF;
-}
-#u39 .text {
-  position:absolute;
-  align-self:center;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u39_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
+﻿.page-footer {
+  height: 420px;
+  width: 100hv;
+  z-index: 3;
+  background-color: #380c6c;
+  padding-top: 40px;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-bottom: 40px;
+  display:grid;
+  grid-template-rows: [headers] 15% [main-content] auto [separator-line] 10% [copyright] 15% [end];
+  grid-template-columns: [about] 25% [app] 25% [support] 25% [socials] 25% [end];
+  color: white;
+}
+
+/* First row */
+.about_div {
+  grid-row: headers;
+  grid-column: about;
+}
+.app_div {
+  grid-row: headers;
+  grid-column: app;
+}
+.support_div {
+  grid-row: headers;
+  grid-column: support;
+}
+.socials_div {
+  grid-row: headers;
+  grid-column: socials;
+}
+
+/* Second row */
+.about_content_div {
+  grid-row: main-content;
+  grid-column: about;
+  display: flex;
+  flex-direction: column;
+}
+.about_content_div a {
+  margin-top: 15px;
+}
+.app_content_div {
+  grid-row: main-content;
+  grid-column: app;
+}
+.support_content_div {
+  grid-row: main-content;
+  grid-column: support;
+}
+.socials_content_div {
+  grid-row: main-content;
+  grid-column: socials;
+}
+.fb-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.insta-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.tg-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.fb-div div {
+  margin-right: 15px;
+}
+.insta-div div {
+  margin-right: 15px;
+}
+.tg-div div {
+  margin-right: 15px;
+}
+.img-contain {
+  object-fit: contain;
+}
+/* Third row */
+.separator_line_div {
+  grid-column-start: about;
+  grid-column-end: end;
+  grid-row: separator-line;
+  display: flex;
+  justify-content: center;
+}
+.separator_line {
+  height: 2px;
+  background-color: white;
+  width: 800px;
+}
+/* Fourth row */
+.copyright_div {
+  grid-column-start: about;
+  grid-column-end: end;
+  grid-row: copyright;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

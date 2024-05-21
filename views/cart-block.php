@@ -28,12 +28,12 @@
               <div class=\"paragraph paragraph_author\">
                   <p><span>$this->book_author</span></p>
               </div>
-              <div class=\"header header_title\">
+              <div class=\"header_cart header_title\">
                 <p><span>$this->book_title</span></p>
               </div>
               <button class =\"button button_delete\" onclick=\"deleteItem($this->id); showToast('Товар видалено з кошику')\"></button>
     
-              <div class=\"header header_price\">
+              <div class=\"header_cart header_price\">
                 <p><span>$this->book_price</span></p>
               </div>
     

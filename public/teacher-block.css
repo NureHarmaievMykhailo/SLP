@@ -1,24 +1,23 @@
 .teacher_block {
     width:360px;
-    height:535px;
+    min-height:550px;
+    height: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .teacher_info_div {
-    position: absolute;
-    top: 260px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
 .teacher_image_div {
-    top: 10px;
+    position: relative;
+    margin-top: 10px;
     width: fit-content;
     height: fit-content;
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +27,6 @@
 }
 
 .teacher_image {
-    position:absolute;
     width:294px;
     height:250px;
 }
@@ -54,11 +52,11 @@
 }
 
 .teacher_buttons_div {
-    bottom: 35px;
-    position: absolute;
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: row;
+    gap: 30px;
     justify-content:center;
     align-items:center;
 }
@@ -67,14 +65,8 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    height: 40px;
-    width: 120px;
-}
-.btn_teacher_details {
-    height: 20px;
-    width: 100px;
-    right: 40px;
-}
-.btn_teacher_appointment {
-    left: 40px;
+    text-align: center;
+    height: 40px !important;
+    width: 120px !important;
+    padding: 0 !important;
 }

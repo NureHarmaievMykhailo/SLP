@@ -41,7 +41,7 @@ class LearningMaterialBlock {
                 </div>
 
                 <div class=\"full_text_div\">
-                    <p><span><a class=\"link_hidden paragraph full_text\" href=\"$this->material_view_path$this->id\">Повний текст</a></span></p>
+                    <a class=\"link_hidden paragraph full_text\" href=\"$this->material_view_path$this->id\">Повний текст</a>
                 </div>
 
                 <div class=\"category_div\">";
@@ -69,7 +69,7 @@ class LearningMaterialBlock {
                 </div>
 
                 <div class=\"details_div\">
-                    <a class=\"button details_button\" href=\"$this->material_view_path$this->id\"><p><span>Детальніше</span></p></a>
+                    <a class=\"button details_button\" href=\"$this->material_view_path$this->id\">Детальніше</a>
                 </div>
             </div>";
     }

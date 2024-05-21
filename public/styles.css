@@ -1,16 +1,23 @@
 body {
+  z-index: 0;
   margin: 0;
   padding: 0;
-  /* width: 100vw; */
+  width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden; 
+}
+.main {
+  margin-left: 70px;
+  margin-right: 70px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .text_default {
   font-family:"Bahnschrift", sans-serif;
 }
 
 .button {
-  position:absolute;
   border-radius: 10px;
   cursor: pointer;
   color: white;
@@ -22,7 +29,6 @@ body {
   border-style: solid;
   background-color: #8c5cbc;
   text-decoration: none;
-
 }
 
 .button:active {
@@ -37,7 +43,6 @@ body {
 }
 
 .block {
-  position:absolute;
   background:inherit;
   background-color:rgba(215, 179, 228, 0.6980392156862745);
   box-sizing:border-box;
@@ -51,27 +56,15 @@ body {
 }
 .header {
   border-width:0px;
-  position:relative;
-  display:flex;
   font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
   font-weight:700;
-  font-style:normal;
   font-size:21px;
-  color:#000000;
 }
 .link_hidden {
   text-decoration: none;
   color: inherit;
 }
-.page_header {
-  position: absolute;
-  display: flex;
-  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 32px;
-  color: #000000;
-}
+
 .toast-notification {
   display: none;
   position: fixed;

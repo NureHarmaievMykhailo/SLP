@@ -1,15 +1,17 @@
-body {
-  margin-left: 40px !important;
-  margin-right: 40px !important;
-}
 .material_content {
-    width: 100%;
+    max-width: 1500px;
     position: absolute;
-    padding-left: 40px;
-    padding-right: 40px;
+/*     padding-left: 40px;
+    padding-right: 40px; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     text-align: justify;
     text-justify: inter-word;
     top: 350px;
+}
+.material_content section {
+  max-width: inherit;
 }
 .material_content p {
     font-size: 18px;
@@ -47,7 +49,7 @@ body {
   #u1066 {
     border-width:0px;
     position:absolute;
-    left:0px;
+    left:70px;
     top:204px;
     width:1440px;
     height:2px;
@@ -73,7 +75,7 @@ body {
   #u1067_div {
     border-width:0px;
     position:absolute;
-    left:0px;
+    left:80px;
     top:0px;
     width:1000px;
     height:37px;

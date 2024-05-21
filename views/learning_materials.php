@@ -1,37 +1,23 @@
-﻿<?php
-  include('header.html');
-  require_once('footer.php');
-  $ft = new Footer(0);
-  $ft->render();
-?>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <title>Learning Materials</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="../pages/data/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../public/learning_materials.css" type="text/css" rel="stylesheet"/>
-    <link href="../pages/files/learning_materials/styles.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
-    <div id="base" class="">
+    <?php
+      include('header.html');
+    ?>
+    <div class="main">
 
       <!-- Unnamed (Group) -->
       <div id="u518" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0" layer-opacity="1">
 
         <!-- Unnamed (Group) -->
         <div id="u519" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0" layer-opacity="1">
-        </div>
-      </div>
-
-      <!-- Unnamed (Vertical Line) -->
-      <div id="u520" class="ax_default line1">
-        <img id="u520_img" class="img " src="../pages/images/learning_materials/u520.svg"/>
-        <div id="u520_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
         </div>
       </div>
 
@@ -48,30 +34,6 @@
         <div id="u522_div" class=""></div>
         <div id="u522_text" class="text ">
           <p><span>Навчальні матеріали: категорії</span></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Image) -->
-      <div id="u523" class="ax_default image">
-        <img id="u523_img" class="img " src="../pages/images/learning_materials/u523.png"/>
-        <div id="u523_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Image) -->
-      <div id="u524" class="ax_default image">
-        <img id="u524_img" class="img " src="../pages/images/learning_materials/u523.png"/>
-        <div id="u524_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Image) -->
-      <div id="u525" class="ax_default image">
-        <img id="u525_img" class="img " src="../pages/images/homepage/u31.png"/>
-        <div id="u525_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
         </div>
       </div>
 
@@ -234,6 +196,9 @@
         </div>
       </div>
     </div>
-    <script src="../pages/resources/scripts/axure/ios.js"></script>
+    <?php
+      include('footer.php');
+      $ft = new Footer(1300);
+    ?>
   </body>
 </html>

@@ -6,7 +6,7 @@
         and, therefore, the variable size of the box. If it was to change, revert
         back to fixed height.
     */
-    height: fit-content;
+    height: max-content;
 }
 .header_material {
     padding-left: 10px;
@@ -55,6 +55,8 @@ categories in a learning material block. */
 .button_category {
     height: 20px;
     width: fit-content;
+    display: flex !important;
+    justify-content: center !important;
 }
 
 .details_div {
