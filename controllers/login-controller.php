@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPassword = $_SESSION['registration_data']['password'];
 
         // Верифікація введених даних
-        if ($email === $storedEmail && $password === $storedPassword) {
-            header("Location: homepage.html");
+        if ($email == $storedEmail && $password == $storedPassword) {
+            header("Location: homepage.php");
             exit();
         } else {
             echo "Невірна електронна пошта або пароль.";

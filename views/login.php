@@ -168,10 +168,7 @@ var_dump($_SESSION);
                 <!-- Submit Button -->
                 <div id="u112" class="ax_default button">
                     <div id="u112_div" class=""></div>
-                    <div id="u112_text" class="text">
-                        <p><span>Увійти</span></p>
-                    </div>
-                    <input type="submit" value="Увійти" />
+                    <input id="u112_text" class="text" type="submit" value="Увійти" />
                 </div>
             </form>
         </div>
