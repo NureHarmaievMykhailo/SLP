@@ -84,7 +84,7 @@ body {
 .breadcrumbs_div {
   z-index: 2;
   position: absolute;
-  top: 120px;
+  top: 100px;
 }
 .breadcrumbs_text {
   font-size: 18px !important;
@@ -146,4 +146,33 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Styles for a generic page header */
+.topic-header {
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: [left-gap] 15% [header-text] max-content [center-gap] auto [find-more] max-content [right-gap] 10% [end];
+}
+.header-line-row {
+  grid-column-start: left-gap;
+  grid-column-end: end;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.header-line {
+  position: relative;
+  top: 70px;
+  width: 100%;
+  z-index: -1;
+  height: 2px;
+  background-color: rgba(51, 10, 106, 1);
+}
+.topic-header-text {
+  grid-column: header-text;
+  background-color: white;
+  padding: 20px;
+  font-size: 30px !important;
 }

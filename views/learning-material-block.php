@@ -17,7 +17,7 @@ class LearningMaterialBlock {
     private $all_materials_view_path = "learning_materials_all?category=";
     private $style_path = "../public/learning-material-block.css";
 
-    public function __construct($offset, $id, $title, $short_info, $categories = array()) {
+    public function __construct($id, $title, $short_info, $categories = array(), $offset = "") {
         $this->offset = $offset;
         $this->id = $id;
         $this->title = $title;
@@ -46,7 +46,7 @@ class LearningMaterialBlock {
 
                 <div class=\"category_div\">";
                 foreach($this->categories as $category) {
-                    echo "<a class=\"button button_category\" href=\"$this->all_materials_view_path{$category->getId()}\"><p><span>{$category->getCategoryName()}</span></p></a>";
+                    echo "<a class=\"button button_category\" href=\"$this->all_materials_view_path{$category->getId()}\">{$category->getCategoryName()}</a>";
                 }
                 echo "</div>
 

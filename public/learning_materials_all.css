@@ -1,5 +1,5 @@
 ﻿.materials-container {
-  margin-top:180px;
+  margin-top:20px;
   margin-bottom: 100px;
   display: flex;
   justify-content: center;
@@ -7,85 +7,4 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 100px;
-}
-
-#u799_img {
-  border-width:0px;
-  position:absolute;
-  left:-1px;
-  top:-1px;
-  width:1443px;
-  height:5px;
-}
-#u799 {
-  border-width:0px;
-  position:absolute;
-  left:70px;
-  top:184px;
-  width:1440px;
-  height:2px;
-  display:flex;
-  -webkit-transform:rotate(0.019894367086976953deg);
-  -moz-transform:rotate(0.019894367086976953deg);
-  -ms-transform:rotate(0.019894367086976953deg);
-  transform:rotate(0.019894367086976953deg);
-}
-#u799 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u799_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u800_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:393px;
-  height:37px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 1);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:32px;
-  color:#000000;
-}
-#u800 {
-  border-width:0px;
-  position:absolute;
-  left:199px;
-  top:166px;
-  width:393px;
-  height:37px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:32px;
-  color:#000000;
-}
-#u800 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u800_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
 }

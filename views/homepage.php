@@ -53,7 +53,7 @@
           // Get 3 top teachers from DB
           foreach ($materials as $material) {
             $offset = "margin-right: 80px;";
-            $block = new LearningMaterialBlock($offset, $material->getId(), $material->getTitle(), $material->getShortInfo());
+            $block = new LearningMaterialBlock($material->getId(), $material->getTitle(), $material->getShortInfo(), [],  $offset);
             $block->render_small();
           }
         ?>

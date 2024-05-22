@@ -13,192 +13,100 @@
     ?>
     <div class="main">
 
-      <!-- Unnamed (Group) -->
-      <div id="u518" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0" layer-opacity="1">
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
-        <!-- Unnamed (Group) -->
-        <div id="u519" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0" layer-opacity="1">
-        </div>
-      </div>
-
-      <!-- Unnamed (Line) -->
-      <div id="u521" class="ax_default line2">
-        <img id="u521_img" class="img " src="../pages/images/homepage/u4.svg"/>
-        <div id="u521_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Rectangle) -->
-      <div id="u522" class="ax_default box_1">
-        <div id="u522_div" class=""></div>
-        <div id="u522_text" class="text ">
+        <!-- Unnamed (Rectangle) -->
+        <div class="header topic-header-text">
           <p><span>Навчальні матеріали: категорії</span></p>
         </div>
+
       </div>
-
-      <!-- Header1 (Group) -->
-      <div id="u526" class="ax_default" data-label="Header1" data-left="79.99969045381775" data-top="396" data-width="1250.0006190923646" data-height="47" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u527" class="ax_default line2">
-          <img id="u527_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u527_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u528" class="ax_default box_1 header_block">
-          <div id="u528_div" class=""></div>
-          <div id="u528_text" class="text">
-            <a href="learning_materials_all?category=1" class="link_hidden"><p><span>&nbsp;Фонетика</span></p></a>
-          </div>
+        <div class="header topic-header-text">
+          <a href="learning_materials_all" class="link_hidden"><p><span>&nbsp;Усі навчальні матеріали</span></p></a>
         </div>
+
       </div>
-
-      <!-- Header2 (Group) -->
-      <div id="u529" class="ax_default" data-label="Header2" data-left="79.99969045381772" data-top="455" data-width="1250.0006190923648" data-height="128" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u530" class="ax_default line2">
-          <img id="u530_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u530_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u531" class="ax_default box_1 header_block">
-          <div id="u531_div" class=""></div>
-          <div id="u531_text" class="text ">
+        <div class="header topic-header-text">
+          <a href="learning_materials_all?category=1" class="link_hidden"><p><span>&nbsp;Фонетика</span></p></a>
+        </div>
+
+      </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div class="header topic-header-text">
           <a href="learning_materials_all?category=2" class="link_hidden"><p><span>&nbsp;Орфографія</span></p></a>
-          </div>
         </div>
+
       </div>
-
-      <!-- Header3 (Group) -->
-      <div id="u532" class="ax_default" data-label="Header3" data-left="79.9996904538177" data-top="577" data-width="1250.0006190923646" data-height="86" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u533" class="ax_default line2">
-          <img id="u533_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u533_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u534" class="ax_default box_1 header_block">
-          <div id="u534_div" class=""></div>
-          <div id="u534_text" class="text ">
+        <div class="header topic-header-text">
           <a href="learning_materials_all?category=3" class="link_hidden"><p><span>&nbsp;Лексикологія</span></p></a>
-          </div>
         </div>
+
       </div>
-
-      <!-- Header4 (Group) -->
-      <div id="u535" class="ax_default" data-label="Header4" data-left="79.99969045381768" data-top="677" data-width="1250.0006190923643" data-height="86" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u536" class="ax_default line2">
-          <img id="u536_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u536_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u537" class="ax_default box_1 header_block">
-          <div id="u537_div" class=""></div>
-          <div id="u537_text" class="text ">
+        <div class="header topic-header-text">
           <a href="learning_materials_all?category=4" class="link_hidden"><p><span>&nbsp;Будова слова</span></p></a>
-          </div>
         </div>
+
       </div>
-
-      <!-- Header5 (Group) -->
-      <div id="u538" class="ax_default" data-label="Header5" data-left="79.99969045381765" data-top="798" data-width="1250.0006190923646" data-height="43" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u539" class="ax_default line2">
-          <img id="u539_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u539_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u540" class="ax_default box_1 header_block">
-          <div id="u540_div" class=""></div>
-          <div id="u540_text" class="text ">
+        <div class="header topic-header-text">
           <a href="learning_materials_all?category=5" class="link_hidden"><p><span>&nbsp;Морфологія</span></p></a>
-          </div>
         </div>
+
       </div>
-
-      <!-- Header6 (Group) -->
-      <div id="u541" class="ax_default" data-label="Header6" data-left="79.99969045381773" data-top="878" data-width="1250.0006190923646" data-height="86" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u542" class="ax_default line2">
-          <img id="u542_img" class="img " src="../pages/images/learning_materials/u542.svg"/>
-          <div id="u542_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u543" class="ax_default box_1 header_block" style="width: 420px !important;background-color: white;">
-          <div id="u543_div" class=""></div>
-          <div id="u543_text" class="text ">
-            <a href="learning_materials_all?category=6" class="link_hidden"><p><span>&nbsp;Синтаксис. Пунктуація</span></p></a>
-          </div>
+        <div class="header topic-header-text">
+          <a href="learning_materials_all?category=6" class="link_hidden"><p><span>&nbsp;Синтаксис. Пунктуація</span></p></a>
         </div>
+
       </div>
-
-      <!-- Header7 (Group) -->
-      <div id="u544" class="ax_default" data-label="Header7" data-left="79.9996904538177" data-top="998" data-width="1250.0006190923648" data-height="43" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u545" class="ax_default line2">
-          <img id="u545_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u545_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
+      <div class="topic-header">
+        <!-- Strikethrough line -->
+        <div class="header-line-row"><div class="header-line"></div></div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u546" class="ax_default box_1 header_block">
-          <div id="u546_div" class=""></div>
-          <div id="u546_text" class="text ">
-            <a href="learning_materials_all?category=7" class="link_hidden"><p><span>&nbsp;Стилістика</span></p></a>
-          </div>
-        </div>
-      </div>
-      <!-- HeaderAll (Group) -->
-      <div id="u581" class="ax_default" data-label="HeaderAll" data-left="79.99969045381768" data-top="270" data-width="1250.0006190923646" data-height="43" layer-opacity="1">
-
-        <!-- Unnamed (Line) -->
-        <div id="u582" class="ax_default line2">
-          <img id="u582_img" class="img " src="../pages/images/learning_materials/u527.svg"/>
-          <div id="u582_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
+        <div class="header topic-header-text">
+          <a href="learning_materials_all?category=7" class="link_hidden"><p><span>&nbsp;Стилістика</span></p></a>
         </div>
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u583" class="ax_default box_1 header_block" style="width: 420px !important;background-color: white;">
-          <div id="u583_div" class=""></div>
-          <div id="u583_text" class="text ">
-            <a href="learning_materials_all" class="link_hidden"><p><span>&nbsp;Усі навчальні матеріали</span></p></a>
-          </div>
-        </div>
       </div>
+
     </div>
     <?php
-      include('footer.php');
-      $ft = new Footer(1300);
+      include('footer.html');
     ?>
   </body>
 </html>

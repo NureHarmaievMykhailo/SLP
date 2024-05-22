@@ -1,12 +1,8 @@
 .material_block {
-    max-width: 550px;
-    /* min-width: 550px; */
-    /* height: 260px; */
-    /* We're currently experimenting with displaying a variable number of categories
-        and, therefore, the variable size of the box. If it was to change, revert
-        back to fixed height.
-    */
+    width: 550px;
+    min-height: 300px;
     height: max-content;
+    
 }
 .header_material {
     padding-left: 10px;
@@ -14,6 +10,7 @@
     padding-top: 10px;
 }
 .paragraph_material {
+    overflow-wrap: break-word;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -37,7 +34,6 @@ categories in a learning material block. */
     position: relative;
     bottom: 30px;
     left: 130px;
-    /* float: right; */
     /* TODO: find a better solution to dynamically adjust the div's size to fit the content*/
     min-height: 40px;
     overflow: hidden;

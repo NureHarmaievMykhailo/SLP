@@ -95,7 +95,7 @@
     </div>
     <?php 
         include('footer.php');
-        $ft = new Footer(1500);
+        $ft = new Footer($top_offset + 600);
     ?>
     <div id="toast-notification" class="toast-notification"></div>
     <script src="/public/showToast.js"></script>
