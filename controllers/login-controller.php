@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Верифікація введених даних
         if ($email == $storedEmail && $password == $storedPassword) {
-            header("Location: homepage.php");
+            header("Location: ../pages/homepage_logined.html");
             exit();
         } else {
             echo "Невірна електронна пошта або пароль.";
