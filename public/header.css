@@ -75,6 +75,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: right;
+  margin-right: 25px;
 }
 .nav-profile a, .nav-profile img {
   margin: 10px;
@@ -102,7 +103,6 @@
   padding-left: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-right: 10px;
 }
 .login_prompt_link:hover, .login_prompt_link:active {
   font-weight: 800;
