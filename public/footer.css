@@ -45,6 +45,11 @@
 .app_content_div {
   grid-row: main-content;
   grid-column: app;
+  display: flex;
+  flex-direction: column;
+}
+.app_content_div a {
+  margin-top: 15px;
 }
 .support_content_div {
   grid-row: main-content;
@@ -77,9 +82,6 @@
 }
 .tg-div div {
   margin-right: 15px;
-}
-.img-contain {
-  object-fit: contain;
 }
 /* Third row */
 .separator_line_div {
