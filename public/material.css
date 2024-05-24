@@ -1,14 +1,12 @@
 .material_content {
-    max-width: 1500px;
-    position: absolute;
-/*     padding-left: 40px;
-    padding-right: 40px; */
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: justify;
     text-justify: inter-word;
-    top: 350px;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 .material_content section {
   max-width: inherit;
@@ -24,13 +22,13 @@
     text-indent: 45px;
 }
 .categories_div {
-  position: absolute;
-  left: 835px;
-  top: 280px;
+  float: right;
   width: 100%;
   display: flex;
   flex-wrap: wrap; /* Allows wrapping to the next line */
   gap: 10px; /* Optional: Adds space between the links */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .categories_div a {
   position: static;
@@ -38,84 +36,3 @@
   margin-right: 10px; /* Optional: Add some space between links */
   color: white;
 }
-#u1066_img {
-    border-width:0px;
-    position:absolute;
-    left:-1px;
-    top:-1px;
-    width:1443px;
-    height:5px;
-  }
-  #u1066 {
-    border-width:0px;
-    position:absolute;
-    left:70px;
-    top:204px;
-    width:1440px;
-    height:2px;
-    display:flex;
-    -webkit-transform:rotate(0.019894367086976953deg);
-    -moz-transform:rotate(0.019894367086976953deg);
-    -ms-transform:rotate(0.019894367086976953deg);
-    transform:rotate(0.019894367086976953deg);
-  }
-  #u1066 .text {
-    position:absolute;
-    align-self:center;
-    padding:2px 2px 2px 2px;
-    box-sizing:border-box;
-    width:100%;
-  }
-  #u1066_text {
-    border-width:0px;
-    word-wrap:break-word;
-    text-transform:none;
-    visibility:hidden;
-  }
-  #u1067_div {
-    border-width:0px;
-    position:absolute;
-    left:80px;
-    top:0px;
-    width:1000px;
-    height:37px;
-    background:inherit;
-    background-color:rgba(255, 255, 255, 1);
-    border:none;
-    border-radius:0px;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-    box-shadow:none;
-    font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-    font-weight:700;
-    font-style:normal;
-    font-size:32px;
-    color:#000000;
-  }
-  #u1067 {
-    border-width:0px;
-    position:absolute;
-    left:72px;
-    top:185px;
-    width:1000px;
-    height:37px;
-    display:flex;
-    font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-    font-weight:700;
-    font-style:normal;
-    font-size:32px;
-    color:#000000;
-  }
-  #u1067 .text {
-    position:absolute;
-    align-self:center;
-    padding:2px 2px 2px 2px;
-    box-sizing:border-box;
-    width:100%;
-  }
-  #u1067_text {
-    border-width:0px;
-    word-wrap:break-word;
-    text-transform:none;
-    text-align: center;
-  }

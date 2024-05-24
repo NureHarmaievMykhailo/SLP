@@ -18,6 +18,7 @@
   <body>
       <?php include('header.html'); ?>
       <div class="main">
+
         <div class="breadcrumbs_div">
           <p class="paragraph breadcrumbs_text"><a href="homepage" class="link_hidden">Головна</a>
           &nbsp;&nbsp;>&nbsp;&nbsp;
@@ -28,35 +29,30 @@
           
         </div>
 
-        <div class="categories_div">
-          <?php foreach($categories as $category): ?>
-            <a href="learning_materials_all?category=<?php echo $category->getId(); ?>" class = "button link_hidden"><?php echo $category->getCategoryName(); ?></a>
-          <?php endforeach; ?>
-        </div>
+        <div class="topic-header">
+          <!-- Strikethrough line -->
+          <div class="header-line-row"><div class="header-line"></div></div>
 
-        <!-- Unnamed (Line) -->
-        <div id="u1066" class="ax_default line2">
-          <img id="u1066_img" class="img " src="../pages/images/homepage/u4.svg"/>
-          <div id="u1066_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
+          <div class="header topic-header-text">
+            <p><?php echo $material->getTitle(); ?></p>
           </div>
+
         </div>
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u1067" class="ax_default box_1">
-          <div id="u1067_div" class=""></div>
-          <div id="u1067_text" class="text ">
-            <p><span><?php echo $material->getTitle(); ?></span></p>
+        <div class="material_content">
+          <div class="categories_div">
+            <?php foreach($categories as $category): ?>
+              <a href="learning_materials_all?category=<?php echo $category->getId(); ?>" class = "button link_hidden"><?php echo $category->getCategoryName(); ?></a>
+            <?php endforeach; ?>
           </div>
-        </div>
 
-        <div class="paragraph material_content">
-            <?php echo $material->getDescription(); ?>
+          <div class="paragraph">
+              <?php echo $material->getDescription(); ?>
+          </div>
         </div>
       </div>
       <?php
-        include('footer.php');
-        $ft = new Footer(1500);
+        include('footer.html');
       ?>
   </body>
 </html>

@@ -7,8 +7,8 @@ body {
   overflow-x: hidden; 
 }
 .main {
-  margin-left: 70px;
-  margin-right: 70px;
+  margin-left: 80px;
+  margin-right: 80px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -82,9 +82,7 @@ body {
   opacity: 0; /* Fade out the toast by changing opacity to 0 */
 }
 .breadcrumbs_div {
-  z-index: 2;
-  position: absolute;
-  top: 100px;
+  margin-top: 20px;
 }
 .breadcrumbs_text {
   font-size: 18px !important;
@@ -151,7 +149,6 @@ body {
 /* Styles for a generic page header */
 .topic-header {
   width: 100%;
-  margin-top: 20px;
   display: grid;
   grid-template-columns: [left-gap] 15% [header-text] max-content [center-gap] auto [find-more] max-content [right-gap] 10% [end];
 }
@@ -172,6 +169,8 @@ body {
 }
 .topic-header-text {
   grid-column: header-text;
+  display: flex;
+  flex-wrap: wrap;
   background-color: white;
   padding: 20px;
   font-size: 30px !important;
