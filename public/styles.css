@@ -55,7 +55,6 @@ body {
   box-shadow:none;
 }
 .header {
-  border-width:0px;
   font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
   font-weight:700;
   font-size:21px;
@@ -178,4 +177,45 @@ body {
   background-color: white;
   padding: 20px;
   font-size: 30px !important;
+}
+
+/* Common styles for sign up and log in pages */
+.sign_up_main {
+  width: 100%;
+  min-height: 850px;
+  height: 100%;
+  background-image: url(../public/images/logo_background.png);
+  background-size:cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign_up_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+  color: black;
+  width: 45%;
+  border-radius: 10px;
+  background-color: white;
+  height: 60px;
+  font-size: larger;
+  border: solid 2px transparent;
+}
+.sign_up_btn:active, .sign_up_btn:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+  border: solid 2px rgb(40, 39, 39);
+}
+.sign_up_input {
+  border: solid 2px white;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  font-size: 24px;
+  padding: 2px;
 }
