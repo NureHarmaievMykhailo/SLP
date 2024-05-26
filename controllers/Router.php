@@ -18,20 +18,32 @@ function callControllerMethod($controller, $method, $params) {
  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $method = $_POST['method'] ?? '';
     $params = $_POST['params'] ?? [];
+    $controllerName = $_POST['controller'];
 
-    if($_POST['controller'] == 'material-controller') {
+    if($controllerName == 'material-controller') {
         require_once "material-controller.php";
 
         $controller = new LearningMaterialController();
 
         echo callControllerMethod($controller, $method, $params);
     }
-    else if($_POST['controller'] == 'sign-up-controller') {
+    else if($controllerName == 'sign-up-controller') {
         require_once("sign-up-controller.php");
     
         $controller = new SignUpController;
     
         echo callControllerMethod($controller, $method, $params);
+    }
+    else if($controllerName == 'log-in-controller') {
+        require_once('log-in-controller.php');
+
+        $controller = new LogInController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
+    else {
+        // Not Acceptable
+        echo http_response_code(406);
     }
 } else {
     // Method not allowed

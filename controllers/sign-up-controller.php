@@ -4,7 +4,6 @@
 
     class SignUpController extends Controller {
 
-        // create response with subarrays status: OK or ERROR and errors
         private $responseArray = [
             'errors'=> [
                 'emailError'=>NULL,
