@@ -2,6 +2,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+    session_start();
+    require_once('../session-config.php');
+    checkSessionTimeout();
+    redirectUnauthorized([PermissionCode::Moderator->value, PermissionCode::Admin->value]);
+
     $root = __DIR__ . "/..";
     require_once("$root/controllers/material-controller.php");
     $mc = new LearningMaterialController;

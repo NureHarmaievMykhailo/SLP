@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<?php
+  session_start();
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized();
+?>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Learning Materials</title>

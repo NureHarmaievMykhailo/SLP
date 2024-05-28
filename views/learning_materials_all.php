@@ -1,4 +1,9 @@
 ﻿<?php
+  session_start();
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized();
+
   $root = __DIR__ . "/..";
   require_once("$root/controllers/material-controller.php");
   require_once("learning-material-block.php");

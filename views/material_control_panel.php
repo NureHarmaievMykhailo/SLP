@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized([PermissionCode::Moderator->value, PermissionCode::Admin->value]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

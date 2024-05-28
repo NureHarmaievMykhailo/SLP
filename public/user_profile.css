@@ -1,0 +1,28 @@
+.profile_data_div {
+    display: grid;
+    grid-template-columns: [user-img] 15% [user-data] auto [edit-buttons] 20% [end];
+    padding: 20px;
+}
+.user_img {
+    padding: 4px;
+    border: 2px solid rgba(51, 10, 106, 1);
+    border-radius: 50%;
+}
+.user_img_div {
+    grid-column: user-img;
+}
+.user_data_div {
+    grid-column: user-data;
+}
+.user_registration_date_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+.user_edit_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    grid-column: edit-buttons;
+}
