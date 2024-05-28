@@ -57,121 +57,148 @@ session_start();
     </script>
 </head>
 <boby>
-    <div id="base" class="">
+    <?php
+    require_once 'vendor/autoload.php';
+
+    // init configuration
+    $clientID = '787075876039-1ephfrid8rg86q1aql0d56lc0n70nnbh.apps.googleusercontent.com';
+    $clientSecret = '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';
+    $redirectUri = 'http://localhost:3000/views/login.php';
+
+    // create Client Request to access Google API
+    $client = new Google\Client();
+    $client->setClientId($clientID);
+    $client->setClientSecret($clientSecret);
+    $client->setRedirectUri($redirectUri);
+    $client->addScope("email");
+    $client->addScope("profile");
+
+    // authenticate code from Google OAuth Flow
+    if (isset($_GET['code'])) {
+        $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+        $client->setAccessToken($token['access_token']);
+
+        // get profile info
+        $googleService = new Google\Service\Oauth2($client);
+        $google_account_info = $google_oauth->userinfo->get();
+        $email =  $google_account_info->email;
+        $name =  $google_account_info->name;
+
+        // now you can use this profile info to create account in your website and make user logged in.
+    } else { ?>
         <div id="base" class="">
+            <div id="base" class="">
 
-            <!-- Unnamed (Image) -->
-            <div id="u105" class="ax_default image">
-                <img id="u105_img" class="img " src="../pages/images/homepage/u0.png" />
-                <div id="u105_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
+                <!-- Unnamed (Image) -->
+                <div id="u105" class="ax_default image">
+                    <img id="u105_img" class="img " src="../pages/images/homepage/u0.png" />
+                    <div id="u105_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
                 </div>
+
+                <!-- Unnamed (Image) -->
+                <div id="u106" class="ax_default image">
+                    <img id="u106_img" class="img " src="../pages/images/homepage/u31.png" />
+                    <div id="u106_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u107" class="ax_default box_1">
+                    <img id="u107_img" class="img " src="../pages/images/login/u107.svg" />
+                    <div id="u107_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u108" class="ax_default heading_1">
+                    <div id="u108_div" class=""></div>
+                    <div id="u108_text" class="text ">
+                        <p><span>Увійти</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Image) -->
+                <div id="u109" class="ax_default image">
+                    <img id="u109_img" class="img " src="../pages/images/login/u109.png" />
+                    <div id="u109_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Image) -->
+                <div id="u110" class="ax_default image">
+                    <img id="u110_img" class="img " src="../pages/images/login/u110.png" />
+                    <div id="u110_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u111" class="ax_default label">
+                    <div id="u111_div" class=""></div>
+                    <div id="u111_text" class="text ">
+                        <p><span>Забули пароль?</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u113" class="ax_default button">
+                    <div id="u113_div" class=""></div>
+                    <div id="u113_text" class="text ">
+                        <p><span><a href="<?php echo $client->createAuthUrl() ?>">&nbsp;&nbsp; &nbsp;&nbsp; Увійти з допомогою Google</a></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Image) -->
+                <div id="u114" class="ax_default image">
+                    <img id="u114_img" class="img " src="../pages/images/sign_up/u89.png" />
+                    <div id="u114_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u115" class="ax_default label">
+                    <div id="u115_div" class=""></div>
+                    <div id="u115_text" class="text ">
+                        <p><span>Не маєте акаунт? </span></p>
+                    </div>
+                </div>
+
+                <!-- Button (Rectangle) -->
+                <div id="u116" class="ax_default label">
+                    <div id="u116_div" class=""></div>
+                    <div id="u116_text" class="text ">
+                        <p><span>Зареєструйтеся</span></p>
+                    </div>
+                </div>
+
+                <!-- Form Login -->
+                <form id="login_form" method="post" action="../controllers/login-controller.php">
+
+                    <!-- Email (Text Field) -->
+                    <div id="u117" class="ax_default text_field">
+                        <img id="u117_img" class="img " src="../pages/images/login/u117.svg" />
+                        <input id="u117_input" type="text" name="email" value="&nbsp; Електронна пошта" class="u117_input" />
+                    </div>
+
+                    <!-- Password (Text Field) -->
+                    <div id="u118" class="ax_default text_field">
+                        <img id="u118_img" class="img " src="../pages/images/login/u117.svg" />
+                        <input id="u118_input" type="text" name="password" value="&nbsp; Пароль" class="u118_input" />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div id="u112" class="ax_default button">
+                        <div id="u112_div" class=""></div>
+                        <input id="u112_text" class="text" type="submit" value="Увійти" />
+                    </div>
+                </form>
             </div>
-
-            <!-- Unnamed (Image) -->
-            <div id="u106" class="ax_default image">
-                <img id="u106_img" class="img " src="../pages/images/homepage/u31.png" />
-                <div id="u106_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u107" class="ax_default box_1">
-                <img id="u107_img" class="img " src="../pages/images/login/u107.svg" />
-                <div id="u107_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u108" class="ax_default heading_1">
-                <div id="u108_div" class=""></div>
-                <div id="u108_text" class="text ">
-                    <p><span>Увійти</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Image) -->
-            <div id="u109" class="ax_default image">
-                <img id="u109_img" class="img " src="../pages/images/login/u109.png" />
-                <div id="u109_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Image) -->
-            <div id="u110" class="ax_default image">
-                <img id="u110_img" class="img " src="../pages/images/login/u110.png" />
-                <div id="u110_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u111" class="ax_default label">
-                <div id="u111_div" class=""></div>
-                <div id="u111_text" class="text ">
-                    <p><span>Забули пароль?</span></p>
-                </div>
-            </div>
-
-            
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u113" class="ax_default button">
-                <div id="u113_div" class=""></div>
-                <div id="u113_text" class="text ">
-                    <p><span>&nbsp;&nbsp; &nbsp;&nbsp; Увійти з допомогою Google</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Image) -->
-            <div id="u114" class="ax_default image">
-                <img id="u114_img" class="img " src="../pages/images/sign_up/u89.png" />
-                <div id="u114_text" class="text " style="display:none; visibility: hidden">
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u115" class="ax_default label">
-                <div id="u115_div" class=""></div>
-                <div id="u115_text" class="text ">
-                    <p><span>Не маєте акаунт? </span></p>
-                </div>
-            </div>
-
-            <!-- Button (Rectangle) -->
-            <div id="u116" class="ax_default label">
-                <div id="u116_div" class=""></div>
-                <div id="u116_text" class="text ">
-                    <p><span>Зареєструйтеся</span></p>
-                </div>
-            </div>
-
-            <!-- Form Login -->
-            <form id="login_form" method="post" action="../controllers/login-controller.php">
-
-                <!-- Email (Text Field) -->
-                <div id="u117" class="ax_default text_field">
-                    <img id="u117_img" class="img " src="../pages/images/login/u117.svg" />
-                    <input id="u117_input" type="text" name="email" value="&nbsp; Електронна пошта" class="u117_input" />
-                </div>
-
-                <!-- Password (Text Field) -->
-                <div id="u118" class="ax_default text_field">
-                    <img id="u118_img" class="img " src="../pages/images/login/u117.svg" />
-                    <input id="u118_input" type="text" name="password" value="&nbsp; Пароль" class="u118_input" />
-                </div>
-
-                <!-- Submit Button -->
-                <div id="u112" class="ax_default button">
-                    <div id="u112_div" class=""></div>
-                    <input id="u112_text" class="text" type="submit" value="Увійти" />
-                </div>
-            </form>
-        </div>
+        <?php } ?>
 </boby>
-
 </html>
