@@ -21,7 +21,13 @@
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
-      <?php include('header.html'); ?>
+      <?php
+        $headerFile = 'header.html';
+        if(isset($_SESSION['permission']) && $_SESSION['permission'] == PermissionCode::User->value) {
+          $headerFile = 'header-logged-in.html';
+        }
+        include($headerFile);
+      ?>
       <div class="main">
 
         <div class="breadcrumbs_div">

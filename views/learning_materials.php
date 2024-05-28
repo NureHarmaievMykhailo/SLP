@@ -15,7 +15,11 @@
   </head>
   <body>
     <?php
-      include('header.html');
+      $headerFile = 'header.html';
+      if(isset($_SESSION['permission']) && $_SESSION['permission'] == PermissionCode::User->value) {
+        $headerFile = 'header-logged-in.html';
+      }
+      include($headerFile);
     ?>
     <div class="main">
 
