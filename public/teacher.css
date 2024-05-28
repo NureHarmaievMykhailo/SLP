@@ -1,0 +1,42 @@
+.teacher_info_div {
+    display: grid;
+    grid-template-columns: [teacher-img] 20% [teacher-info] auto [right-col] 15% [end];
+    grid-template-rows: [teacher-name] 20% [teacher-short-info] auto [bot-row] 15% [end];
+    column-gap: 20px;
+    padding: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+.teacher_img {
+    grid-row-start: teacher-name;
+    grid-row-end: end;
+    grid-column: teacher-img;
+    object-fit: contain;
+}
+.teacher_name_div {
+    grid-row: teacher-name;
+    grid-column: teacher-info;
+}
+.teacher_short_info_div {
+    grid-row-start: teacher-short-info;
+    grid-row-end: end;
+    grid-column: teacher-info;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.teacher_price_div {
+    grid-row: teacher-name;
+    grid-column: right-col;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.make_appointment_btn_div {
+    grid-column: right-col;
+    grid-row: bot-row;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
