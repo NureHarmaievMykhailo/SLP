@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+/*   error_reporting(E_ALL);
+  ini_set('display_errors', 1); */
+  session_start();
+  require_once('../models/PermissionCode.php');
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized();
+?>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Homepage</title>
@@ -10,7 +19,11 @@
   </head>
   <body>
     <?php
-      include('header.html');
+      $headerFile = 'header.html';
+      if(isset($_SESSION['permission']) && $_SESSION['permission'] == PermissionCode::User->value) {
+        $headerFile = 'header-logged-in.html';
+      }
+      include($headerFile);
     ?>
     <div class="main">
 

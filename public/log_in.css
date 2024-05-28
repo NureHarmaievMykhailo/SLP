@@ -1,0 +1,24 @@
+.log_in_block {
+    box-sizing: border-box;
+    margin: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgb(200, 132, 252, 0.65);
+    border: solid 2px grey;
+    border-radius: 15px;
+    width: 485px;
+    height: 500px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.sign_up_error_div {
+/*     position: absolute;
+    top: 20px; */
+    color: red;
+    text-align: center;
+    font-weight:bold;
+}

@@ -94,13 +94,25 @@
   padding: 10px;
 }
 .navbar .nav-profile a:hover, .navbar .nav-profile a:active {
-
+  z-index: 4;
+  white-space: nowrap;
+  font-weight: 800;
+  background-color: rgb(43, 0, 84);
+}
+.user_profile_link:hover, .user_profile_link:active {
+  z-index: 4;
+  white-space: nowrap;
+  font-weight: 800;
+  background-color: rgb(43, 0, 84);
+  border-radius: 25px;
+  padding: 10px;
 }
 /* Styles for login / sign up prompt for not authorized user */
 .login_prompt_link {
   border: solid 2px white;
   border-radius: 15px;
   padding-left: 15px;
+  padding-right: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -114,9 +126,9 @@
   background-color: rgb(43, 0, 84);
   border-radius: 15px;
   padding-left: 15px;
+  padding-right: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-right: 10px;
 }
 .signup_prompt_link:hover, .signup_prompt_link:active {
   font-weight: 800;

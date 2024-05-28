@@ -1,4 +1,11 @@
-﻿<link href="../public/styles.css" type="text/css" rel="stylesheet"/>
+﻿<?php
+  session_start();
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized();
+?>
+
+<link href="../public/styles.css" type="text/css" rel="stylesheet"/>
 <?php
   echo "Page under construction. Thanks for your patience.\n";
   $root = __DIR__ . "/..";

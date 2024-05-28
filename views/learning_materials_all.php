@@ -1,4 +1,9 @@
 ﻿<?php
+  session_start();
+  require_once('../session-config.php');
+  checkSessionTimeout();
+  redirectUnauthorized();
+
   $root = __DIR__ . "/..";
   require_once("$root/controllers/material-controller.php");
   require_once("learning-material-block.php");
@@ -27,7 +32,13 @@
     <link href="../public/learning_materials_all.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
-    <?php include('header.html'); ?>
+    <?php
+      $headerFile = 'header.html';
+      if(isset($_SESSION['permission']) && $_SESSION['permission'] == PermissionCode::User->value) {
+        $headerFile = 'header-logged-in.html';
+      }
+      include($headerFile);
+    ?>
     <div class="main">
       <div class="breadcrumbs_div">
           <p class="paragraph breadcrumbs_text"><a href="homepage" class="link_hidden">Головна</a>
