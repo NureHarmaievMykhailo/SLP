@@ -1,3 +1,22 @@
+body {
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden; 
+}
+.main {
+  margin-left: 80px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.text_default {
+  font-family:"Bahnschrift", sans-serif;
+}
+
 .button {
   border-radius: 10px;
   cursor: pointer;
@@ -12,8 +31,18 @@
   text-decoration: none;
 }
 
+.button:active {
+  background-color: rgba(51, 10, 106, 1);
+}
+
+.paragraph {
+  font-family:"Bahnschrift", sans-serif;
+  font-style:normal;
+  font-size:14px;
+  color:#000000;
+}
+
 .block {
-  position:absolute;
   background:inherit;
   background-color:rgba(215, 179, 228, 0.6980392156862745);
   box-sizing:border-box;
@@ -27,23 +56,15 @@
 }
 .header {
   border-width:0px;
-  position:relative;
-  display:flex;
   font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
   font-weight:700;
-  font-style:normal;
   font-size:21px;
-  color:#000000;
 }
-.page_header {
-  position: absolute;
-  display: flex;
-  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 32px;
-  color: #000000;
+.link_hidden {
+  text-decoration: none;
+  color: inherit;
 }
+
 .toast-notification {
   display: none;
   position: fixed;
@@ -59,4 +80,102 @@
 }
 .toast-notification.fade-out {
   opacity: 0; /* Fade out the toast by changing opacity to 0 */
+}
+.breadcrumbs_div {
+  margin-top: 20px;
+}
+.breadcrumbs_text {
+  font-size: 18px !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.img-contain {
+  object-fit: contain;
+}
+
+
+/* popup styles */
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
+  border: none;
+}
+
+/* Close button */
+.close {
+  width: 24px;
+  height: 24px;
+  border: solid 1px;
+  border-radius: 12px;
+  color: gray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styles for a generic page header */
+.topic-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: [left-gap] 15% [header-text] max-content [center-gap] auto [find-more] max-content [right-gap] 10% [end];
+}
+.header-line-row {
+  grid-column-start: left-gap;
+  grid-column-end: end;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.header-line {
+  position: relative;
+  top: 70px;
+  width: 100%;
+  z-index: -1;
+  height: 2px;
+  background-color: rgba(51, 10, 106, 1);
+}
+.topic-header-text {
+  grid-column: header-text;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 20px;
+  font-size: 30px !important;
 }

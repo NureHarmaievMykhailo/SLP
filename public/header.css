@@ -1,344 +1,125 @@
-﻿body {
-  margin:0px;
-  background-image:none;
-  position:relative;
-  left:-0px;
-  width:1440px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align:left;
+﻿.page-header {
+  position: sticky;
+  width: 100%;
+  top:0;
+  z-index: 3;
+  height: fit-content;
 }
-.form_sketch {
-  border-color:transparent;
-  background-color:transparent;
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  display: grid;
+  background-color: #641cac;
+  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
+  color: white;
+  font-weight: 600;
+  grid-template-columns: [first] 15% [centre] auto [three] 15% [end];
+  column-gap: 15px;
 }
-#base {
-  position:absolute;
-  z-index:0;
+
+.nav-logo {
+  grid-column: first;
+  font-family: inherit;
+  font-weight: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
 }
-#u9 {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:1441px;
-  height:82px;
+
+.logo-img {
+  width: 70px;
+  height: 65px;
 }
-#u9_menu {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:1441px;
-  height:82px;
-  -webkit-transform:rotate(NaNdeg);
-  -moz-transform:rotate(NaNdeg);
-  -ms-transform:rotate(NaNdeg);
-  transform:rotate(NaNdeg);
+
+.nav-logo:hover, .nav-logo:active {
+  font-weight: 800;
 }
-#u10 {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:1441px;
-  height:82px;
+
+.navbar .nav-links {
+  grid-column: centre;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: [link-first] 22% [link-second] 22% [link-third] 22% [link-fourth] 22% [link-fifth] auto [end];
+
+  font-family: inherit;
+  font-weight: inherit;
 }
-#u11_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:378px;
-  height:82px;
+.nav-links li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#u11 {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:378px;
-  height:82px;
-  display:flex;
+
+.nav-link1 {
+  grid-column: link-first;
 }
-#u11 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
+.nav-link2 {
+  grid-column: link-second;
 }
-#u11_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
+.nav-link3 {
+  grid-column: link-third;
 }
-#u12_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:179px;
-  height:82px;
+.nav-link4 {
+  grid-column: link-fourth;
 }
-#u12 {
-  border-width:0px;
-  position:absolute;
-  left:378px;
-  top:0px;
-  width:179px;
-  height:82px;
-  display:flex;
-  font-family:"Bahnschrift SemiBold", "Bahnschrift", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-  text-align:left;
+.nav-profile {
+  grid-column: three;
+  font-family: inherit;
+  font-weight: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  margin-right: 25px;
 }
-#u12 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 0px 2px 20px;
-  box-sizing:border-box;
-  width:100%;
+.nav-profile a, .nav-profile img {
+  margin: 10px;
+  margin-right: 30px;
 }
-#u12_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
+
+.navbar .nav-link1:hover, .navbar .nav-link1:active,
+.navbar .nav-link2:hover, .navbar .nav-link2:active,
+.navbar .nav-link3:hover, .navbar .nav-link3:active,
+.navbar .nav-link4:hover, .navbar .nav-link4:active {
+  z-index: 4;
+  white-space: nowrap;
+  font-weight: 800;
+  background-color: rgb(43, 0, 84);
+  border-radius: 25px;
+  padding: 10px;
 }
-#u13_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:217px;
-  height:82px;
+.navbar .nav-profile a:hover, .navbar .nav-profile a:active {
+
 }
-#u13 {
-  border-width:0px;
-  position:absolute;
-  left:557px;
-  top:0px;
-  width:217px;
-  height:82px;
-  display:flex;
-  font-family:"Bahnschrift SemiBold", "Bahnschrift", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
+/* Styles for login / sign up prompt for not authorized user */
+.login_prompt_link {
+  border: solid 2px white;
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-#u13 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
+.login_prompt_link:hover, .login_prompt_link:active {
+  font-weight: 800;
+  border-width: 3px;
+  background-color: rgb(43, 0, 84);
 }
-#u13_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
+.signup_prompt_link {
+  color: white;
+  background-color: rgb(43, 0, 84);
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
 }
-#u14_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:138px;
-  height:82px;
-}
-#u14 {
-  border-width:0px;
-  position:absolute;
-  left:774px;
-  top:0px;
-  width:138px;
-  height:82px;
-  display:flex;
-  font-family:"Bahnschrift SemiBold", "Bahnschrift", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-}
-#u14 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u14_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u15_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:220px;
-  height:82px;
-}
-#u15 {
-  border-width:0px;
-  position:absolute;
-  left:912px;
-  top:0px;
-  width:220px;
-  height:82px;
-  display:flex;
-  font-family:"Bahnschrift SemiBold", "Bahnschrift", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-}
-#u15 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u15_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u16_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:309px;
-  height:82px;
-}
-#u16 {
-  border-width:0px;
-  position:absolute;
-  left:1132px;
-  top:0px;
-  width:309px;
-  height:82px;
-  display:flex;
-  font-family:"Bahnschrift SemiBold", "Bahnschrift", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:18px;
-  color:#FFFFFF;
-  text-align:right;
-}
-#u16 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 80px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u16_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u54_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:129px;
-  height:71px;
-}
-#u54 {
-  border-width:0px;
-  position:absolute;
-  left:150px;
-  top:6px;
-  width:129px;
-  height:71px;
-  display:flex;
-  font-family:"Bahnschrift Bold", "Bahnschrift", sans-serif;
-  font-weight:700;
-  font-style:normal;
-  font-size:23px;
-  color:#FFFFFF;
-  text-align:justify;
-  text-justify:inter-word;
-}
-#u54 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u54_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#u55_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:70px;
-  height:65px;
-}
-#u55 {
-  border-width:0px;
-  position:absolute;
-  left:80px;
-  top:9px;
-  width:70px;
-  height:65px;
-  display:flex;
-}
-#u55 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u55_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#u89_img {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:38px;
-  height:29px;
-}
-#u89 {
-  border-width:0px;
-  position:absolute;
-  left:1367px;
-  top:25px;
-  width:38px;
-  height:29px;
-  display:flex;
-}
-#u89 .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u89_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
+.signup_prompt_link:hover, .signup_prompt_link:active {
+  font-weight: 800;
+  border-width: 3px;
+  background-color: #a37cf0;
 }

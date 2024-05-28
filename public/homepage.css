@@ -1,0 +1,98 @@
+.index-summary {
+    padding: 90px;
+    height: 500px;
+    display: grid;
+    grid-template-rows: [first] max-content [second] max-content [third] 5% [fourth] 15% [fifth] auto [end];
+    grid-template-columns: [first] auto [second] 65% [end];
+    row-gap: 5px;
+    background-image: url(../public/images/index-background.png);
+    background-size: cover;
+}
+.index-summary-header {
+    grid-column: first;
+    grid-row: first;
+    color: white;
+    font-size: 39px !important;
+}
+.index-summary-paragraph {
+    grid-column: first;
+    grid-row: second;
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+}
+.app-details-div {
+    grid-column: first;
+    grid-row: fourth;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.app-details-btn {
+    padding: 15px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* Topic header styles */
+.topic-header {
+    width: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: [left-gap] 15% [header-text] max-content [center-gap] auto [find-more] max-content [right-gap] 10% [end];
+}
+.header-line-row {
+    grid-column-start: left-gap;
+    grid-column-end: end;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.header-line {
+    position: relative;
+    top: 70px;
+    width: 100%;
+    z-index: -1;
+    height: 2px;
+    background-color: rgba(51, 10, 106, 1);
+}
+.topic-header-text {
+    grid-column: header-text;
+    background-color: white;
+    padding: 20px;
+    font-size: 30px !important;
+}
+.find-out-more {
+    grid-column: find-more;
+    background-color: white;
+    padding: 20px;
+    font-size: 22px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.find-out-more * {
+    margin: 10px;
+}
+.right-arrow-img {
+    height: auto;
+    width: 30px;
+}
+
+/* Showcases */
+.material-showcase {
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.teacher-showcase {
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

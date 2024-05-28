@@ -1,0 +1,35 @@
+.mod_navbar {
+    position: sticky;
+    top:0;
+    z-index: 999;
+    background-color: #681cac;
+    font-family: "Bahnschrift", sans-serif;
+    overflow: hidden;
+}
+
+.mod_nav_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.mod_nav_item {
+    display: inline;
+    padding: 14px 20px;
+}
+
+.mod_nav_item a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.mod_nav_item a:hover {
+    background-color: rgb(45, 0, 83);
+    font-weight: bold;
+}
