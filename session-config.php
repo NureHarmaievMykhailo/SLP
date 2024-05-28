@@ -15,7 +15,7 @@
     }
 
     function redirectUnauthorized(array $permissionsAllowed = [PermissionCode::Guest->value, PermissionCode::User->value]) {
-        if (!isset($_SESSION['userData']) || !$_SESSION['loggedIn'] || !in_array($_SESSION['permission'], $permissionsAllowed)) {
+        if (!in_array($_SESSION['permission'], $permissionsAllowed)) {
             header("Location: log_in");
             exit();
         }
