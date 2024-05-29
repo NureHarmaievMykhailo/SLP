@@ -219,3 +219,25 @@ body {
   font-size: 24px;
   padding: 2px;
 }
+
+/* Generic actegory selection drop-down */
+.category_sort_div {
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.category_sort {
+  background-color: #8c5cbc;
+  border: solid 2px rgba(51, 10, 106, 1);
+  border-radius: 15px;
+  width: max-content;
+  color: white;
+  padding: 8px;
+}
+.category_sort:hover {
+  background-color: #6d4396;
+  cursor: pointer;
+} 

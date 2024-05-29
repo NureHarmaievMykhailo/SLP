@@ -9,6 +9,29 @@ class TeacherController extends Controller {
         $this->params = $this->parseParams();
     }
 
+    /**
+     * Maps the SQL query result to an array of Teacher objects.
+     *
+     * @param mysqli_result $sql_response The result set obtained from executing a SQL query.
+     * @return string An array of Teacher objects representing the mapped SQL response.
+     */
+    private function sqlResponseToJson($sql_response) {
+        $res = [];
+        while($row = $sql_response->fetch_assoc()) {
+            array_push($res, array(
+                'id' => $row["id"],
+                'name' => $row["teacher_name"],
+                'price' => $row["price"],
+                'shortInfo' => $row["shortInfo"],
+                'description' => $row["description"],
+                'experience' => $row["experience"],
+                'education' => $row["education"],
+                'imageURI' => $row["imageURI"]
+            ));
+        }
+        return json_encode($res, JSON_UNESCAPED_UNICODE);
+    }
+
     public function getTeacherById($id) {
         $teacher = new Teacher;
         $teacher->getFromDB($id);
@@ -16,12 +39,25 @@ class TeacherController extends Controller {
     }
 
     public function getAll($limit) {
-        $limit = intval($limit);
-        $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
-        mysqli_query($conn, "USE fu_db;");
-        $result = mysqli_query($conn, "SELECT * FROM teacher LIMIT $limit");
-        mysqli_close($conn); 
-        return $result;
+        $t = new Teacher;
+        return $t->getAllTeachers($limit);
+    }
+
+    public function getAllAsJson($limit) {
+        $t = new Teacher;
+        return $t->getAllAsJson($limit);
+    }
+
+    public function getByPriceAsc($limit) {
+        $t = new Teacher;
+        $rawData = $t->sortByPrice($limit, __DATABASE__);
+        return $this->sqlResponseToJson($rawData);
+    }
+
+    public function getByPriceDesc($limit) {
+        $t = new Teacher;
+        $rawData = $t->sortByPrice($limit, __DATABASE__, false);
+        return $this->sqlResponseToJson($rawData);
     }
 }
 ?>
