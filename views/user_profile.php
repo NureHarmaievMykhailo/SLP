@@ -18,6 +18,7 @@
 </head>
 <body>
     <?php include('header-logged-in.html') ?>
+    
     <div class="main">
         <div class="breadcrumbs_div">
           <p class="paragraph breadcrumbs_text"><a href="homepage" class="link_hidden">Головна</a>
@@ -47,10 +48,15 @@
                 </div>
             </div>
             <div class="user_edit_div">
+            <button class="button" onclick="window.location.href='../views/user_profile_editing';">Редагувати</button>
+            </div>
+            <div class="user_edit_div">
                 <button class="button" onclick="logOut();">Вийти</button>
             </div>
         </div>
     </div>
-    <?php include('footer.html') ?>
+    
+   <?php include('footer.html') ?> 
 </body>
+
 </html>
