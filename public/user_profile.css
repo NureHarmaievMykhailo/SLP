@@ -26,3 +26,51 @@
     justify-content: right;
     grid-column: edit-buttons;
 }
+
+.editing_block {
+    box-sizing: border-box;
+    margin: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display:grid;
+    grid-template-rows: [header] 10%
+                        [first-block] 20%
+                        [second-block] 20%
+                        [third-block] 20%
+                        [end];
+    grid-template-columns: [left-col] 30% [middle-col] 20% [right-col] calc(50% - 2px) [end];
+    background-color: rgb(200, 132, 252, 0.65);
+    border: solid 2px grey;
+    border-radius: 15px;
+    width: 630px;
+    height: 750px;
+    color: white;
+}
+
+.button_div {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+  }
+
+.button_confirm {
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    padding: 8px;
+    border-color: rgba(51, 10, 106, 1);
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #8c5cbc;
+    text-decoration: none;
+  }
+  
+.button_confirm:active {
+    background-color: rgba(51, 10, 106, 1);
+}
+
+
+
