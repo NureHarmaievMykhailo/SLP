@@ -1,204 +1,105 @@
-<?php
-session_start();
+﻿<?php
+require_once 'vendor/autoload.php';
+require_once 'config.php';
+require_once 'models/PermissionCode.php';
 
+use Google\Client;
+
+// init configuration
+$clientID = '787075876039-1ephfrid8rg86q1aql0d56lc0n70nnbh.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectUri = 'http://localhost:3000/views/login.php';
+
+// create Client Request to access Google API
+$client = new Google\Client();
+$client->setHttpClient(new \GuzzleHttp\Client([
+    'verify' => 'C:\Misha NURE\PHP\cacert.pem',
+]));
+$client->setClientId($clientID);
+$client->setClientSecret($clientSecret);
+$client->setRedirectUri($redirectUri);
+$client->addScope("email");
+$client->addScope("profile");
+
+// authenticate code from Google OAuth Flow
+$email = '';
+$name = '';
+$firstName = '';
+$lastName = '';
+$googlePwd = '';
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    if (isset($token['error'])) {
+        echo 'Error fetching token: ' . htmlspecialchars($token['error']);
+        file_put_contents('log.txt', print_r($token, true));
+        exit;
+    }
+    $client->setAccessToken($token['access_token']);
+
+    // get profile info
+    $googleService = new Google\Service\Oauth2($client);
+    $google_account_info = $googleService->userinfo->get();
+    $email = $google_account_info->email;
+    $name = $google_account_info->name;
+    $firstName = $google_account_info->givenName;
+    $lastName = $google_account_info->familyName;
+    $googlePwd = $token['access_token'];
+
+    try {
+        $dsn = "mysql:host=" . __HOSTNAME__ . ";dbname=" . __DATABASE__ . ";charset=utf8mb4";
+        $pdo = new PDO($dsn, __USERNAME__, __PASSWORD__, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ]);
+
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
+        $stmt->execute([$email]);
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            header('Location: homepage.php');
+            exit;
+        } else {
+            $stmt = $pdo->prepare('INSERT INTO user (email, firstName, lastName, pwd, permission) VALUES (?, ?, ?, ?, ?)');
+            $stmt->execute([$email, $firstName, $lastName, $googlePwd, PermissionCode::User->value]);
+            header('Location: homepage.php');
+            exit;
+        }
+    } catch (PDOException $e) {
+        echo 'Database error: ' . $e->getMessage();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Login</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link href="../pages/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet" />
-    <link href="../pages/data/styles.css" type="text/css" rel="stylesheet" />
-    <link href="../pages/files/login/styles.css" type="text/css" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="../public/log_in.css" type="text/css" rel="stylesheet"/>
+    <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
     <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
-    <script src="../pages/resources/scripts/axure/axQuery.js"></script>
-    <script src="../pages/resources/scripts/axure/globals.js"></script>
-    <script src="../pages/resources/scripts/axutils.js"></script>
-    <script src="../pages/resources/scripts/axure/annotation.js"></script>
-    <script src="../pages/resources/scripts/axure/axQuery.std.js"></script>
-    <script src="../pages/resources/scripts/axure/doc.js"></script>
-    <script src="../pages/resources/scripts/messagecenter.js"></script>
-    <script src="../pages/resources/scripts/axure/events.js"></script>
-    <script src="../pages/resources/scripts/axure/recording.js"></script>
-    <script src="../pages/resources/scripts/axure/action.js"></script>
-    <script src="../pages/resources/scripts/axure/expr.js"></script>
-    <script src="../pages/resources/scripts/axure/geometry.js"></script>
-    <script src="../pages/resources/scripts/axure/flyout.js"></script>
-    <script src="../pages/resources/scripts/axure/model.js"></script>
-    <script src="../pages/resources/scripts/axure/repeater.js"></script>
-    <script src="../pages/resources/scripts/axure/sto.js"></script>
-    <script src="../pages/resources/scripts/axure/utils.temp.js"></script>
-    <script src="../pages/resources/scripts/axure/variables.js"></script>
-    <script src="../pages/resources/scripts/axure/drag.js"></script>
-    <script src="../pages/resources/scripts/axure/move.js"></script>
-    <script src="../pages/resources/scripts/axure/visibility.js"></script>
-    <script src="../pages/resources/scripts/axure/style.js"></script>
-    <script src="../pages/resources/scripts/axure/adaptive.js"></script>
-    <script src="../pages/resources/scripts/axure/tree.js"></script>
-    <script src="../pages/resources/scripts/axure/init.temp.js"></script>
-    <script src="../pages/resources/scripts/axure/legacy.js"></script>
-    <script src="../pages/resources/scripts/axure/viewer.js"></script>
-    <script src="../pages/resources/scripts/axure/math.js"></script>
-    <script src="../pages/resources/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="../pages/data/document.js"></script>
-    <script src="../pages/files/sign_up/data.js"></script>
-    <script type="text/javascript">
-        $axure.utils.getTransparentGifPath = function() {
-            return 'resources/images/transparent.gif';
-        };
-        $axure.utils.getOtherPath = function() {
-            return 'resources/Other.html';
-        };
-        $axure.utils.getReloadPath = function() {
-            return 'resources/reload.html';
-        };
-    </script>
+    <script src="../public/sendPost.js"></script>
+    <script src="../public/logIn.js"></script>
 </head>
-<boby>
-    <?php
-    require_once 'vendor/autoload.php';
-
-    // init configuration
-    $clientID = '787075876039-1ephfrid8rg86q1aql0d56lc0n70nnbh.apps.googleusercontent.com';
-    $clientSecret = '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';
-    $redirectUri = 'http://localhost:3000/views/login.php';
-
-    // create Client Request to access Google API
-    $client = new Google\Client();
-    $client->setClientId($clientID);
-    $client->setClientSecret($clientSecret);
-    $client->setRedirectUri($redirectUri);
-    $client->addScope("email");
-    $client->addScope("profile");
-
-    // authenticate code from Google OAuth Flow
-    if (isset($_GET['code'])) {
-        $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-        $client->setAccessToken($token['access_token']);
-
-        // get profile info
-        $googleService = new Google\Service\Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
-        $email =  $google_account_info->email;
-        $name =  $google_account_info->name;
-
-        // now you can use this profile info to create account in your website and make user logged in.
-    } else { ?>
-        <div id="base" class="">
-            <div id="base" class="">
-
-                <!-- Unnamed (Image) -->
-                <div id="u105" class="ax_default image">
-                    <img id="u105_img" class="img " src="../pages/images/homepage/u0.png" />
-                    <div id="u105_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Image) -->
-                <div id="u106" class="ax_default image">
-                    <img id="u106_img" class="img " src="../pages/images/homepage/u31.png" />
-                    <div id="u106_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u107" class="ax_default box_1">
-                    <img id="u107_img" class="img " src="../pages/images/login/u107.svg" />
-                    <div id="u107_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u108" class="ax_default heading_1">
-                    <div id="u108_div" class=""></div>
-                    <div id="u108_text" class="text ">
-                        <p><span>Увійти</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Image) -->
-                <div id="u109" class="ax_default image">
-                    <img id="u109_img" class="img " src="../pages/images/login/u109.png" />
-                    <div id="u109_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Image) -->
-                <div id="u110" class="ax_default image">
-                    <img id="u110_img" class="img " src="../pages/images/login/u110.png" />
-                    <div id="u110_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u111" class="ax_default label">
-                    <div id="u111_div" class=""></div>
-                    <div id="u111_text" class="text ">
-                        <p><span>Забули пароль?</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u113" class="ax_default button">
-                    <div id="u113_div" class=""></div>
-                    <div id="u113_text" class="text ">
-                        <p><span><a href="<?php echo $client->createAuthUrl() ?>">&nbsp;&nbsp; &nbsp;&nbsp; Увійти з допомогою Google</a></span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Image) -->
-                <div id="u114" class="ax_default image">
-                    <img id="u114_img" class="img " src="../pages/images/sign_up/u89.png" />
-                    <div id="u114_text" class="text " style="display:none; visibility: hidden">
-                        <p></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u115" class="ax_default label">
-                    <div id="u115_div" class=""></div>
-                    <div id="u115_text" class="text ">
-                        <p><span>Не маєте акаунт? </span></p>
-                    </div>
-                </div>
-
-                <!-- Button (Rectangle) -->
-                <div id="u116" class="ax_default label">
-                    <div id="u116_div" class=""></div>
-                    <div id="u116_text" class="text ">
-                        <p><span>Зареєструйтеся</span></p>
-                    </div>
-                </div>
-
-                <!-- Form Login -->
-                <form id="login_form" method="post" action="../controllers/login-controller.php">
-
-                    <!-- Email (Text Field) -->
-                    <div id="u117" class="ax_default text_field">
-                        <img id="u117_img" class="img " src="../pages/images/login/u117.svg" />
-                        <input id="u117_input" type="text" name="email" value="&nbsp; Електронна пошта" class="u117_input" />
-                    </div>
-
-                    <!-- Password (Text Field) -->
-                    <div id="u118" class="ax_default text_field">
-                        <img id="u118_img" class="img " src="../pages/images/login/u117.svg" />
-                        <input id="u118_input" type="text" name="password" value="&nbsp; Пароль" class="u118_input" />
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div id="u112" class="ax_default button">
-                        <div id="u112_div" class=""></div>
-                        <input id="u112_text" class="text" type="submit" value="Увійти" />
-                    </div>
-                </form>
+<body>
+    <div class="sign_up_main">
+        <div class="log_in_block">
+            <div class="header" style="font-size: 38px;">
+                <h>Увійти</h>
             </div>
-        <?php } ?>
-</boby>
+            <div id="errorDiv" class="sign_up_error_div text_default"></div>
+            <input id="emailInput" class="sign_up_input" placeholder=" Електронна пошта" style="padding: 6px;" value="<?php echo htmlspecialchars($email); ?>">
+            <input id="pwdInput" class="sign_up_input" type="password" placeholder=" Пароль" style="padding: 6px;" value="<?php echo htmlspecialchars($googlePwd); ?>">
+            <a href="" class="link_hidden noselect text_default">Забули пароль?</a>
+            <button class="sign_up_btn text_default noselect" style="width: 100% !important;" onclick="logIn();">Увійти</button>
+            <a href="<?php echo $client->createAuthUrl() ?>" class="sign_up_btn text_default noselect" style="width: 100% !important;">
+                <img style="padding-right:10px;height: 50%; width: auto;" src="../pages/images/sign_up/u89.png">
+                <p>Увійти з допомогою Google</p>
+            </a>
+            <p class="text_default">Не маєте акаунт? <a href="sign_up" class="link_hidden noselect" style="font-weight: bolder;">Зареєструватися</a></p>
+        </div>
+    </div>
+</body>
 </html>
