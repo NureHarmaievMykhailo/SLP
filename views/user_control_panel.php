@@ -21,7 +21,7 @@ checkSessionTimeout();
             <form class="id_form">
                 <label for="limitInput" class="noselect text_default" >Enter limit for materials to be listed:
                 <input type="number" min="0" step="1" required id="limitInput" name="limitInput" class="limit_input"></label>
-                <button class="button" type="button" onclick="submitLimit();">Вивести всі матеріали</button>
+                <button class="button" type="button" onclick="submitLimit();">Display all users</button>
             </form>
         </div>
 
@@ -105,48 +105,34 @@ checkSessionTimeout();
             // Reset div contents
             parentDiv.innerHTML = "";
 
-            // Create table
-            let table = document.createElement('table');
-            table.classList.add('user-table');
+            objectArray.forEach(user => {
+                let userDiv = document.createElement('div');
+                userDiv.classList.add("block", "user");
 
-            // Create table header
-            let headerRow = document.createElement('tr');
-            let headers = ['ID', 'First Name', 'Last Name', 'Email', 'Sex', 'Birthdate', 'Registration Date', 'Country', 'City', 'Phone', ''];
-            headers.forEach(headerText => {
-                let header = document.createElement('th');
-                header.innerText = headerText;
-                headerRow.appendChild(header);
-            });
-            table.appendChild(headerRow);
-
-            // Populate table with user data
-            userArray.forEach(user => {
-                let row = document.createElement('tr');
-
-                Object.values(user).forEach(value => {
-                    let cell = document.createElement('td');
-                    cell.innerText = value;
-                    row.appendChild(cell);
-                });
-
-                // Create actions cell
-                let actionsCell = document.createElement('td');
-
+                let userInfo = document.createElement('p');
+                let userName = document.createElement('h');
+                userName.innerHTML = `${user.firstName} ${user.lastName}`;
+                userDiv.appendChild(userName);
+                userInfo.innerHTML = `<br>${user.email}<br><br>${user.sex}<br>${user.birthdate}<br>${user.registrationDate}<br>${user.country}<br>${user.city}<br>${user.phoneNumber}`;
+                userDiv.appendChild(userInfo);
+                
+                let buttonDiv = document.createElement('div');
+                buttonDiv.classList.add("button_div");
+                
                 let deleteButton = document.createElement('button');
-                deleteButton.classList.add('button', 'button_delete');
-                deleteButton.onclick = function() { deleteUser(user.id) };
-                deleteButton.innerText = "Delete";
+                deleteButton.classList.add('button', 'button_edit');
+                deleteButton.onclick = function() {deleteUser(user.id)};
+                deleteButton.innerHTML = "Delete user";
 
-                actionsCell.appendChild(deleteButton);
-                row.appendChild(actionsCell);
+                buttonDiv.appendChild(deleteButton);
+        
+                userDiv.appendChild(buttonDiv);
 
-                table.appendChild(row);
+                parentDiv.appendChild(userDiv);
             });
-    
-            parentDiv.appendChild(table);
         }
 
-        function deleteUser(userId) {
+        function deleteUser(id) {
             const userConfirmed = confirm('Are you sure you want to delete this user? This action CANNOT be undone.');
             if (!userConfirmed) {
                 return;
@@ -154,7 +140,7 @@ checkSessionTimeout();
 
             showLoading();
 
-            sendPostToRouter('user-controller', 'deleteUser', { userId: id })
+            sendPostToRouter('user-controller', 'deleteUser', { user_id: id })
             .then(function(response) {
                 showPopUp(`Deleted material with id=${id} from the database.`);
                 console.log(`Operation: delete id=${id}`);
@@ -165,6 +151,11 @@ checkSessionTimeout();
                 hideLoading();
                 console.error("Error occurred:", error);
             });
+        }
+
+        function displayError(additionalInfo, fullData) {
+            showPopUp(`ERROR. ${additionalInfo} Check console for details.`);
+            console.log("Server response dump:\n", fullData);
         }
 
         function showLoading() {
