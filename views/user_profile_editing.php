@@ -1,11 +1,9 @@
 ﻿<?php
 session_start();
-
-// Припустимо, що дані користувача вже збережені в сесії
 $userData = $_SESSION['userData'];
-// Форматування дати народження
+
 $birthdate = new DateTime($userData['birthdate']);
-$formattedBirthdate = $birthdate->format('Y-m-d'); // Формат для input[type="date"]
+$formattedBirthdate = $birthdate->format('Y-m-d');
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +18,7 @@ $formattedBirthdate = $birthdate->format('Y-m-d'); // Формат для input[
     <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
     <script src="../public/sendPost.js"></script>
     <script src="../public/updateProfileData.js"></script>
+    <script src="../public/showToast.js"></script>
   </head>
   <body>
   <?php include('header-logged-in.html') ?>
@@ -54,7 +53,7 @@ $formattedBirthdate = $birthdate->format('Y-m-d'); // Формат для input[
             <option value="" disabled selected>Стать</option>
             <option value="male"<?php echo $userData['sex'] == 'male' ? 'selected' : ''; ?>>Чоловіча</option>
             <option value="female"<?php echo $userData['sex'] == 'female' ? 'selected' : ''; ?>>Жіноча</option>
-            <option value="other"<?php echo $userData['sex'] == 'Other' ? 'selected' : ''; ?>>Інше</option>
+            <option value="other"<?php echo $userData['sex'] == 'other' ? 'selected' : ''; ?>>Інше</option>
           </select>
           <input id="countryInput" class="sign_up_input" placeholder=" Країна" value="<?php echo $userData['country']; ?>">
         </div>
@@ -70,7 +69,7 @@ $formattedBirthdate = $birthdate->format('Y-m-d'); // Формат для input[
   
           <div class="button_div">
             <button class="button_cancle"><a href="user_profile" class="link_hidden">Скасувати</a></button>
-            <button class="button_confirm" onclick="updateProfileData();">Підтвердити</button>
+            <button class="button_confirm" onclick="updateProfileData(<?php echo $userData['id']; ?>);" >Підтвердити</button>
           </div>
         </div>
 

@@ -44,7 +44,7 @@
                 <p class="text_default"><?php echo $_SESSION['userData']['email']; ?></p>
                 <div class="user_registration_date_div">
                     <div class="img-contain"><img src="../public/images/user_profile_watch.svg"></div>
-                    <p class="text_default"><?php echo "Доєднався з " . date_format(new DateTime($_SESSION['userData']['registrationDate']), "d.m.Y"); ?></p>
+                    <p class="text_default"><?php echo "Доєднався " . date_format(new DateTime($_SESSION['userData']['registrationDate']), "d.m.Y"); ?></p>
                 </div>
             </div>
             <div class="user_edit_div">
@@ -53,6 +53,7 @@
             <div class="user_edit_div">
                 <button class="button" onclick="logOut();">Вийти</button>
             </div>
+            <div id ="toast-notification" class="toast-notification"></div>
         </div>
     </div>
     
