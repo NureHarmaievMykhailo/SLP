@@ -1,0 +1,30 @@
+.mod_home_main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 120px;
+}
+
+.mod_home_block {
+    background-color: aliceblue;
+    border-radius: 15px;
+    border: 2px solid #8c5cbc;
+    min-height: 300px;
+    min-width: 300px;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 25px;
+}
+.mod_home_header {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: larger;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+}

@@ -63,10 +63,9 @@
           $mc = new LearningMaterialController;
           $materials = $mc->getAll(3);
 
-          // Get 3 top teachers from DB
           foreach ($materials as $material) {
-            $offset = "margin-right: 80px;";
-            $block = new LearningMaterialBlock($material->getId(), $material->getTitle(), $material->getShortInfo(), [],  $offset);
+            $offset = "margin-right: 80px; margin-bottom:100px;";
+            $block = new LearningMaterialBlock($material['id'], $material['title'], $material['shortInfo'], [],  $offset);
             $block->render_small();
           }
         ?>
@@ -94,6 +93,7 @@
           require_once("$root/controllers/teacher-controller.php");
           require_once("teacher-block.php"); 
           $tc = new TeacherController;
+          // Get 3 top teachers from DB
           $teachers = $tc->getALL(3);
 
           while ($row = $teachers->fetch_assoc()) {

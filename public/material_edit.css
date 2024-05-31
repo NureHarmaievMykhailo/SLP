@@ -56,3 +56,13 @@
     float: left;
     width: 15%;
 }
+.img-upload {
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 15px;
+    float: left;
+    width: 20%;
+    height: max-content;
+    border: 2px solid grey;
+    margin: 15px;
+}

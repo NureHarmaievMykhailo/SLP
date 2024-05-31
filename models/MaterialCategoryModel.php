@@ -11,6 +11,10 @@ class MaterialCategory extends Model {
         $this->category_name = $result["category_name"];
     }
 
+    public function getById($id, $db = __DATABASE__) {
+        return Model::getById($id, $db);
+    }
+
     public function toArray() {
         return [
             "id"=>$this->id,
@@ -31,7 +35,7 @@ class MaterialCategory extends Model {
     }
 
     public function getAllCategories($limit) {
-        return Model::getAll(__DATABASE__, $this->table, $limit);
+        return Model::getAll($this->table, $limit);
     }
 
     // Getter and setter for $id

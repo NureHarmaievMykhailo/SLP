@@ -1,0 +1,104 @@
+.teacher_info_div {
+    display: grid;
+    grid-template-columns: [teacher-img] 20% [teacher-info] auto [right-col] 15% [end];
+    grid-template-rows: [teacher-name] 20% [teacher-short-info] auto [bot-row] 15% [end];
+    column-gap: 20px;
+    padding: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+.teacher_img {
+    grid-row-start: teacher-name;
+    grid-row-end: end;
+    grid-column: teacher-img;
+    object-fit: contain;
+}
+.teacher_name_div {
+    grid-row: teacher-name;
+    grid-column: teacher-info;
+}
+.teacher_short_info_div {
+    grid-row-start: teacher-short-info;
+    grid-row-end: end;
+    grid-column: teacher-info;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.teacher_price_div {
+    grid-row: teacher-name;
+    grid-column: right-col;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.make_appointment_btn_div {
+    grid-column: right-col;
+    grid-row: bot-row;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.teacher_description_div {
+    margin-left: 50px;
+    margin-right: 50px;
+    text-justify: inter-word;
+}
+.teacher_description_div h {
+    font-weight: 700;
+    font-size: larger;
+}
+.teacher_description_div p {
+   text-indent: 30px; 
+}
+.tab {
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background-color: inherit; 
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.tab_btn {
+    margin-right: 5px;
+    font-size: larger;
+    font-weight: bolder;
+    background-color: #8c5cbc;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.2s;
+    color: white;
+}
+.tab_btn:hover {
+    background-color:rgba(215, 179, 228, 0.6980392156862745);
+    color: black;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: rgba(215, 179, 228, 0.6980392156862745);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.addition_info_div {
+
+}
+.addition_info_div h {
+    font-weight: 700;
+    font-size: larger;
+}
+.tab_open {
+    color: black;
+    background-color: rgba(215, 179, 228, 0.6980392156862745);
+} 

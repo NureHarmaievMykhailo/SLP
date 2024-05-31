@@ -27,7 +27,6 @@ ini_set('display_errors', 1);
             header('Location: material_edit');
             die();
         }
-
         //Set material categories
         $categories = $material->categories;
     }
@@ -44,7 +43,7 @@ ini_set('display_errors', 1);
     <title>Edit material</title>
 </head>
 <body>
-    <?php include("moderator-header.html"); ?>
+    <?php include("moderator-header.php"); ?>
     <div class="action_header_div">
         <h>Welcome to the editing panel. Current mode: 
         <?php

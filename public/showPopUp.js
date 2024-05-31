@@ -17,3 +17,8 @@ function showPopUp(data) {
 	modal.style.display = 'none';
     }
 }
+
+function displayError(additionalInfo, fullData) {
+    showPopUp(`ERROR. ${additionalInfo} Check console for details.`);
+    console.log("Server response dump:\n", fullData);
+}
