@@ -23,7 +23,7 @@
           <p2 style="font-weight: bold;">Редагувати дані</p2>
         </p>
       </div>
-    
+      <div class="editor_container">
       <div class="editing_block">
         <div class="header_div">
           <h class="header">Редагувати дані</h>
@@ -57,6 +57,7 @@
         <div class="third_block_div">
           <div id="errorDiv" class="text_default sign_up_error_div"></div>
           <input id="phoneNumberInput" type="tel" class="sign_up_input" placeholder=" Номер телефону">
+  
           <div class="button_div">
             <button class="button_cancle" onclick="window.location.href='../views/user_profile';">Скасувати</button>
             <button class="button_confirm">Підтвердити</button>
@@ -64,6 +65,7 @@
         </div>
 
       </div>
+    </div>
     </div>
     <?php include('footer.html'); ?>
   </body>
