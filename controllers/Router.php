@@ -41,6 +41,13 @@ function callControllerMethod($controller, $method, $params) {
 
         echo callControllerMethod($controller, $method, $params);
     }
+    else if($controllerName == 'user-controller') {
+        require_once "user-controller.php";
+
+        $controller = new UserController();
+
+        echo callControllerMethod($controller, $method, $params);
+    }
     else {
         // Not Acceptable
         echo http_response_code(406);
