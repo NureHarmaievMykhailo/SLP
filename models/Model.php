@@ -9,13 +9,39 @@ abstract class Model {
         return $this->table;
     }
 
-    protected function getById($id, $db = __DATABASE__) {
-        // Assure that id is an integer
-        $id = intval($id);
-        $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
-        mysqli_query($conn, "USE $db;");
-        $result = mysqli_query($conn, "SELECT * FROM $this->table WHERE id = $id");
-        mysqli_close($conn); 
+    /**
+     * Executes a parameterized query using MySQLi.
+     *
+     * @param string $sql The SQL query with placeholders for parameters.
+     * @param mixed $param The parameter to bind to the SQL query.
+     * @return mixed Returns the result set on success, or false on failure.
+     */
+    protected function mysqliParametrizedQuery($sql, $param) {
+        $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
+        if ($mysqli->connect_error) {
+            return false;
+        }
+
+        if(!$stmt = $mysqli->prepare($sql)) {
+            return false;
+        }
+        $paramType = $this->getType($param);
+        if(!$stmt->bind_param($paramType, $param)) {
+            return false;
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
+        return $result;
+    }
+
+    protected function getById($id) {
+        $sql = "SELECT * FROM {$this->table} WHERE id = ?;";
+
+        $result = $this->mysqliParametrizedQuery($sql, $id);
+
         return $result;
     }
 
@@ -173,36 +199,24 @@ abstract class Model {
         return $result;
     }
 
-    protected function getAll($db, $table, $limit) {
-        // Assure that limit is an integer
-        $limit = intval($limit);
-        $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
-        mysqli_query($conn, "USE $db;");
-        $result = mysqli_query($conn, "SELECT * FROM $table LIMIT $limit");
-        mysqli_close($conn);
-        return $result;
-    }
-
-    protected function executeSQL($db, $query) {
-        $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
-        mysqli_query($conn, "USE $db;");
-        $result = mysqli_query($conn, $query);
-        mysqli_close($conn); 
+    protected function getAll($table, $limit) {
+        $sql = "SELECT * FROM $table LIMIT ?;";
+        $result = $this->mysqliParametrizedQuery($sql, $limit);
         return $result;
     }
 
     // Helper function to determine the type of the value for mysqli bind_param
     protected function getType($value) {
-    switch (gettype($value)) {
-        case 'integer':
-            return 'i';
-        case 'double':
-            return 'd';
-        case 'string':
-            return 's';
-        default:
-            return 's';
-    }
+        switch (gettype($value)) {
+            case 'integer':
+                return 'i';
+            case 'double':
+                return 'd';
+            case 'string':
+                return 's';
+            default:
+                return 's';
+        }
     }
 }
 ?>

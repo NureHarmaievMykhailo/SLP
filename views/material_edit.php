@@ -27,7 +27,6 @@ ini_set('display_errors', 1);
             header('Location: material_edit');
             die();
         }
-
         //Set material categories
         $categories = $material->categories;
     }

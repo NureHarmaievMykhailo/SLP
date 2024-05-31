@@ -60,7 +60,6 @@
         <!-- Strikethrough line -->
         <div class="header-line-row"><div class="header-line"></div></div>
 
-        <!-- Unnamed (Rectangle) -->
         <div class="header topic-header-text">
           <p>Навчальні матеріали: <?php $categoryText = ($isCategorySet) ? ($categoryName) : "Усі"; echo $categoryText; ?></p>
         </div>
@@ -71,10 +70,9 @@
       <div class="materials-container">
         <?php
           foreach ($materials as $material) {
-            $block = new LearningMaterialBlock($material->getId(), $material->getTitle(), $material->getShortInfo(), $material->getCategories());
+            $block = new LearningMaterialBlock($material['id'], $material['title'], $material['shortInfo'], $material['categories'], $offset);
             $block->render_normal();
           }
-
         ?>
       </div>
     </div>

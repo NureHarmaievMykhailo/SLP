@@ -89,13 +89,13 @@ class TeacherController extends Controller {
 
     public function getByPriceAsc($limit) {
         $t = new Teacher;
-        $rawData = $t->sortByPrice($limit, __DATABASE__);
+        $rawData = $t->sortByPrice($limit);
         return $this->sqlResponseToJson($rawData);
     }
 
     public function getByPriceDesc($limit) {
         $t = new Teacher;
-        $rawData = $t->sortByPrice($limit, __DATABASE__, false);
+        $rawData = $t->sortByPrice($limit, false);
         return $this->sqlResponseToJson($rawData);
     }
 }

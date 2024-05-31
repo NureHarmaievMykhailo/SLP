@@ -46,7 +46,7 @@ class LearningMaterialBlock {
 
                 <div class=\"category_div\">";
                 foreach($this->categories as $category) {
-                    echo "<a class=\"button button_category\" href=\"$this->all_materials_view_path{$category->getId()}\">{$category->getCategoryName()}</a>";
+                    echo "<a class=\"button button_category\" href=\"$this->all_materials_view_path{$category['id']}\">{$category['category_name']}</a>";
                 }
                 echo "</div>
 

@@ -58,20 +58,8 @@ class Teacher extends Model
     }
 
     public function getByName($name) {
-        $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
-        if ($mysqli->connect_error) {
-            return false;
-        }
         $sql = "SELECT * FROM $this->table WHERE teacher_name LIKE CONCAT('%', ?, '%')";
-        $stmt = $mysqli->prepare($sql);
-        if(!$stmt->bind_param("s", $name)) {
-            return false;
-        }
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $stmt->close();
-        $mysqli->close();
-        return $res;
+        return $this->mysqliParametrizedQuery($sql, $name);
     }
 
     public function insertTeacher(string $name, string $shortInfo, int $price, string $description, string $education, string $experience, string $imageURI, $db = __DATABASE__) {
@@ -123,29 +111,14 @@ class Teacher extends Model
 
     public function getAllTeachers($limit)
     {
-        return Model::getAll(__DATABASE__, $this->table, $limit);
+        return Model::getAll($this->table, $limit);
     }
 
-    public function sortByPrice($limit, $db, $ascending = true)
-    {
+    public function sortByPrice($limit, $ascending = true) {
         $order = ($ascending) ? "ASC" : "DESC";
         $sql = "SELECT * FROM $this->table ORDER BY price $order LIMIT ? ;";
 
-        $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, $db);
-        if ($mysqli->connect_error) {
-            throw new Exception("Failed to connect to the database.");
-        }
-        $stmt = $mysqli->prepare($sql);
-        if (!$stmt) {
-            return false;
-        }
-        $stmt->bind_param("i", $limit);
-        if (!$stmt->execute()) {
-            return false;
-        }
-        $res = $stmt->get_result();
-        $stmt->close();
-        $mysqli->close();
+        $res = $this->mysqliParametrizedQuery($sql, $limit);
 
         return $res;
     }
