@@ -38,6 +38,45 @@ class TeacherController extends Controller {
         return $teacher;
     }
 
+    public function insertTeacher(string $name, string $shortInfo, int $price, string $description, string $education, string $experience, mixed $imageURI) {
+        $t = new Teacher;
+        if ($res = $t->insertTeacher($name, $shortInfo, intval($price), $description, $education, $experience, $imageURI)) {
+            return json_encode(['status' => 'success', 'id' => $res]);
+        } else {
+            return json_encode(['status' => 'error']);
+        }
+    }
+
+
+    public function updateTeacher(int $id, string $name, string $shortInfo, int $price, string $description, string $education, string $experience, mixed $imageURI) {
+        $t = new Teacher;
+        if ($t->updateTeacher(intval($id), $name, $shortInfo, intval($price), $description, $education, $experience, $imageURI)) {
+            return json_encode(['status' => 'success', 'id' => $id]);
+        } else {
+            return json_encode(['status' => 'error']);
+        }
+    }
+
+    public function deleteTeacher(int $id)
+    {
+        $t = new Teacher;
+        if ($t->deleteTeacher(intval($id))) {
+            return json_encode(['status' => 'success', 'id' => $id]);
+        } else {
+            return json_encode(['status' => 'error']);
+        }
+    }
+
+    public function getTeacherJsonByName($name) {
+        $t = new Teacher;
+        return $t->getJsonByName($name);
+    }
+    
+    public function getTeacherJsonById($id) {
+        $t = new Teacher;
+        return $t->getByIdAsJson($id);
+    }
+
     public function getAll($limit) {
         $t = new Teacher;
         return $t->getAllTeachers($limit);

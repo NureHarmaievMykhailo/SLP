@@ -5,9 +5,20 @@
     background-color: #681cac;
     font-family: "Bahnschrift", sans-serif;
     overflow: hidden;
+    color: white;
+    display: grid;
+    grid-template-columns: [first] 20% [mid] auto [last] 20% [end];
 }
-
+.greeter {
+    grid: first;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 30px;
+    font-weight: bolder;
+}
 .mod_nav_list {
+    grid-column: mid;
     list-style-type: none;
     margin: 0;
     padding: 0;

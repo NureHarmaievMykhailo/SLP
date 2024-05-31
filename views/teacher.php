@@ -54,7 +54,7 @@ $teacher = $tc->getTeacherById($id);
 
     <div class="block teacher_info_div">
       <div class="teacher_img img-contain">
-        <img style="width:100%; height:auto;" src="<?php echo $teacher->getImageURI(); ?>">
+        <img style="width:100%; height:auto;" class="teacher_pfp" src="<?php echo $teacher->getImageURI(); ?>">
       </div>
 
       <div class="teacher_name_div">

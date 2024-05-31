@@ -1,6 +1,6 @@
 <?php
 /* error_reporting(E_ALL);
-ini_set('display_errors', 1); */
+ini_set('display_errors', 1);*/
 
 function callControllerMethod($controller, $method, $params) {
     // Check if the method exists in the controller
@@ -25,6 +25,26 @@ function callControllerMethod($controller, $method, $params) {
 
         $controller = new LearningMaterialController();
 
+        echo callControllerMethod($controller, $method, $params);
+    }
+    else if($controllerName == 'teacher-controller') {
+        require_once('teacher-controller.php');
+
+        $controller = new TeacherController;
+        if ($method == 'insertTeacher' || $method == 'updateTeacher') {
+            if ($_FILES['file']['size'] > 5242880) {
+                echo json_encode(["error"=>"Error. File must be less than 5Mb."]);
+                die();
+            }
+            $params = json_decode($params, true);
+            if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+                $uploadDir = '../public/images/';
+                $uploadFile = $uploadDir . time() . basename($_FILES['file']['name']);
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadFile)) {
+                    $params['imageURI'] = $uploadFile ?? $params['imageURI'];
+                }
+            }
+        }
         echo callControllerMethod($controller, $method, $params);
     }
     else if($controllerName == 'sign-up-controller') {

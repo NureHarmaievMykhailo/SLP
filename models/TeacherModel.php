@@ -57,6 +57,65 @@ class Teacher extends Model
         $this->imageURI = $result["imageURI"];
     }
 
+    public function getByName($name) {
+        $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
+        if ($mysqli->connect_error) {
+            return false;
+        }
+        $sql = "SELECT * FROM $this->table WHERE teacher_name LIKE CONCAT('%', ?, '%')";
+        $stmt = $mysqli->prepare($sql);
+        if(!$stmt->bind_param("s", $name)) {
+            return false;
+        }
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $stmt->close();
+        $mysqli->close();
+        return $res;
+    }
+
+    public function insertTeacher(string $name, string $shortInfo, int $price, string $description, string $education, string $experience, string $imageURI, $db = __DATABASE__) {
+        $teacherData = [
+            'teacher_name'=>$name,
+            'shortInfo'=>$shortInfo,
+            'price'=>$price,
+            'description'=>$description,
+            'education'=>$education,
+            'experience'=>$experience,
+            'imageURI'=>$imageURI
+        ];
+
+        $inserted_id = Model::insert($teacherData, $db);
+        return $inserted_id;
+    }
+
+    public function deleteTeacher(int $id) {
+        return Model::delete($id);
+    }
+
+    public function updateTeacher(int $id, string $name, string $shortInfo, int $price, string $description, string $education, string $experience, string $imageURI, $db = __DATABASE__) {
+        $teacherData = [
+            'teacher_name'=>$name,
+            'shortInfo'=>$shortInfo,
+            'price'=>$price,
+            'description'=>$description,
+            'education'=>$education,
+            'experience'=>$experience,
+            'imageURI'=>$imageURI
+        ];
+
+        $inserted_id = Model::update($id, $teacherData, $db);
+        return $inserted_id;
+    }
+
+    public function getJsonByName($name) {
+        return $this->sqlResponseToJson($this->getByName($name));
+    }
+
+    public function getByIdAsJson($id) {
+        return $this->sqlResponseToJson($this->getById($id));
+    }
+
     public function getAllAsJson($limit)
     {
         return $this->sqlResponseToJson($this->getAllTeachers($limit));
@@ -84,7 +143,11 @@ class Teacher extends Model
         if (!$stmt->execute()) {
             return false;
         }
-        return $stmt->get_result();
+        $res = $stmt->get_result();
+        $stmt->close();
+        $mysqli->close();
+
+        return $res;
     }
 
     // Getter and Setter for $id

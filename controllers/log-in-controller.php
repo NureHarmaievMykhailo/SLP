@@ -29,7 +29,20 @@
                     $_SESSION['permission'] = intval($userData['permission']);
                     $_SESSION['userData'] = $userData;
 
-                    $this->responseArray['redirect'] = '../';
+                    $redirectLink = '../';
+                    switch ($_SESSION['permission']) {
+                        case PermissionCode::User->value:
+                            $redirectLink = '../';
+                            break;
+                        case PermissionCode::Moderator->value:
+                            $redirectLink = "../moderator-home";
+                            break;
+                        case PermissionCode::Admin->value:
+                            $redirectLink = "../admin-home";
+                            break;
+                    }
+
+                    $this->responseArray['redirect'] = $redirectLink;
                     return json_encode($this->responseArray);
                 }
                 else {

@@ -28,7 +28,7 @@ class TeacherBlock {
         echo "
             <div class=\"block teacher_block\" style=\"$this->offset\">
                 <div class=\"teacher_image_div\">
-                    <img class=\"teacher_image \" src=\"$this->teacher_image_uri\"/>
+                    <img class=\"teacher_image teacher_pfp\" src=\"$this->teacher_image_uri\"/>
                     <div class=\"teacher_price_div\">
                         <p><span>" . $this->teacher_price . "грн / година</span></p>
                     </div>

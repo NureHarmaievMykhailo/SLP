@@ -15,7 +15,7 @@
     <title>Control panel</title>
 </head>
 <body>
-    <?php include("moderator-header.html"); ?>
+    <?php include("moderator-header.php"); ?>
     <div class="control_panel">
         <div class="search_panel">
         <div id="loading" class="loading-circle"></div>
