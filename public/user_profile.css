@@ -39,8 +39,8 @@
                         [third-block] 20%
                         [end];
     grid-template-columns: [left-col] 30% [middle-col] 20% [right-col] calc(50% - 2px) [end];
-    background-color: rgb(200, 132, 252, 0.65);
-    border: solid 2px grey;
+    background-color: rgba(159, 95, 207, 0.589);
+    border: solid 2px rgba(51, 10, 106, 1);
     border-radius: 15px;
     width: 630px;
     height: 520px;
@@ -84,7 +84,7 @@
     font-family:"Bahnschrift", sans-serif;
     border-width: 2px;
     border-style: solid;
-    background-color: #ceb1ed;
+    background-color: #d3bfe9;
     text-decoration: none;
   }
   
@@ -100,5 +100,20 @@
     height: 75vh;
 }
 
-
+#messageBlock {
+    width: 250px;
+    height: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 2px solid #250846;
+    border-radius: 10px;
+    background-color: #380c6c;
+    color: #ffffff;
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
 

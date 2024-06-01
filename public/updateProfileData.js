@@ -30,9 +30,7 @@ function updateProfileData(id) {
             console.error(error);
         }
         if (responseJSON.success) {
-            window.location.href = '../views/user_profile.php';
-            console.log('ffff')
-            showToast('Дані успішно оновлено!');
+            window.location.href = '../views/user_profile.php?status=success';
         } else {
             displaySignUpError(responseJSON.error);
         }
