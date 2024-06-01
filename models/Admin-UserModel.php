@@ -24,33 +24,31 @@
             }
 
                 $this->id = $result["id"];
-                $this->firstName = $result["firstName"];
-                $this->lastName = $result["lastName"];
-                $this->email = $result["email"];
-                $this->sex = $result["sex"];
+                $this->firstName = $result["firstName"] ?? '';
+                $this->lastName = $result["lastName"] ?? '';
+                $this->email = $result["email"] ?? '';
+                $this->sex = $result["sex"] ?? '';
                 // YY-MM-DD format
-                $this->birthdate = new DateTime($result["birthdate"]);
-                $this->registrationDate = new DateTime($result["registrationDate"]);
-                $this->country = $result["country"];
-                $this->city = $result["city"];
-                $this->phoneNumber = $result["phoneNumber"];
-                $this->pwd = $result["pwd"];
-                $this->permissionCode = $result["permission"];
+                $this->birthdate = $result["birthdate"] ? new DateTime($result["birthdate"]) : null;
+                $this->registrationDate = $result["registrationDate"] ? new DateTime($result["registrationDate"]) : null;
+                $this->country = $result["country"] ?? '';
+                $this->city = $result["city"] ?? '';
+                $this->phoneNumber = $result["phoneNumber"] ?? '';
+                $this->pwd = $result["pwd"] ?? '';
+                $this->permissionCode = $result["permission"] ?? '';
         }
 
-        public function getAllByQuery($query) {
+        public function getAllByQuery($title) {
             $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
     
-            $query = "SELECT * FROM $this->table WHERE lastName LIKE CONCAT('%', ?, '%') 
-                      OR firstName LIKE CONCAT('%', ?, '%')
-                      OR email LIKE CONCAT('%', ?, '%')";
+            $query = "SELECT * FROM $this->table WHERE (lastName LIKE CONCAT('%', ?, '%') OR firstName LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')) AND permission = 1";
     
             if (!($stmt = $mysqli->prepare($query))) {
                 $mysqli->close();
                 return false;
             }
     
-            $stmt->bind_param("sss", $query, $query, $query);
+            $stmt->bind_param("sss", $title, $title, $title);
     
             if(!$stmt->execute()) {
                 return false;
@@ -62,7 +60,7 @@
             return $result;
         }
 
-        public function toArray() {
+        public function toAdminArray() {
             $result = [
                 'id'                => $this->id,
                 'firstName'         => $this->firstName,

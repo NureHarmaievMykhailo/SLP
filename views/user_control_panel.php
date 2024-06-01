@@ -28,8 +28,8 @@ checkSessionTimeout();
         <div class="search_panel">
         <div id="loading" class="loading-circle"></div>
             <form class="id_form">
-                <label for="search" class="noselect text_default" >Search by Name or Email:
-                <input type="text" id="search" name="search" class="search_input"></label>
+                <label for="titleInput" class="noselect text_default" >Search by Name or Email:
+                <input required id="titleInput" name="titleInput" class="title_input"></label>
                 <button class="search_button" type="button" onclick="submitName();"><img class="search_button_img noselect"src="../public/images/search.png"></button>
             </form>
         </div>
@@ -42,7 +42,7 @@ checkSessionTimeout();
         </div>
     </div>
 
-    <div id="users_div" class="users_div">
+    <div id="materials_div" class="materials_div">
 
     </div>
 
@@ -77,11 +77,40 @@ checkSessionTimeout();
         }
 
         function submitName(){
-            let limit = document.getElementById("search").value;
-            if(limit == ''){
-                getAll();
-                return;
-            }
+            showLoading();
+            let titleInput = document.getElementById("titleInput");
+            let title = titleInput.value.trim();
+            
+            sendPostToRouter('user-controller', 'getUsersJsonByQuery', { title: title })
+            .then(function(response){
+                titleInput.value = "";
+                let responseJson;
+                try{
+                    responseJson = JSON.parse(response);
+                }
+                catch (error){
+                    console.log(error);
+                    displayError("Couldn't parse JSON sent from server.", response);
+                    hideLoading();
+                    return;
+                }
+                
+                if (responseJson.length == 0 || responseJson[0]["id"] === null) {
+                    displayError(`Couldn't retrieve material with title like "${title}" from DB. Try to be more specific or try another query.`,
+                        responseJson);
+                    hideLoading();
+                    return;
+                }
+
+                renderElements(responseJson);
+                showPopUp(`Retrieved ${responseJson.length} materials with title like "${title}" from DB.`);
+                console.log(`Operation: getByTitle, title = ${title}`);
+                hideLoading();
+            })
+            .catch(function(error) {
+                hideLoading();
+                console.error("Error occurred:", error);
+            })
         }
 
         function getAll(limitValue = 100) {
@@ -89,6 +118,7 @@ checkSessionTimeout();
 
             sendPostToRouter('user-controller', 'getAllAsJson', { limit: limitValue })
             .then(function(response) {
+                //console.log("Server response: ", response);
                 let responseJson = JSON.parse(response);
                 renderElements(responseJson);
                 showPopUp(`Retrieved ${responseJson.length} records from the database.`);
@@ -101,19 +131,19 @@ checkSessionTimeout();
         }
 
         function renderElements(objectArray) {
-            let parentDiv = document.getElementById("users_div");
+            let parentDiv = document.getElementById("materials_div");
             // Reset div contents
             parentDiv.innerHTML = "";
 
             objectArray.forEach(user => {
                 let userDiv = document.createElement('div');
-                userDiv.classList.add("block", "user");
+                userDiv.classList.add("block", "material");
 
                 let userInfo = document.createElement('p');
                 let userName = document.createElement('h');
-                userName.innerHTML = `${user.firstName} ${user.lastName}`;
+                userName.innerHTML = `<b>Name</b>: ${user.firstName} ${user.lastName}`;
                 userDiv.appendChild(userName);
-                userInfo.innerHTML = `<br>${user.email}<br><br>${user.sex}<br>${user.birthdate}<br>${user.registrationDate}<br>${user.country}<br>${user.city}<br>${user.phoneNumber}`;
+                userInfo.innerHTML = `Email: ${user.email}<br><br>Sex: ${user.sex}<br>Birthdate: ${user.birthdate}<br>Registration date: ${user.registrationDate}<br>Country: ${user.country}<br>City: ${user.city}<br>Phone number: ${user.phoneNumber}`;
                 userDiv.appendChild(userInfo);
                 
                 let buttonDiv = document.createElement('div');

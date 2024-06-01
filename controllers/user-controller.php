@@ -15,17 +15,17 @@ class UserController extends Controller {
             $id = $row["id"];
 
             $user->setId($id);
-            $user->setFirstName($row["firstName"]);
-            $user->setLastName($row["lastName"]);
-            $user->setEmail($row["email"]);
-            $user->setSex($row["sex"]);
-            $user->setBirthdate($row["birthdate"]);
-            $user->setRegistrationDate($row["registrationDate"]);
-            $user->setCountry($row["country"]);
-            $user->setCity($row["city"]);
-            $user->setPhoneNumber($row["phoneNumber"]);
-            $user->setPassword($row["pwd"]);
-            $user->setPermission($row["permission"]);
+            $user->setFirstName($row["firstName"] ?? '');
+            $user->setLastName($row["lastName"] ?? '');
+            $user->setEmail($row["email"] ?? '');
+            $user->setSex($row["sex"] ?? '');
+            $user->setBirthdate($row["birthdate"] ?? '');
+            $user->setRegistrationDate($row["registrationDate"] ?? '');
+            $user->setCountry($row["country"] ?? '');
+            $user->setCity($row["city"] ?? '');
+            $user->setPhoneNumber($row["phoneNumber"] ?? '');
+            $user->setPassword($row["pwd"] ?? '');
+            $user->setPermission($row["permission"] ?? '');
             array_push($result, $user);
         }
         return $result;
@@ -39,7 +39,7 @@ class UserController extends Controller {
 
     public function getMaterialJsonById($id) {
         $user = $this->getUserById($id);
-        return json_encode([$user->toArray()], JSON_UNESCAPED_UNICODE);
+        return json_encode([$user->toAdminArray()], JSON_UNESCAPED_UNICODE);
     }
 
     protected function getUsersByQuery($query) {
@@ -56,7 +56,7 @@ class UserController extends Controller {
         }
         
         $users_array = array_map(function($u) {
-            return $u->toArray();
+            return $u->toAdminArray();
         }, $users);
         return json_encode($users_array, JSON_UNESCAPED_UNICODE);
     }
@@ -74,9 +74,9 @@ class UserController extends Controller {
     public function getAllAsJson(int $limit) {
         $data = $this->getAll($limit);
 
-        // Create an array toArray results of each material
+        // Create an array toAdminArray results of each material
         $result = array_map(function($user) {
-            return $user->toArray();
+            return $user->toAdminArray();
         }, $data);
 
         return json_encode($result, JSON_UNESCAPED_UNICODE);
@@ -88,7 +88,7 @@ class UserController extends Controller {
         $limit = intval($limit);
         $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
         mysqli_query($conn, "USE fu_db;");
-        $sql_result = mysqli_query($conn, "SELECT * FROM user LIMIT $limit");
+        $sql_result = mysqli_query($conn, "SELECT * FROM user WHERE permission = 1 LIMIT $limit");
         mysqli_close($conn); 
         $result = $this->mapSQLResponseToUser($sql_result);
         return $result;
