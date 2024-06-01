@@ -17,7 +17,7 @@ $redirectUri = 'http://localhost:3000/views/sign_up.php';
 // create Client Request to access Google API
 $client = new Google\Client();
 $client->setHttpClient(new \GuzzleHttp\Client([
-    'verify' => 'C:\Misha NURE\PHP\cacert.pem',
+    'verify' => 'C:\OSPanel\modules\PHP-8.2\PHP\cacert.pem',
 ]));
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);
