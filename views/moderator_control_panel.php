@@ -19,14 +19,13 @@ checkSessionTimeout();
         <div class="search_panel">
         <div id="loading" class="loading-circle"></div>
             <form class="id_form">
-                <label for="limitInput" class="noselect text_default" >Enter limit for users to be listed:
+                <label for="limitInput" class="noselect text_default" >Enter limit for moderators to be listed:
                 <input type="number" min="0" step="1" required id="limitInput" name="limitInput" class="limit_input"></label>
-                <button class="button" type="button" onclick="submitLimit();">Display all users</button>
+                <button class="button" type="button" onclick="submitLimit();">Display all moderators</button>
             </form>
         </div>
 
         <div class="search_panel">
-        <div id="loading" class="loading-circle"></div>
             <form class="id_form">
                 <label for="titleInput" class="noselect text_default" >Search by Name or Email:
                 <input required id="titleInput" name="titleInput" class="title_input"></label>
@@ -81,7 +80,7 @@ checkSessionTimeout();
             let titleInput = document.getElementById("titleInput");
             let title = titleInput.value.trim();
             
-            sendPostToRouter('user-controller', 'getUsersJsonByQuery', { title: title })
+            sendPostToRouter('user-controller', 'getUsersJsonByEmail', { title: title })
             .then(function(response){
                 titleInput.value = "";
                 let responseJson;
@@ -96,14 +95,14 @@ checkSessionTimeout();
                 }
                 
                 if (responseJson.length == 0 || responseJson[0]["id"] === null) {
-                    displayError(`Couldn't retrieve user with name or email like "${title}" from DB. Try to be more specific or try another query.`,
+                    displayError(`Couldn't retrieve moderator with name or email like "${title}" from DB. Try to be more specific or try another query.`,
                         responseJson);
                     hideLoading();
                     return;
                 }
 
                 renderElements(responseJson);
-                showPopUp(`Retrieved ${responseJson.length} users with name or email like "${title}" from DB.`);
+                showPopUp(`Retrieved ${responseJson.length} moderators with name or email like "${title}" from DB.`);
                 console.log(`Operation: getByTitle, title = ${title}`);
                 hideLoading();
             })
@@ -116,7 +115,7 @@ checkSessionTimeout();
         function getAll(limitValue = 100) {
             showLoading();
 
-            sendPostToRouter('user-controller', 'getAllAsJson', { limit: limitValue })
+            sendPostToRouter('user-controller', 'getAllModeratorAsJson', { limit: limitValue })
             .then(function(response) {
                 //console.log("Server response: ", response);
                 let responseJson = JSON.parse(response);
@@ -143,7 +142,7 @@ checkSessionTimeout();
                 let userName = document.createElement('h');
                 userName.innerHTML = `<b>Name</b>: ${user.firstName} ${user.lastName}`;
                 userDiv.appendChild(userName);
-                userInfo.innerHTML = `Email: ${user.email}<br><br>Sex: ${user.sex}<br>Birthdate: ${user.birthdate}<br>Registration date: ${user.registrationDate}<br>Country: ${user.country}<br>City: ${user.city}<br>Phone number: ${user.phoneNumber}`;
+                userInfo.innerHTML = `Email: ${user.email}`;
                 userDiv.appendChild(userInfo);
                 
                 let buttonDiv = document.createElement('div');
@@ -163,7 +162,7 @@ checkSessionTimeout();
         }
 
         function deleteUser(id) {
-            const userConfirmed = confirm('Are you sure you want to delete this user? This action CANNOT be undone.');
+            const userConfirmed = confirm('Are you sure you want to delete this moderator? This action CANNOT be undone.');
             if (!userConfirmed) {
                 return;
             }
@@ -172,7 +171,7 @@ checkSessionTimeout();
 
             sendPostToRouter('user-controller', 'deleteUser', { user_id: id })
             .then(function(response) {
-                showPopUp(`Deleted user with id=${id} from the database.`);
+                showPopUp(`Deleted moderator with id=${id} from the database.`);
                 console.log(`Operation: delete id=${id}`);
                 submitLimit();
                 hideLoading();

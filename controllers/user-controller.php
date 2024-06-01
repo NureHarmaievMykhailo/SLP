@@ -61,6 +61,25 @@ class UserController extends Controller {
         return json_encode($users_array, JSON_UNESCAPED_UNICODE);
     }
 
+    protected function getUsersByEmail($query) {
+        $u = new UserModel;
+        $sql_result = $u->getAllByEmail($query);
+        return $this->mapSQLResponseToUser($sql_result);
+    }
+
+    public function getUsersJsonByEmail($query) {
+        $users = $this->getUsersByEmail($query);
+
+        if($users == []){
+            return json_encode($users);
+        }
+        
+        $users_array = array_map(function($u) {
+            return $u->toAdminArray();
+        }, $users);
+        return json_encode($users_array, JSON_UNESCAPED_UNICODE);
+    }
+
     public function deleteUser(int $user_id) {
         $u = new UserModel;
         try {
@@ -89,6 +108,29 @@ class UserController extends Controller {
         $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
         mysqli_query($conn, "USE fu_db;");
         $sql_result = mysqli_query($conn, "SELECT * FROM user WHERE permission = 1 LIMIT $limit");
+        mysqli_close($conn); 
+        $result = $this->mapSQLResponseToUser($sql_result);
+        return $result;
+    }
+
+    public function getAllModeratorAsJson(int $limit) {
+        $data = $this->getAllModerator($limit);
+
+        // Create an array toAdminArray results of each material
+        $result = array_map(function($user) {
+            return $user->toAdminArray();
+        }, $data);
+
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getAllModerator(int $limit) {
+        $result = array();
+
+        $limit = intval($limit);
+        $conn = mysqli_connect(__HOSTNAME__, __USERNAME__, __PASSWORD__);
+        mysqli_query($conn, "USE fu_db;");
+        $sql_result = mysqli_query($conn, "SELECT * FROM user WHERE permission = 2 LIMIT $limit");
         mysqli_close($conn); 
         $result = $this->mapSQLResponseToUser($sql_result);
         return $result;

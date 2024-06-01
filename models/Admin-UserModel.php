@@ -60,6 +60,28 @@
             return $result;
         }
 
+        public function getAllByEmail($title) {
+            $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
+    
+            $query = "SELECT * FROM $this->table WHERE (lastName LIKE CONCAT('%', ?, '%') OR firstName LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')) AND permission = 2";
+    
+            if (!($stmt = $mysqli->prepare($query))) {
+                $mysqli->close();
+                return false;
+            }
+    
+            $stmt->bind_param("sss", $title, $title, $title);
+    
+            if(!$stmt->execute()) {
+                return false;
+            }
+    
+            $result = $stmt->get_result();
+            $stmt->close();
+            $mysqli->close();
+            return $result;
+        }
+
         public function toAdminArray() {
             $result = [
                 'id'                => $this->id,
