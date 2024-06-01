@@ -135,5 +135,15 @@ class UserController extends Controller {
         $result = $this->mapSQLResponseToUser($sql_result);
         return $result;
     }
+
+    public function insertModerator(string $firstName, string $lastName, string $email, string $password) {
+        $u = new UserModel;
+        try {
+            return $u->insertModerator($firstName, $lastName, $email, '', '', '', '', '', $password);
+        }
+        catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }
 ?>

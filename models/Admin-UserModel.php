@@ -100,6 +100,33 @@
             return $result;
         }
 
+        public function insertModerator(string $firstName, string $lastName, string $email, string $pwd,
+            $db = __DATABASE__)
+        {
+            $data['firstName'] = $firstName;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['sex'] = '';
+            $data['birthdate'] = date('Y-m-d');
+            $data['registrationDate'] = date('Y-m-d');
+            $data['country'] = '';
+            $data['city'] = '';
+            $data['phoneNumber'] = '';
+
+            // Hash the password
+            $options = [ 'cost' => 12 ];
+            $data['pwd'] = password_hash($pwd, PASSWORD_DEFAULT, $options);
+
+            $data['permission'] = 2;
+
+            $inserted_id = Model::insert($data, "fu_db");
+
+            if(!$inserted_id) {
+                return false;
+            }
+            return $inserted_id;
+        }
+
         public function deleteUser(int $user_id, $db = __DATABASE__) {
             return Model::delete($user_id, $db);
         }
