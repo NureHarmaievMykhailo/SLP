@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $data = [
         'merchantAccount' => $merchantAccount,
-        'merchantDomainName' => $_SERVER['localhost:3000/views'],
+        'merchantDomainName' => $_SERVER['52_149_65_84'],
         'orderReference' => $orderReference,
         'orderDate' => $orderDate,
         'amount' => $amount,
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'productPrice' => $productPrice,
         'merchantSignature' => generateSignature([
             $merchantAccount,
-            $_SERVER['localhost:3000/views'],
+            $_SERVER['52_149_65_84'],
             $orderReference,
             $orderDate,
             $amount,
@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             implode(';', $productCount),
             implode(';', $productPrice)
         ], $merchantSecretKey),
-        'returnUrl' => 'http://' . $_SERVER['localhost:3000/views'] . '/payment_success.php',
-        'serviceUrl' => 'http://' . $_SERVER['localhost:3000/views'] . '/payment_callback.php'
+        'returnUrl' => 'http://' . $_SERVER['52_149_65_84'] . '/payment_success.php',
+        'serviceUrl' => 'http://' . $_SERVER['52_149_65_84'] . '/payment_callback.php'
     ];
 }
 ?>
