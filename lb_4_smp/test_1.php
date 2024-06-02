@@ -20,7 +20,8 @@
 <body>
     <?php include('../views/header-logged-in.html') ?>
     
-    <h1>Завантажити мобільний застосунок можна на цих платформах за посиланням:</h1>
+    <h1>Вже зовсім скоро!</h1>
+    <h2>Мобільний застосунок "Fluent Ukrainian" можна буде завантажити на цих платформах за посиланням:</h2>
     <div class="table-container">
         <?php
         include 'parser.php';// Підключення файлу з парсером
@@ -46,13 +47,9 @@
             </tr>
         </table>
         XML;
-
         echo parseXMLToHTML($xmlContent);// Виклик функції парсинга та виведення результату
         ?>
     </div>
-
-    <!-- < include 'manage_users.php' ?> -->
-    
    <?php include('../views/footer.html') ?> 
 </body>
 
