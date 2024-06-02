@@ -28,6 +28,7 @@ function checkDateAvailability(id) {
                     console.log('ok');
                     showCalendarOk();
                     showTimeBlock();
+                    showTimeSlots(id);
                     return;
                 }
             }
@@ -44,7 +45,43 @@ function checkDateAvailability(id) {
 }
 
 function showTimeSlots(id) {
+    let timeSlotDiv = document.getElementById('time_slot_div');
+    timeSlotDiv.innerHTML = "";
+    let date = document.getElementById('dateInput').value.trim();
+    if (!date) {
+        return;
+    }
+    let dateTimestamp = Math.floor(new Date(date).getTime() / 1000);
+    sendPostToRouter('lesson-controller', 'getTimeSlots', { date: dateTimestamp, teacher_id: id })
+    .then(function(response){
+        let jsonResponse;
+        try {
+            jsonResponse = JSON.parse(response);
+            console.log(jsonResponse);
+            console.log(response);
 
+            jsonResponse.forEach(lesson => {
+                let timeSlot = document.createElement('button');
+                let timestamp = new Date(lesson.start_time * 1000);
+                timeSlot.innerHTML = `${addZero(timestamp.getHours())}:${addZero(timestamp.getMinutes())}`
+                if (lesson.isTaken) {
+                    timeSlot.classList.add('time_slot_disabled');
+                } else {
+                    timeSlot.classList.add('time_slot');
+                    timeSlot.value = lesson.start_time;
+                    timeSlot.addEventListener('click', showFormatBlock);
+                }
+                timeSlotDiv.appendChild(timeSlot);
+            });
+        }
+        catch(error) {
+            console.log(response);
+            console.error(error);
+        }
+    })
+    .catch(function(error){
+        console.error("Error occurred:", error);
+    });
 }
 
 function showCalendarOk() {
@@ -108,4 +145,8 @@ function hideFormatBlock() {
 function showDurationBlock() {
     let durationDiv = document.getElementById('durationBlock');
     durationDiv.style.display = 'flex';
+}
+function addZero(i) {
+    if (i < 10) {i = "0" + i}
+    return i;
 }

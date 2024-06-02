@@ -66,12 +66,29 @@ class LessonController extends Controller {
             return $a['lesson_start'] - $b['lesson_start'];
         });
 
-        if ($takenSlots[0]['lesson_start'] > $scheduleStart) {
-            array_push($lessons, [
-                'lesson_start' => $scheduleStart,
-                'lesson_end' => $takenSlots[0]['lesson_start']
-            ]);
+        for ($time = $scheduleStart; $time < $scheduleEnd; $time += 3600) {
+            $isTaken = false;
+            
+            // Check if the time slot overlaps with any lesson
+            foreach ($takenSlots as $lesson) {
+                if (
+                    ($time >= $lesson['lesson_start'] && $time < $lesson['lesson_end']) || 
+                    ($time + 3600 > $lesson['lesson_start'] && $time + 3600 <= $lesson['lesson_end']) ||
+                    ($time <= $lesson['lesson_start'] && $time + 3600 >= $lesson['lesson_end'])
+                ) {
+                    $isTaken = true;
+                    break;
+                }
+            }
+        
+            // Add the time slot to the array with the 'isTaken' property
+            $lessons[] = [
+                'start_time' => $time,
+                'isTaken' => $isTaken
+            ];
         }
+
+        return json_encode($lessons);
     }
 
     /**
@@ -106,6 +123,4 @@ class LessonController extends Controller {
         return json_encode($response);
     }
 }
-$l = new LessonController;
-echo $l->getTimeSlots(1717372800, 1);
 ?>

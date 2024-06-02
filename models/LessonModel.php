@@ -100,18 +100,19 @@ class Lesson extends Model
             return false;
         }
         $dateString = date("Y-m-d", $timestamp);
-        $sql = "SELECT l.start_time AS lesson_start,
-                    l.end_time AS lesson_end,
-                    sc.start_time AS schedule_start,
-                    sc.end_time AS schedule_end
-                FROM lesson l
-                join schedule sc on sc.teacher_id = l.teacher_id
-                where l.teacher_id = ? and l.date = ?;";
+        $sql = "SELECT l.start_time as lesson_start,
+            l.end_time as lesson_end,
+            sc.start_time as schedule_start,
+            sc.end_time as schedule_end
+            FROM schedule sc
+            left join lesson l on sc.teacher_id = l.teacher_id and l.date = ?
+            where sc.teacher_id = ?";
+
         if (!$stmt = $mysqli->prepare($sql)) {
             return false;
         }
 
-        if (!$stmt->bind_param("is", $teacher_id, $dateString)) {
+        if (!$stmt->bind_param("si", $dateString, $teacher_id)) {
             return false;
         }
 
@@ -130,8 +131,8 @@ class Lesson extends Model
         
             // Process the first row
             $lesson = [];
-            $lesson['lesson_start'] = strtotime($first_row['lesson_start']);
-            $lesson['lesson_end'] = strtotime($first_row['lesson_end']);
+            $lesson['lesson_start'] = strtotime($first_row['lesson_start']) ?? NULL;
+            $lesson['lesson_end'] = strtotime($first_row['lesson_end']) ?? NULL;
             array_push($result['lessons'], $lesson);
         
             // Process remaining rows

@@ -64,7 +64,7 @@ $teacher = $tc->getTeacherById($teacherId);
             <div id="timeBlock" class="block appointment_div" style="display: none;">
                 <div class="appointment_div_number header">2</div>
                 <h class="header">Час проведення</h>
-                <div class="time_slot_div">
+                <div id="time_slot_div" class="time_slot_div">
 
                 </div>
             </div>
@@ -72,9 +72,9 @@ $teacher = $tc->getTeacherById($teacherId);
                 <div class="appointment_div_number header">3</div>
                 <h class="header">Форма проведення</h>
                 <label for="radioOnline" class="text_default text_larger " style="width: 80%;">
-                    <input type="radio" id="radioOnline" name="radioIsOnline" value="online">&nbsp;Онлайн</label>
+                    <input type="radio" id="radioOnline" onchange="showDurationBlock()" name="radioIsOnline" value="online">&nbsp;Онлайн</label>
                 <label for="radioOffline" class="text_default text_larger " style="width: 80%;">
-                    <input type="radio" id="radioOffline" name="radioIsOnline" value="offline">&nbsp;Офлайн</label>
+                    <input type="radio" id="radioOffline" onchange="showDurationBlock()" name="radioIsOnline" value="offline">&nbsp;Офлайн</label>
             </div>
             <div id="durationBlock" class="block appointment_div" style="display: none;">
                 <div class="appointment_div_number header">4</div>
