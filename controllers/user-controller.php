@@ -139,7 +139,7 @@ class UserController extends Controller {
     public function insertModerator(string $firstName, string $lastName, string $email, string $password) {
         $u = new UserModel;
         try {
-            return $u->insertModerator($firstName, $lastName, $email, '', '', '', '', '', $password);
+            return $u->insertModerator($firstName, $lastName, $email, $password);
         }
         catch (Exception $ex) {
             echo $ex->getMessage();
