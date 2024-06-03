@@ -61,6 +61,13 @@ function callControllerMethod($controller, $method, $params) {
 
         echo callControllerMethod($controller, $method, $params);
     }
+    else if($controllerName == 'upload_changes') {
+        require_once('upload_changes.php');
+
+        $controller = new UploadController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
     else if($controllerName == 'user-controller') {
         require_once "user-controller.php";
 
