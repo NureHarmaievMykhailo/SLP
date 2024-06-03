@@ -1,4 +1,6 @@
 <?php
+session_start();?>
+<?php
 require_once('Controller.php');
 require_once('../models/UserModel.php');
 
@@ -27,11 +29,11 @@ class UploadController extends Controller {
         if (!$this->validateEmail($email)) {
             return json_encode($this->responseArray);
         }
-
+        $registrationDate = $_SESSION['userData']['registrationDate'];
         $birthdate = new DateTime($birthdate);
         $u = new UserModel;
-
-        $res = $u->updateUser($id, $firstName, $lastName, $email, $sex, $birthdate->format('Y-m-d'), $country, $city, $phoneNumber);
+        $currentPassword = $_SESSION['userData']['pwd'];
+        $res = $u->updateUser($id, $firstName, $lastName, $email, $sex, $birthdate, $country, $city, $phoneNumber, $currentPassword);
 
         if ($res) {
             $_SESSION['userData'] = [
@@ -43,7 +45,9 @@ class UploadController extends Controller {
                 'country' => $country,
                 'birthdate' => $birthdate->format('Y-m-d'),
                 'city' => $city,
-                'phoneNumber' => $phoneNumber
+                'phoneNumber' => $phoneNumber,
+                'pwd' => $currentPassword,
+                'registrationDate' => $registrationDate
             ];
             $this->responseArray['success'] = true;
             return json_encode($this->responseArray);
@@ -55,21 +59,5 @@ class UploadController extends Controller {
 }
 ?>
 
-<?php
-session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_SESSION['userData']['id'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $sex = $_POST['sex'];
-    $country = $_POST['country'];
-    $birthdate = $_POST['birthdate'];
-    $city = $_POST['city'];
-    $phoneNumber = $_POST['phoneNumber'];
 
-    $controller = new UploadController();
-    echo $controller->updateProfile($id, $firstName, $lastName, $email, $sex, $birthdate, $country, $city, $phoneNumber);
-}
-?>
 

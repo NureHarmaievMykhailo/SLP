@@ -1,4 +1,4 @@
-function updateProfileData() {
+function updateProfileData(id) {
     let firstName = document.getElementById('firstNameInput').value.trim();
     let lastName = document.getElementById('lastNameInput').value.trim();
     let email = document.getElementById('emailInput').value.trim();
@@ -8,8 +8,9 @@ function updateProfileData() {
     let city = document.getElementById('cityInput').value.trim();
     let phoneNumber = document.getElementById('phoneNumberInput').value.trim();
 
-    sendPostToRouter('upload_changes.php', 'updateProfile', 
+    sendPostToRouter('upload_changes', 'updateProfile', 
         {
+            id:id,
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -29,7 +30,7 @@ function updateProfileData() {
             console.error(error);
         }
         if (responseJSON.success) {
-            window.location.href = '../views/user_profile'; // Перенаправлення на сторінку профілю
+            window.location.href = '../views/user_profile.php?status=success';
         } else {
             displaySignUpError(responseJSON.error);
         }

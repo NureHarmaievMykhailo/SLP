@@ -3,7 +3,9 @@
     require_once('../session-config.php');
     checkSessionTimeout();
     redirectUnauthorized([PermissionCode::User->value]);
+    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,18 +46,37 @@
                 <p class="text_default"><?php echo $_SESSION['userData']['email']; ?></p>
                 <div class="user_registration_date_div">
                     <div class="img-contain"><img src="../public/images/user_profile_watch.svg"></div>
-                    <p class="text_default"><?php echo "Доєднався з " . date_format(new DateTime($_SESSION['userData']['registrationDate']), "d.m.Y"); ?></p>
+                    <p class="text_default"><?php echo "Доєднався " . date_format(new DateTime($_SESSION['userData']['registrationDate']), "d.m.Y"); ?></p>
                 </div>
             </div>
+            
             <div class="user_edit_div">
             <button class="button" onclick="window.location.href='../views/user_profile_editing';">Редагувати</button>
             </div>
+            
             <div class="user_edit_div">
                 <button class="button" onclick="logOut();">Вийти</button>
             </div>
+            <div id ="toast-notification" class="toast-notification"></div>
         </div>
+        
+        <?php
+            if (isset($_GET['status']) && $_GET['status'] == 'success') {
+                echo "<div id='messageBlock' class='alert alert-success' style='display:none;'>Зміни успішно збережено!</div>";
+            }
+        ?>
+
+        <script>
+            window.onload = function() {
+            var messageBlock = document.getElementById('messageBlock');
+            messageBlock.style.display = 'block';
+            var duration = 5000;
+            setTimeout(function() {
+                messageBlock.style.display = 'none';
+            }, duration);
+        }
+        </script>
     </div>
-    
    <?php include('footer.html') ?> 
 </body>
 
