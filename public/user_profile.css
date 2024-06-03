@@ -26,3 +26,94 @@
     justify-content: right;
     grid-column: edit-buttons;
 }
+
+.editing_block {
+    box-sizing: border-box;
+    margin: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display:grid;
+    grid-template-rows: [header] 15%
+                        [first-block] 30%
+                        [second-block] 30%
+                        [third-block] 20%
+                        [end];
+    grid-template-columns: [left-col] 30% [middle-col] 20% [right-col] calc(50% - 2px) [end];
+    background-color: rgba(159, 95, 207, 0.589);
+    border: solid 2px rgba(51, 10, 106, 1);
+    border-radius: 15px;
+    width: 630px;
+    height: 520px;
+    color: white;
+}
+
+.button_div {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+  }
+
+.button_confirm {
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    padding: 8px;
+    margin-left: 110px;
+    border-color: rgba(51, 10, 106, 1);
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #8c5cbc;
+    text-decoration: none;
+  }
+  
+.button_confirm:active {
+    background-color: rgba(51, 10, 106, 1);
+}
+
+.button_cancle {
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgba(51, 10, 106, 1);
+    padding: 8px;
+    margin-right: 110px;
+    border-color: rgba(51, 10, 106, 1);
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #d3bfe9;
+    text-decoration: none;
+  }
+  
+.button_cancle:active {
+    background-color: rgba(51, 10, 106, 1);
+    color: white;
+}
+
+.editor_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+#messageBlock {
+    width: 250px;
+    height: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 2px solid #250846;
+    border-radius: 10px;
+    background-color: #380c6c;
+    color: #ffffff;
+    font-size: 14px;
+    font-family:"Bahnschrift", sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
