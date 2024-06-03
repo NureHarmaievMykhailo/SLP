@@ -179,7 +179,7 @@ function submitLesson(id) {
     let duration;
     isOnlineGroup.forEach(btn => {
         if(btn.checked){
-            isOnline = (btn.value.trim() == 'online') ? true : false;
+            isOnline = (btn.value.trim() === 'online') ? 1 : 0;
         }
     });
 
@@ -189,6 +189,7 @@ function submitLesson(id) {
         }
     })
     console.log(time, " ", isOnline, " ", duration)
+
     sendPostToRouter('lesson-controller', 'saveLessonDetails',
         {
             teacher_id: id,

@@ -205,20 +205,22 @@ class Lesson extends Model
         return $res;
     }
 
-    public function insertLesson(string $start_time, string $end_time, string $date, int $isOnline, int $teacher_id, int $user_id)
+    /**
+     * Inserts a lesson into the database.
+     *
+     * @param string $start_time The lesson start time in HH:MM:SS format.
+     * @param string $end_time The lesson end time in HH:MM:SS format.
+     * @param string $date The lesson date in YYYY-MM-DD format.
+     * @param integer $duration The duration of the lesson in seconds
+     * @param integer $isOnline 1 if lesson is online, 0 if the lesson is offline
+     * @param integer $teacher_id Teacher's ID
+     * @param integer $user_id User's ID
+     * @return int|false Returns last inserted ID on success, false on failure.
+     */
+    public function insertLesson(string $start_time, string $end_time, string $date, int $duration, int $isOnline, int $teacher_id, int $user_id)
     {
-        /* $lessonData = [
-            'start_time' => $start_time,
-            'end_time' => $end_time,
-            'date' => $date,
-            'isOnline' => $isOnline,
-            'teacher_id' => $teacher_id,
-            'user_id' => $user_id
-        ];
-        return $this->insert($lessonData, __DATABASE__); */
-
         $sql = "INSERT INTO lesson (start_time, end_time, date, isOnline, total_sum, teacher_id, user_id) VALUES
-                (?, ?, ?, ?, (SELECT price FROM teacher WHERE id = ?), ?, ?);";
+                (?, ?, ?, ?, (SELECT price FROM teacher WHERE id = ?) * ? / 3600, ?, ?);";
         $mysqli = new mysqli(__HOSTNAME__, __USERNAME__, __PASSWORD__, __DATABASE__);
         if ($mysqli->connect_error) {
             return false;
@@ -228,7 +230,7 @@ class Lesson extends Model
             return false;
         }
 
-        if(!$stmt->bind_param("sssiiii", $start_time, $end_time, $date, $isOnline, $teacher_id, $teacher_id, $user_id)) {
+        if(!$stmt->bind_param("sssiiiii", $start_time, $end_time, $date, $isOnline, $teacher_id, $teacher_id, $duration, $user_id)) {
             return false;
         }
 

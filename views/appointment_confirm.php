@@ -2,7 +2,7 @@
 session_start();
 require_once('../session-config.php');
 checkSessionTimeout();
-redirectUnauthorized();
+redirectUnauthorized([PermissionCode::User->value]);
 
 require_once('../controllers/lesson-controller.php');
 require_once('../controllers/teacher-controller.php');
@@ -11,7 +11,6 @@ $teacherId = $_SESSION['lesson']['teacher_id'];
 $start_time = $_SESSION['lesson']['start_time'];
 $isOnline = $_SESSION['lesson']['isOnline'];
 $duration = $_SESSION['lesson']['duration'];
-
 $tc = new TeacherController;
 $teacher = $tc->getTeacherById($teacherId);
 ?>
@@ -83,18 +82,11 @@ $teacher = $tc->getTeacherById($teacherId);
                         <h class="header">Тривалість заняття:
                             <p1 class="text_default">
                                 <?php
-                                $durationStr;
-                                switch ($duration) {
-                                    case 1800:
-                                        $durationStr = "30 хвилин";
-                                        break;
-                                    case 3600:
-                                        $durationStr = "1 година";
-                                        break;
-                                    case 5400:
-                                        $durationStr = "1 година 30 хвилин";
-                                        break;
-                                }
+                                $durationStr = match ($duration) {
+                                    1800 => "30 хвилин",
+                                    3600 => "1 година",
+                                    5400 => "1 година 30 хвилин",
+                                };
                                 echo $durationStr;
                                 ?>
                             </p1>

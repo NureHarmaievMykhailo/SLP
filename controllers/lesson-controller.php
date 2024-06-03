@@ -23,7 +23,7 @@ class LessonController extends Controller {
         $date = date("Y-m-d", $start_time);
 
         $l = new Lesson;
-        return $l->insertLesson($start_time_string, $end_time_string, $date, $isOnlineInt, $teacher_id, $user_id);
+        return $l->insertLesson($start_time_string, $end_time_string, $date, $duration, $isOnlineInt, $teacher_id, $user_id);
     }
 
     public function checkIfDateInSchedule(int $timestamp, int $teacher_id) {

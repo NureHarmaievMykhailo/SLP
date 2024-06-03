@@ -2,7 +2,7 @@
 session_start();
 require_once('../session-config.php');
 checkSessionTimeout();
-redirectUnauthorized();
+redirectUnauthorized([PermissionCode::User->value]);
 
 require_once('../controllers/lesson-controller.php');
 require_once('../controllers/teacher-controller.php');
