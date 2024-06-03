@@ -69,7 +69,7 @@ function showTimeSlots(id) {
                 } else {
                     timeSlot.classList.add('time_slot');
                     timeSlot.value = lesson.start_time;
-                    timeSlot.addEventListener('click', showFormatBlock);
+                    timeSlot.addEventListener('click', pickDate);
                 }
                 timeSlotDiv.appendChild(timeSlot);
             });
@@ -82,6 +82,15 @@ function showTimeSlots(id) {
     .catch(function(error){
         console.error("Error occurred:", error);
     });
+}
+
+function pickDate() {
+    let timeSlotBtns = document.querySelectorAll('.time_slot');
+    timeSlotBtns.forEach(btn => {
+        btn.classList.remove('time_slot_selected')
+    })
+    this.classList.add('time_slot_selected');
+    showFormatBlock();
 }
 
 function showCalendarOk() {
@@ -117,6 +126,8 @@ function showCalendarError() {
 function showTimeBlock() {
     let timeDiv = document.getElementById('timeBlock');
     timeDiv.style.display = 'flex';
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'none';
 }
 
 function hideTimeBlock() {
@@ -126,11 +137,15 @@ function hideTimeBlock() {
     formatBlock.style.display = 'none';
     let durationDiv = document.getElementById('durationBlock');
     durationDiv.style.display = 'none';
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'none';
 }
 
 function showFormatBlock() {
     let formatBlock = document.getElementById('formatBlock');
     formatBlock.style.display = 'flex';
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'none';
 }
 
 function hideFormatBlock() {
@@ -140,12 +155,83 @@ function hideFormatBlock() {
     formatBlock.style.display = 'none';
     let durationDiv = document.getElementById('durationBlock');
     durationDiv.style.display = 'none';
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'none';
 }
 
 function showDurationBlock() {
     let durationDiv = document.getElementById('durationBlock');
     durationDiv.style.display = 'flex';
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'none';
 }
+
+function showContinueButton() {
+    let continueBtn = document.getElementById('continueBtn');
+    continueBtn.style.display = 'block';
+}
+
+function submitLesson(id) {
+    let time = document.querySelector('.time_slot_selected').value.trim();
+    let isOnlineGroup = document.getElementsByName('radioIsOnline');
+    let durationGroup = document.getElementsByName('radioDuration');
+    let isOnline;
+    let duration;
+    isOnlineGroup.forEach(btn => {
+        if(btn.checked){
+            isOnline = (btn.value.trim() == 'online') ? true : false;
+        }
+    });
+
+    durationGroup.forEach(btn => {
+        if(btn.checked){
+            duration = btn.value.trim();
+        }
+    })
+    console.log(time, " ", isOnline, " ", duration)
+    sendPostToRouter('lesson-controller', 'saveLessonDetails',
+        {
+            teacher_id: id,
+            start_time: time,
+            isOnline: isOnline,
+            duration: duration
+        }
+    ).then(function(response){
+        let jsonResponse;
+        try {
+            jsonResponse = JSON.parse(response);
+            if (jsonResponse.status == 'error') {
+                console.error('Error occurred: ', jsonResponse.error);
+                console.log(response);
+                console.log(jsonResponse);
+                return;
+            }
+            if (jsonResponse.status == 'success') {
+                window.location.href = jsonResponse.redirect;
+            }
+            console.log("Unexpected response.", response)
+        }
+        catch(error) {
+            console.log(response);
+            console.error(error);
+        }
+    })
+    .catch(function(error){
+        console.error("Error occurred:", error);
+    });
+}
+
+function deleteLessonDetails(id) {
+    sendPostToRouter('lesson-controller', 'deleteLessonDetails')
+    .then(function(response){
+        console.log(response);
+        window.location.href = `make_appointment?id=${id}`
+    })
+    .catch(function(error){
+        console.error(error);
+    })
+}
+
 function addZero(i) {
     if (i < 10) {i = "0" + i}
     return i;

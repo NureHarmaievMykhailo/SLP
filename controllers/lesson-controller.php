@@ -122,5 +122,33 @@ class LessonController extends Controller {
         }
         return json_encode($response);
     }
+
+    public function getTotalPrice(int $hourPrice, int $duration) {
+        return $hourPrice * $duration / 3600;
+    }
+
+    public function deleteLessonDetails() {
+        session_start();
+        unset($_SESSION['lesson']);
+    }
+
+    public function saveLessonDetails(int $teacher_id, int $start_time, bool $isOnline, int $duration) {
+        try {
+            session_start();
+            $_SESSION['lesson'] = [
+                'teacher_id' => $teacher_id,
+                'start_time' => $start_time,
+                'isOnline' => $isOnline,
+                'duration' => $duration
+            ];
+            $response['status'] = 'success';
+            $response['redirect'] = '../appointment_confirm';
+            return json_encode($response);
+        } catch (Exception $ex) {
+            $response['status'] = 'error';
+            $response['error'] = $ex->getMessage();
+            return json_encode($response);
+        }
+    }
 }
 ?>

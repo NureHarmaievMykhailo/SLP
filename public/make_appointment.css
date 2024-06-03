@@ -61,9 +61,10 @@
     background-color: rgb(135, 172, 204);
 }
 .time_slot_selected {
-    background-color:aqua;
+    background-color:rgb(51, 10, 106) !important; 
     color: white;
-    border-color: black;
+    border-color: black !important;
+    font-weight: bolder;
 }
 
 .time_slot {
@@ -100,4 +101,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.continue_btn {
+    padding: 15px;
+    width: 140px !important;
+    text-align: center;
+    display: none;
+    font-weight: bolder;
+    font-size: larger;
 }

@@ -80,17 +80,17 @@ $teacher = $tc->getTeacherById($teacherId);
                 <div class="appointment_div_number header">4</div>
                 <h class="header">Тривалість заняття</h>
                 <label for="radio30" class="text_default text_larger " style="width: 80%;">
-                    <input type="radio" id="radio30" name="radioDuration" value="1800">&nbsp;30 хвилин
+                    <input type="radio" id="radio30" onchange="showContinueButton()" name="radioDuration" value="1800">&nbsp;30 хвилин
                 </label>
                 <label for="radio60" class="text_default text_larger " style="width: 80%;">
-                    <input type="radio" id="radio60" name="radioDuration" value="3600">&nbsp;60 хвилин
+                    <input type="radio" id="radio60" onchange="showContinueButton()" name="radioDuration" value="3600">&nbsp;60 хвилин
                 </label>
                 <label for="radio90" class="text_default text_larger " style="width: 80%;">
-                    <input type="radio" id="radio90" name="radioDuration" value="5400">&nbsp;90 хвилин
+                    <input type="radio" id="radio90" onchange="showContinueButton()" name="radioDuration" value="5400">&nbsp;90 хвилин
                 </label>
             </div>
         </div>
-        <div class="continue_btn_div"><a href="" class="button" style="padding: 15px; width:70px; text-align:center;">Далі &#x2192</a></div>
+        <div class="continue_btn_div"><button id="continueBtn" onclick="submitLesson(<?php echo $teacherId; ?>)" class="button continue_btn">Далі &#x2192</button></div>
     </div>
     <?php include('footer.html'); ?>
 </body>
