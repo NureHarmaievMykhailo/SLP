@@ -178,7 +178,7 @@
             $data['city'] = $city;
             $data['phoneNumber'] = $phoneNumber;
             $data['pwd'] = $pwd;
-            $data['permission'] = $permission;
+            $data['permission'] = $permission->value;
 
             return Model::update($id, $data, $db);
         }
