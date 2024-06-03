@@ -61,6 +61,13 @@ function callControllerMethod($controller, $method, $params) {
 
         echo callControllerMethod($controller, $method, $params);
     }
+    else if($controllerName == 'upload_changes') {
+        require_once('upload_changes.php');
+
+        $controller = new UploadController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
     else {
         // Not Acceptable
         echo http_response_code(406);
