@@ -38,7 +38,7 @@
                             $redirectLink = "../moderator-home";
                             break;
                         case PermissionCode::Admin->value:
-                            $redirectLink = "../admin-home";
+                            $redirectLink = "../user_control_panel";
                             break;
                     }
 
