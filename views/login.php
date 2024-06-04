@@ -1,19 +1,20 @@
 ﻿<?php
-require_once 'vendor/autoload.php';
-require_once 'config.php';
-require_once 'models/PermissionCode.php';
+require_once '../vendor/autoload.php';
+require_once '../config.php';
+require_once '../models/PermissionCode.php';
+require_once '../google.config.php';
 
 use Google\Client;
 
 // init configuration
-$clientID = '787075876039-1ephfrid8rg86q1aql0d56lc0n70nnbh.apps.googleusercontent.com';
-$clientSecret = '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';
+$clientID = CLIENT_ID_LOGIN;
+$clientSecret = CLIENT_SECRET_LOGIN;
 $redirectUri = 'http://localhost:3000/views/login.php';
 
 // create Client Request to access Google API
 $client = new Google\Client();
 $client->setHttpClient(new \GuzzleHttp\Client([
-    'verify' => 'C:\Misha NURE\PHP\cacert.pem',
+    'verify' => CACERT_PATH,
 ]));
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);

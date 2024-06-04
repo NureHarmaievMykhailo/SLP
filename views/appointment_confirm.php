@@ -69,7 +69,7 @@ $teacher = $tc->getTeacherById($teacherId);
                             <p1 class="text_default"><?php echo date("d.m.Y", $start_time); ?></p1>
                         </h>
                         <h class="header">Час:
-                            <p1 class="text_default"><?php echo date("h:i", $start_time); ?></p1>
+                            <p1 class="text_default"><?php echo date("H:i", $start_time); ?></p1>
                         </h>
                         <h class="header">Формат заняття:
                             <p1 class="text_default">

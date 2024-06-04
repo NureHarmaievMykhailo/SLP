@@ -71,7 +71,7 @@
             trim($phoneNumber), trim($pwd), $permission);
 
             if ($res) {
-                $this->responseArray['redirect'] = '../log_in';
+                $this->responseArray['redirect'] = '../login';
                 $msg = json_encode($this->responseArray);
                 unset($this->responseArray['errors']);
                 return $msg;
