@@ -64,7 +64,21 @@ function callControllerMethod($controller, $method, $params) {
     else if($controllerName == 'lesson-controller') {
         require_once('lesson-controller.php');
 
-        $controller = new LessonController;
+	$controller = new LessonController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
+    else if($controllerName == 'upload_changes') {
+        require_once('upload_changes.php');
+
+        $controller = new UploadController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
+    else if($controllerName == 'user-controller') {
+        require_once "user-controller.php";
+
+        $controller = new UserController();
 
         echo callControllerMethod($controller, $method, $params);
     }

@@ -14,10 +14,13 @@
         }
     }
 
-    function redirectUnauthorized(array $permissionsAllowed = [PermissionCode::Guest->value, PermissionCode::User->value]) {
-        if (!in_array($_SESSION['permission'], $permissionsAllowed)) {
-            header("Location: login");
-            exit();
-        }
+    function redirectUnauthorized(array $permissionsAllowed = null) {
+	    if ($permissionsAllowed === null) {
+		    $permissionsAllowed = [PermissionCode::Guest->value, PermissionCode::User->value];
+	    }
+	    if (!in_array($_SESSION['permission'], $permissionsAllowed)) {
+		    header("Location: login");
+		    exit();
+	    }
     }
 ?>
