@@ -1,6 +1,6 @@
 <?php
 /* error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
+ini_set('display_errors', 1); */
 
 function callControllerMethod($controller, $method, $params) {
     // Check if the method exists in the controller
@@ -58,6 +58,13 @@ function callControllerMethod($controller, $method, $params) {
         require_once('log-in-controller.php');
 
         $controller = new LogInController;
+
+        echo callControllerMethod($controller, $method, $params);
+    }
+    else if($controllerName == 'lesson-controller') {
+        require_once('lesson-controller.php');
+
+	$controller = new LessonController;
 
         echo callControllerMethod($controller, $method, $params);
     }

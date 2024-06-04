@@ -16,6 +16,10 @@ body {
 .text_default {
   font-family:"Bahnschrift", sans-serif;
 }
+.text_larger {
+  font-family:"Bahnschrift", sans-serif;
+  font-size: larger;
+}
 
 .button {
   border-radius: 10px;

@@ -41,7 +41,7 @@ class TeacherBlock {
 
                 <div class=\"teacher_buttons_div\">
                     <a href=\"$this->teacher_view_path$this->id\" class=\"button btn_teacher btn_teacher_details\"><p><span>Детальніше</span></p></a>
-                    <button class=\"button btn_teacher btn_teacher_appointment\"><p><span>Назначити заняття</span></p></button>
+                    <a href=\"make_appointment?id=$this->id\" class=\"button btn_teacher btn_teacher_appointment\"><p><span>Назначити заняття</span></p></a>
                 </div>
 
             </div>";

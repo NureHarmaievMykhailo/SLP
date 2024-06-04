@@ -3,21 +3,22 @@ session_start();
 ?>
 
 <?php
-require_once 'vendor/autoload.php';
-require_once 'config.php';
-require_once 'models/PermissionCode.php';
+require_once '../vendor/autoload.php';
+require_once '../config.php';
+require_once '../models/PermissionCode.php';
+require_once '../google.config.php';
 
 use Google\Client;
 
 // init configuration
-$clientID = '787075876039-l6n6s3tjao6riib0gu8fvmutc9upj5ge.apps.googleusercontent.com';
-$clientSecret = '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';
+$clientID = CLIENT_ID_SIGNUP;
+$clientSecret = CLIENT_SECRET_SIGNUP;
 $redirectUri = 'http://localhost:3000/views/sign_up.php';
 
 // create Client Request to access Google API
 $client = new Google\Client();
 $client->setHttpClient(new \GuzzleHttp\Client([
-    'verify' => 'C:\Misha NURE\PHP\cacert.pem',
+    'verify' => CACERT_PATH,
 ]));
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);

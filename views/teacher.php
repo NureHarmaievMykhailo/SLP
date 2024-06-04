@@ -69,7 +69,7 @@ $teacher = $tc->getTeacherById($id);
         <h class="header"><?php echo $teacher->getPrice(); ?>грн/год</h>
       </div>
       <div class="make_appointment_btn_div">
-        <a class="link_hidden button" style="color: white;" href="">Назначити заняття</a>
+        <a class="link_hidden button" style="color: white;" href="make_appointment?id=<?php echo $id; ?>">Назначити заняття</a>
       </div>
     </div>
 
