@@ -1,6 +1,6 @@
 <?php
     require_once('Controller.php');
-    require_once('../models/UserModel.php');
+    require_once __DIR__ .'/../models/UserModel.php' ;
 
     class SignUpController extends Controller {
 

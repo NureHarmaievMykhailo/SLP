@@ -1,9 +1,12 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once 'MySqlDatabaseAdapter.php';
 require_once 'PostgreSqlDatabaseAdapter.php';
-require_once 'models/PermissionCode.php';
+require_once __DIR__ . '/../models/PermissionCode.php';
 
 use Google\Client;
 
@@ -46,19 +49,21 @@ if (isset($_GET['code'])) {
     $googlePwd = $token['access_token'];
 
     // Instantiate the database adapter
-    $dbAdapter = new MySqlDatabaseAdapter(); // Change to PostgreSqlDatabaseAdapter() for PostgreSQL
+    $dbAdapter = new PostgreSqlDatabaseAdapter(); // Change to PostgreSqlDatabaseAdapter() for PostgreSQL
     $dbAdapter->connect();
 
     // Check if the email already exists
-    $result = $dbAdapter->query('SELECT COUNT(*) FROM user WHERE email = ?', [$email]);
-    $emailExists = $result[0]['COUNT(*)'];
+    $result = $dbAdapter->query('SELECT COUNT(*) FROM users WHERE email = ?', [$email]); //users for  PostgreSQL
+
+    //$emailExists = $result[0]['COUNT(*)'];
+    $emailExists = $result[0]['count']; //For PostgreSQL
 
     if ($emailExists) {
-        header('Location: homepage.php');
+        header('Location: ../homepage.php');
         exit;
     } else {
-        $dbAdapter->query('INSERT INTO user (email, firstName, lastName, pwd, permission) VALUES (?, ?, ?, ?, ?)', [$email, $firstName, $lastName, $googlePwd, PermissionCode::User->value]);
-        header('Location: homepage.php');
+        $dbAdapter->query('INSERT INTO users (email, firstName, lastName, pwd, permission) VALUES (?, ?, ?, ?, ?)', [$email, $firstName, $lastName, $googlePwd, PermissionCode::User->value]);
+        header('Location: ../homepage.php'); //users for  PostgreSQL
         exit;
     }
 

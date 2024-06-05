@@ -1,6 +1,6 @@
 <?php
 require_once 'databaseAdapter.php';
-require_once 'config.php';
+require_once __DIR__ . '/../config.php';
 
 class MySqlDatabaseAdapter implements DatabaseAdapter {
     private $pdo;
