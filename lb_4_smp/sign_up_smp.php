@@ -1,15 +1,16 @@
 <?php
 session_start();
 require_once 'vendor/autoload.php';
-require_once 'MySqlDatabaseAdapter.php'; // або 'MongoDatabaseAdapter.php' для MongoDB
+require_once 'MySqlDatabaseAdapter.php';
+require_once 'PostgreSqlDatabaseAdapter.php';
 require_once 'models/PermissionCode.php';
 
 use Google\Client;
 
 // init configuration
-$clientID = 'YOUR_CLIENT_ID';
-$clientSecret = 'YOUR_CLIENT_SECRET';
-$redirectUri = 'http://localhost:3000/views/sign_up.php';
+$clientID = '787075876039-m4at4ijb4327vu9n4phb0oicfopnji05.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectUri = 'http://localhost:3000/lb_4_smp/sign_up_smp.php';
 
 // create Client Request to access Google API
 $client = new Google\Client();
@@ -44,25 +45,24 @@ if (isset($_GET['code'])) {
     $lastName = $google_account_info->familyName;
     $googlePwd = $token['access_token'];
 
-    try {
-        // Використовуємо адаптер для роботи з БД
-        $dbAdapter = new MySqlDatabaseAdapter();
-        $dbAdapter->connect();
+    // Instantiate the database adapter
+    $dbAdapter = new MySqlDatabaseAdapter(); // Change to PostgreSqlDatabaseAdapter() for PostgreSQL
+    $dbAdapter->connect();
 
-        $stmt = $dbAdapter->query('SELECT COUNT(*) FROM user WHERE email = ?', [$email]);
-        $emailExists = $stmt->fetchColumn();
+    // Check if the email already exists
+    $result = $dbAdapter->query('SELECT COUNT(*) FROM user WHERE email = ?', [$email]);
+    $emailExists = $result[0]['COUNT(*)'];
 
-        if ($emailExists) {
-            header('Location: homepage.php');
-            exit;
-        } else {
-            $dbAdapter->query('INSERT INTO user (email, firstName, lastName, pwd, permission) VALUES (?, ?, ?, ?, ?)', [$email, $firstName, $lastName, $googlePwd, PermissionCode::User->value]);
-            header('Location: homepage.php');
-            exit;
-        }
-    } catch (Exception $e) {
-        echo 'Database error: ' . $e->getMessage();
+    if ($emailExists) {
+        header('Location: homepage.php');
+        exit;
+    } else {
+        $dbAdapter->query('INSERT INTO user (email, firstName, lastName, pwd, permission) VALUES (?, ?, ?, ?, ?)', [$email, $firstName, $lastName, $googlePwd, PermissionCode::User->value]);
+        header('Location: homepage.php');
+        exit;
     }
+
+    $dbAdapter->close();
 }
 ?>
 <!DOCTYPE html>

@@ -19,5 +19,9 @@ class MySqlDatabaseAdapter implements DatabaseAdapter {
         $stmt->execute($params);
         return $stmt;
     }
+
+    public function close() {
+        $this->pdo = null;
+    }
 }
 ?>
