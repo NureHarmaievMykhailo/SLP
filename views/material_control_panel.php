@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
     <link href="../public/material_control_panel.css" type="text/css" rel="stylesheet"/>
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
     <title>Control panel</title>
 </head>
 <body>

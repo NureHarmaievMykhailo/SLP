@@ -15,7 +15,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link href="../public/homepage.css" type="text/css" rel="stylesheet"/>
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <?php

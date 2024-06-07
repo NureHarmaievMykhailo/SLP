@@ -19,7 +19,7 @@ $teacher = $tc->getTeacherById($teacherId);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/styles.css" type="text/css" rel="stylesheet" />
     <link href="../public/make_appointment.css" type="text/css" rel="stylesheet" />
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
     <script src="../public/sendPost.js"></script>
     <script src="../public/make-appointment.js"></script>
     <title>Make an appointment</title>

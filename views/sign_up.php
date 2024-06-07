@@ -84,7 +84,7 @@ if (isset($_GET['code'])) {
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link href="../public/sign_up.css" type="text/css" rel="stylesheet"/>
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
     <script src="../public/sendPost.js"></script>
     <script src="../public/signUp.js"></script>
   </head>
@@ -123,7 +123,7 @@ if (isset($_GET['code'])) {
         </div>
         <div class="sign_up_btn_div">
           <a href="<?php echo $client->createAuthUrl() ?>" class="sign_up_btn text_default noselect sign_up_google_btn">
-            <img style="padding-left:10px;height: 50%; width: auto;" src="../pages/images/sign_up/u89.png">
+            <img style="padding-left:10px;height: 50%; width: auto;" src="public/images/u89.png">
             <p>Зареєструватися з допомогою Google</p>
           </a>
           <button class="sign_up_btn text_default noselect" onclick="signUp();">Зареєструватися</button>

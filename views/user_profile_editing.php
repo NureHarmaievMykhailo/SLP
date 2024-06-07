@@ -15,7 +15,7 @@ $formattedBirthdate = $birthdate->format('Y-m-d');
     <link href="../public/user_profile.css" type="text/css" rel="stylesheet"/>
     <link href="../public/sign_up.css" type="text/css" rel="stylesheet"/>
     <link href="../public/styles.css" type="text/css" rel="stylesheet"/>
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
     <script src="../public/sendPost.js"></script>
     <script src="../public/updateProfileData.js"></script>
     <script src="../public/showToast.js"></script>

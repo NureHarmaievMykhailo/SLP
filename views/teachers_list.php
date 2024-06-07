@@ -13,7 +13,7 @@ redirectUnauthorized();
     <link href="../public/styles.css" type="text/css" rel="stylesheet" />
     <link href="../public/teachers_list.css" type="text/css" rel="stylesheet" />
     <script src="../public/teachersSort.js"></script>
-    <script src="../pages/resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="../public/jquery-3.7.1.min.js"></script>
     <title>Teachers</title>
 </head>
 
