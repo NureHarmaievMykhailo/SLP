@@ -97,7 +97,7 @@ $teacher = $tc->getTeacherById($teacherId);
                     <button class="button" onclick="deleteLessonDetails(<?php echo $teacherId?>)">Скасувати</button>
                 </div>
                 <div class="appointment_confirm_btn_confirm">
-                    <button class="button">Оплатити</button>
+                    <a class="button" href="payment_invoice">Оплатити</a>
                 </div>
             </div>
         </div>
