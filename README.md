@@ -1,15 +1,15 @@
-#Fluent Ukrainian Project
-##Dependecies:
--PHP
--Apache HTTP server
--Composer
+# Fluent Ukrainian Project
+## Dependecies:
+- PHP
+- Apache HTTP server
+- Composer
 
 Composer dependencies are listed in composer.json and composer.lock files.
 
-##Configuration
+## Configuration
 Create config.php and google.config.php files and configure your credentials there.
 
-##Templates:
+## Templates:
 
 `config.php`
 ```
