@@ -1,0 +1,43 @@
+.materials_div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.material {
+  position: static;
+  flex: 1 0 calc(50% - 20px); /* Each item takes up 50% of the container width */
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  margin: 10px;
+}
+
+.material h {
+  font-size: 20px;
+  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
+  font-weight: bold;
+}
+
+.material p {
+  font-family: "Bahnschrift", sans-serif;
+}
+
+.categories_div {
+  border-radius: 15px;
+  border: solid 2px;
+  border-color: inherit;
+  background-color: rgba(190, 179, 255, 0.46);
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 60%;
+}
+
+.button_edit {
+  position: static;
+  margin: 10px;
+}
+
+.button_div {
+  display: flex; /* Enable flexbox */
+  flex-direction: row; /* Arrange children in a row */
+  gap: 10px; /* Optional: Add some space between the items */
+}

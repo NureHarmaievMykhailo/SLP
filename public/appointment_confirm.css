@@ -1,0 +1,52 @@
+.appointment_confirm_main {
+    display: flex;
+    justify-content: center;
+}
+.appointment_confirm_div {
+    display: grid;
+    grid-template-rows: [header] 20% [data] auto [buttons] 20% [end];
+    row-gap: 30px;
+    grid-template-columns: [left-col] 30% [mid] auto [right-col] 30% [end];
+    padding: 20px;
+    width: 900px !important;
+}
+.appointment_confirm_header_div {
+    grid-row: header;
+    grid-column: left-col;
+}
+.appointment_confirm_btn_cancel {
+    grid-row: buttons;
+    grid-column: left-col;
+}
+.appointment_confirm_btn_confirm {
+    grid-row: buttons;
+    grid-column: right-col;
+    display: flex;
+    justify-content: right;
+}
+.appointment_confirm_data_wrapper {
+    grid-row: data;
+    grid-column-start: left-col;
+    grid-column-end: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.appointment_confirm_data_div {
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: left;
+}
+.price_div_wrapper {
+    grid-row: header;
+    grid-column: right-col;
+    display: flex;
+    justify-content: right;
+}
+.price_div {
+    background-color: aliceblue !important;
+    padding: 15px;
+}

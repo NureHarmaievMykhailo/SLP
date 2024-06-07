@@ -1,0 +1,107 @@
+﻿.page-footer {
+  margin-top: 300px;
+  height: 420px;
+  width: 100hv;
+  z-index: 3;
+  background-color: #380c6c;
+  padding-top: 40px;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-bottom: 40px;
+  display:grid;
+  grid-template-rows: [headers] 15% [main-content] auto [separator-line] 10% [copyright] 15% [end];
+  grid-template-columns: [about] 25% [app] 25% [support] 25% [socials] 25% [end];
+  color: white;
+}
+
+/* First row */
+.about_div {
+  grid-row: headers;
+  grid-column: about;
+}
+.app_div {
+  grid-row: headers;
+  grid-column: app;
+}
+.support_div {
+  grid-row: headers;
+  grid-column: support;
+}
+.socials_div {
+  grid-row: headers;
+  grid-column: socials;
+}
+
+/* Second row */
+.about_content_div {
+  grid-row: main-content;
+  grid-column: about;
+  display: flex;
+  flex-direction: column;
+}
+.about_content_div a {
+  margin-top: 15px;
+}
+.app_content_div {
+  grid-row: main-content;
+  grid-column: app;
+  display: flex;
+  flex-direction: column;
+}
+.app_content_div a {
+  margin-top: 15px;
+}
+.support_content_div {
+  grid-row: main-content;
+  grid-column: support;
+}
+.socials_content_div {
+  grid-row: main-content;
+  grid-column: socials;
+}
+.fb-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.insta-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.tg-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+.fb-div div {
+  margin-right: 15px;
+}
+.insta-div div {
+  margin-right: 15px;
+}
+.tg-div div {
+  margin-right: 15px;
+}
+/* Third row */
+.separator_line_div {
+  grid-column-start: about;
+  grid-column-end: end;
+  grid-row: separator-line;
+  display: flex;
+  justify-content: center;
+}
+.separator_line {
+  height: 2px;
+  background-color: white;
+  width: 800px;
+}
+/* Fourth row */
+.copyright_div {
+  grid-column-start: about;
+  grid-column-end: end;
+  grid-row: copyright;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

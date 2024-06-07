@@ -1,0 +1,114 @@
+.sign_up_block {
+    box-sizing: border-box;
+    margin: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display:grid;
+    grid-template-rows: [header] auto
+                        [first-block] 20%
+                        [second-block] 20%
+                        [third-block] 30%
+                        [sign-up-buttons] 10%
+                        [log-in-button] auto
+                        [end];
+    grid-template-columns: [left-col] 30% [middle-col] 20% [right-col] calc(50% - 2px) [end];
+    background-color: rgb(200, 132, 252, 0.65);
+    border: solid 2px grey;
+    border-radius: 15px;
+    width: 630px;
+    height: 750px;
+    color: white;
+}
+
+.header_div {
+    grid-row: header;
+    grid-column-start: left-col;
+    grid-column-end: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_div h {
+    font-size: 38px;
+}
+.profile_pic_div {
+    grid-row: first-block;
+    grid-column: left-col;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    padding: 10px;
+}
+.first_block_div {
+    grid-row: first-block;
+    grid-column-start: middle-col;
+    grid-column-end: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.second_block_left {
+    grid-row: second-block;
+    grid-column-start: left-col;
+    grid-column-end: right-col;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+.second_block_right {
+    grid-row: second-block;
+    grid-column: right-col;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.third_block_div {
+    grid-row: third-block;
+    grid-column-start: left-col;
+    grid-column-end: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.sign_up_btn_div {
+    grid-row: sign-up-buttons;
+    grid-column-start: left-col;
+    grid-column-end: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+.log_in_btn_div {
+    grid-row: log-in-button;
+    grid-column-start: left-col;
+    grid-column-end: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sign_up_google_btn {
+    padding-right: 10px;
+    text-align: right;
+}
+.sign_up_error_div {
+    color: red;
+    text-align: center;
+    font-weight:bold;
+}

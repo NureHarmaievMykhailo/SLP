@@ -1,0 +1,138 @@
+﻿.page-header {
+  position: sticky;
+  width: 100%;
+  top:0;
+  z-index: 3;
+  height: fit-content;
+}
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  display: grid;
+  background-color: #641cac;
+  font-family: "Bahnschrift Bold", "Bahnschrift", sans-serif;
+  color: white;
+  font-weight: 600;
+  grid-template-columns: [first] 15% [centre] auto [three] 15% [end];
+  column-gap: 15px;
+}
+
+.nav-logo {
+  grid-column: first;
+  font-family: inherit;
+  font-weight: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  font-size: larger;
+  margin-left: 50px;
+  gap:5px;
+}
+
+.logo-img {
+  width: 70px;
+  height: 65px;
+  background-image: url(../public/images/logo.png);
+  background-size: cover;
+}
+
+.nav-logo:hover, .nav-logo:active {
+  font-weight: 800;
+}
+
+.navbar .nav-links {
+  grid-column: centre;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: [link-first] 22% [link-second] 22% [link-third] 22% [link-fourth] 22% [link-fifth] auto [end];
+
+  font-family: inherit;
+  font-weight: inherit;
+}
+.nav-links li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link1 {
+  grid-column: link-first;
+}
+.nav-link2 {
+  grid-column: link-second;
+}
+.nav-link3 {
+  grid-column: link-third;
+}
+.nav-link4 {
+  grid-column: link-fourth;
+}
+.nav-profile {
+  grid-column: three;
+  font-family: inherit;
+  font-weight: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  margin-right: 50px;
+  gap: 20px;
+}
+
+.navbar .nav-link1:hover, .navbar .nav-link1:active,
+.navbar .nav-link2:hover, .navbar .nav-link2:active,
+.navbar .nav-link3:hover, .navbar .nav-link3:active,
+.navbar .nav-link4:hover, .navbar .nav-link4:active {
+  z-index: 4;
+  white-space: nowrap;
+  font-weight: 800;
+  background-color: rgb(43, 0, 84);
+  border-radius: 25px;
+  padding: 10px;
+}
+.user_profile_link:hover, .user_profile_link:active {
+  z-index: 4;
+  white-space: nowrap;
+  font-weight: 800;
+  background-color: rgb(43, 0, 84);
+  border-radius: 25px;
+  padding: 10px;
+}
+/* Styles for login / sign up prompt for not authorized user */
+.login_prompt_link {
+  border: solid 2px white;
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.login_prompt_link:hover, .login_prompt_link:active {
+  font-weight: 800;
+  border-width: 3px;
+  background-color: rgb(43, 0, 84);
+}
+.signup_prompt_link {
+  color: white;
+  background-color: rgb(43, 0, 84);
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.signup_prompt_link:hover, .signup_prompt_link:active {
+  font-weight: 800;
+  border-width: 3px;
+  background-color: #a37cf0;
+}
+.user_profile_img {
+  background: url(../public/images/user_profile.svg);
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
