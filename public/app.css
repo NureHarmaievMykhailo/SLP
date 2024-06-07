@@ -1,0 +1,50 @@
+h1 {
+    padding-top: 20px;
+    font-family:"Bahnschrift", sans-serif;
+    text-align: center;
+    color: #000000;
+}
+h2 {
+    padding-top: 5px;
+    font-family:"Bahnschrift", sans-serif;
+    text-align: center;
+    color: #000000;
+}
+.table-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(51, 10, 106, 1);
+    border-radius: 8px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-family:"Bahnschrift", sans-serif;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+tr:hover {
+    background-color: #f2caf9;
+}
+.info-container{
+    padding-top: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(51, 10, 106, 1);
+    border-radius: 8px;
+    text-align: center;
+    font-family:"Bahnschrift", sans-serif;
+    color: #000000;
+}
