@@ -9,7 +9,7 @@ use Google\Client;
 // init configuration
 $clientID = CLIENT_ID_LOGIN;
 $clientSecret = CLIENT_SECRET_LOGIN;
-$redirectUri = 'http://localhost:3000/views/login.php';
+$redirectUri = ' http://fluent-ukrainian.westeurope.cloudapp.azure.com/login';
 
 // create Client Request to access Google API
 $client = new Google\Client();
@@ -95,7 +95,7 @@ if (isset($_GET['code'])) {
             <input id="pwdInput" class="sign_up_input" type="password" placeholder=" Пароль" style="padding: 6px;" value="<?php echo htmlspecialchars($googlePwd); ?>">
             <button class="sign_up_btn text_default noselect" style="width: 100% !important;" onclick="logIn();">Увійти</button>
             <a href="<?php echo $client->createAuthUrl() ?>" class="sign_up_btn text_default noselect" style="width: 100% !important;">
-                <img style="padding-right:10px;height: 50%; width: auto;" src="public/images/u89.png">
+                <img style="padding-right:10px;height: 50%; width: auto;" src="../public/images/u89.png">
                 <p>Увійти з допомогою Google</p>
             </a>
             <p class="text_default">Не маєте акаунт? <a href="sign_up" class="link_hidden noselect" style="font-weight: bolder;">Зареєструватися</a></p>

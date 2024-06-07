@@ -13,7 +13,7 @@ use Google\Client;
 // init configuration
 $clientID = CLIENT_ID_SIGNUP;
 $clientSecret = CLIENT_SECRET_SIGNUP;
-$redirectUri = 'http://localhost:3000/views/sign_up.php';
+$redirectUri = 'http://fluent-ukrainian.westeurope.cloudapp.azure.com/sign_up';
 
 // create Client Request to access Google API
 $client = new Google\Client();
@@ -123,7 +123,7 @@ if (isset($_GET['code'])) {
         </div>
         <div class="sign_up_btn_div">
           <a href="<?php echo $client->createAuthUrl() ?>" class="sign_up_btn text_default noselect sign_up_google_btn">
-            <img style="padding-left:10px;height: 50%; width: auto;" src="public/images/u89.png">
+            <img style="padding-left:10px;height: 50%; width: auto;" src="../public/images/u89.png">
             <p>Зареєструватися з допомогою Google</p>
           </a>
           <button class="sign_up_btn text_default noselect" onclick="signUp();">Зареєструватися</button>
