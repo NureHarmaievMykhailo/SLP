@@ -209,7 +209,7 @@
             // Pattern ensures that pwd has uppercase letters, lowercase letters,
             // digits and special characters specified
             // ^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!()*?&`@\/`"'=+$#])$
-            $pattern = "~^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!()*?&`@/\"'=+$#]).+$~";
+            $pattern = "~^(?=.*[A-Z])(?=.*[a-z])$~";
             if (preg_match($pattern, $password)) {
                 return true;
             }

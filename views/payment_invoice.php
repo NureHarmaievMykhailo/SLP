@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 interface PaymentStrategy {
     public function pay($amount, $description);
 }
@@ -71,7 +73,16 @@ $merchantSecretKey = '2abd9286fc2e494c82820b47251b289f419473b7';
 $wayForPay = new WayForPayStrategy($merchantAccount, $merchantDomainName, $merchantSecretKey);
 $paymentContext = new PaymentContext($wayForPay);
 
-$amount = 1000.00;
+session_start();
+require_once('../controllers/lesson-controller.php');
+require_once('../controllers/teacher-controller.php');
+$lc = new LessonController;
+$tc = new TeacherController;
+$teacherId = $_SESSION['lesson']['teacher_id'];
+$duration = $_SESSION['lesson']['duration'];
+$teacher = $tc->getTeacherById($teacherId);
+$amount = $lc->getTotalPrice($teacher->getPrice(), $duration);
+
 $description = 'Lesson with tutor';
 $paymentContext->executePayment($amount, $description);
 
